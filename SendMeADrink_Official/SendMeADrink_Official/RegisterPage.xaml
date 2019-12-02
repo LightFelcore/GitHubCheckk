@@ -4,14 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SendMeADrink_Official.MainPage">
-
-    <StackLayout Margin="10,50,10,0">
-        <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\TbwIg5f.png"/>
+             x:Class="SendMeADrink_Official.RegisterPage">
+    
+    <StackLayout Margin="10,10,10,0">
+        <Entry Placeholder="User name"/>
         <Entry Placeholder="E-mail"/>
         <StackLayout Orientation="Horizontal">
             <Entry IsPassword="True"
-                   x:Name="PasswordSignIn"
+                   x:Name="Password"
                    Placeholder="Password"
                    HorizontalOptions="FillAndExpand"/>
             <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\school\Eye.png"
@@ -22,12 +22,20 @@
                 </Image.GestureRecognizers>
             </Image>
         </StackLayout>
-        <Button Text="Log In"
-                Clicked="LIButton_Clicked"/>
+        <StackLayout Orientation="Horizontal">
+            <Entry IsPassword="True"
+                   x:Name="RepeatPassword"
+                   Placeholder="Repeat Password"
+                   HorizontalOptions="FillAndExpand"/>
+            <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\school\Eye.png"
+                   WidthRequest="37">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShowPassword"
+                                          NumberOfTapsRequired="1"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+        <Button Text="Sign Up"
+                Clicked="SUButton_Clicked"/>
     </StackLayout>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Sign up"
-                     Activated="SUButton_Activated"/>
-    </ContentPage.ToolbarItems>
 </ContentPage>

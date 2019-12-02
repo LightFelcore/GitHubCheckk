@@ -17,5 +17,19 @@ namespace SendMeADrink_Official
         {
             InitializeComponent();
         }
+
+        private void LIButton_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("", "Succesfull login", "Close");
+        }
+        private void SUButton_Activated(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new RegisterPage());
+        }
+
+        public void ShowPassword(object sender, EventArgs args)
+        {
+            PasswordSignIn.IsPassword = PasswordSignIn.IsPassword ? false : true;
+        }
     }
 }
