@@ -6,15 +6,21 @@
              mc:Ignorable="d"
              x:Class="SendMeADrink_Official.MainPage">
 
-    <StackLayout Margin="10,50,10,0">
-        <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\TbwIg5f.png"/>
-        <Entry Placeholder="E-mail"/>
+    <StackLayout BackgroundColor="CadetBlue">
+        <Image Source="C:\Users\lucav\downloads\BEER.png"
+               Margin="0,100"
+               WidthRequest="150"/>
+        <Entry x:Name="Email"
+               Placeholder="E-mail"
+               ScaleX="0.95"/>
         <StackLayout Orientation="Horizontal">
             <Entry IsPassword="True"
                    x:Name="PasswordSignIn"
                    Placeholder="Password"
+                   ScaleX="0.95"
                    HorizontalOptions="FillAndExpand"/>
-            <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\school\Eye.png"
+            <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Saved Pictures\Eye.png"
+                   Margin="10"
                    WidthRequest="37">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ShowPassword"
@@ -23,11 +29,16 @@
             </Image>
         </StackLayout>
         <Button Text="Log In"
+                Margin="10"
+                BorderRadius ="10"
+                BackgroundColor="White"
                 Clicked="LIButton_Clicked"/>
+        <Label Text="--------------------OR--------------------"
+               HorizontalOptions="Center"/>
+        <Button Text="Sign up"
+                Margin="10"
+                BorderRadius ="10"
+                BackgroundColor="White"
+                Clicked="SUButton_Clicked"/>
     </StackLayout>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Sign up"
-                     Activated="SUButton_Activated"/>
-    </ContentPage.ToolbarItems>
 </ContentPage>
