@@ -17,26 +17,35 @@ namespace SendMeADrink_Official
         {
             InitializeComponent();
         }
-
-        private void LIButton_Clicked(object sender, EventArgs e)
+        private async void LIButton_Clicked(object sender, EventArgs e)
         {
-            if(Email != null || PasswordSignIn != null)
+            if(Email == null)
             {
-                DisplayAlert("", "Succesfull login", "Close");
+                await DisplayAlert("Incorrect email/password", "", "Close");
             }
             else
             {
-                DisplayAlert("", "You haven't entered all the details", "Close");
+                await Navigation.PushAsync(new MapPage());
             }
+            
         }
-        private void SUButton_Clicked(object sender, EventArgs e)
-        {
-            DisplayAlert("", "Succesfull login", "Close");
-        }
-
         public void ShowPassword(object sender, EventArgs args)
         {
-            PasswordSignIn.IsPassword = PasswordSignIn.IsPassword ? false : true;
+            PasswordLogIn.IsPassword = PasswordLogIn.IsPassword ? false : true;
         }
+        private async void SUButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RegisterPage());
+        }
+        private async void FPButton_Clicked(object sender, EventArgs e)
+        {
+            var result = await DisplayAlert("Forgot password?","We can send you an email to help you get back into your account","Send Email","Cancel");
+            
+            if (result == true) 
+            { 
+                await Navigation.PushAsync(new ForgotPasswordPage());
+            }
+        }
+       
     }
 }

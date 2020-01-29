@@ -4,22 +4,23 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SendMeADrink_Official.MainPage">
+             x:Class="SendMeADrink_Official.MainPage"
+             NavigationPage.HasNavigationBar="false">
 
-    <StackLayout BackgroundColor="CadetBlue">
-        <Image Source="C:\Users\lucav\downloads\BEER.png"
-               Margin="0,100"
-               WidthRequest="150"/>
+    <StackLayout BackgroundColor="white">
+        <Image Source="C:\PE\Xamarin (App Development)\APPS\SendMeADrink\Images\beer2.png"
+               Margin="0,50,0,10"
+               WidthRequest="200"/>
         <Entry x:Name="Email"
                Placeholder="E-mail"
-               ScaleX="0.95"/>
+               Margin="10,0"/>
         <StackLayout Orientation="Horizontal">
             <Entry IsPassword="True"
-                   x:Name="PasswordSignIn"
+                   x:Name="PasswordLogIn"
                    Placeholder="Password"
-                   ScaleX="0.95"
+                   Margin="10,0"
                    HorizontalOptions="FillAndExpand"/>
-            <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Saved Pictures\Eye.png"
+            <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
                    Margin="10"
                    WidthRequest="37">
                 <Image.GestureRecognizers>
@@ -31,14 +32,18 @@
         <Button Text="Log In"
                 Margin="10"
                 BorderRadius ="10"
-                BackgroundColor="White"
+                BackgroundColor="LightBlue"
                 Clicked="LIButton_Clicked"/>
-        <Label Text="--------------------OR--------------------"
+        <Button Text="Forgot password?"
+                BackgroundColor="White"
+                Clicked="FPButton_Clicked"/>
+        <Label Text="------------------------------------- OR -------------------------------------"
+               FontSize="Subtitle"
                HorizontalOptions="Center"/>
         <Button Text="Sign up"
                 Margin="10"
                 BorderRadius ="10"
-                BackgroundColor="White"
+                BackgroundColor="LightBlue"
                 Clicked="SUButton_Clicked"/>
     </StackLayout>
 </ContentPage>
