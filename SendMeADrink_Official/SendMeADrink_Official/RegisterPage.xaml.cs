@@ -33,4 +33,5 @@ namespace SendMeADrink_Official
             RepeatPassword.IsPassword = RepeatPassword.IsPassword ? false : true;
         }
     }
+
 }

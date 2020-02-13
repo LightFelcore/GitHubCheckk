@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+
 namespace SendMeADrink_Official
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -48,12 +49,11 @@ namespace SendMeADrink_Official
                 await Navigation.PushAsync(new ForgotPasswordPage());
             }
         }
-        private async void DBButton_Clicked(object sender, EventArgs e)
+        private async void ListButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Inloggegevens());
+            await Navigation.PushAsync(new ListDatabase());
         }
-       
+        
     }
 
-    
 }
