@@ -49,9 +49,9 @@ namespace SendMeADrink_Official
                 await Navigation.PushAsync(new ForgotPasswordPage());
             }
         }
-        private async void ListButton_Clicked(object sender, EventArgs e)
+        private async void UserInfoButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ListDatabase());
+            await Navigation.PushAsync(new Database.UserInfoPage());
         }
         
     }
