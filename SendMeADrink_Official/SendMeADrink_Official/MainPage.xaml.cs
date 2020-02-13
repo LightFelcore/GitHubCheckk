@@ -21,7 +21,7 @@ namespace SendMeADrink_Official
         {
             if(Email.Text == null || PasswordLogIn.Text == null)
             {
-                await DisplayAlert("Incorrect email/password", "", "Close");
+                await DisplayAlert("Enter email/password", "", "Close");
             }
             else
             {
@@ -48,6 +48,12 @@ namespace SendMeADrink_Official
                 await Navigation.PushAsync(new ForgotPasswordPage());
             }
         }
+        private async void DBButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Inloggegevens());
+        }
        
     }
+
+    
 }
