@@ -46,6 +46,11 @@
                     BorderRadius ="10"
                     BackgroundColor="LightBlue"
                     Clicked="SUButton_Clicked"/>
+            <Button Text="User info"
+                    Margin="10"
+                    BorderRadius ="10"
+                    BackgroundColor="LightBlue"
+                    Clicked="UIButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

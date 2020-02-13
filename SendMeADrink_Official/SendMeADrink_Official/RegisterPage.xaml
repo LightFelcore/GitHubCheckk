@@ -9,10 +9,13 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="white">
             <Entry Placeholder="Username"
+                   x:Name="Username"
                    Margin="10,25,10,0"/>
             <Entry Placeholder="Age"
+                   x:Name="Age"
                    Margin="10,0"/>
             <Entry Placeholder="E-mail"
+                   x:Name="Email"
                    Margin="10,0"/>
             <StackLayout Orientation="Horizontal">
                 <Entry IsPassword="True"
