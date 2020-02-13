@@ -5,10 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="SendMeADrink_Official.MainPage"
-             NavigationPage.HasNavigationBar="false">
+             NavigationPage.HasNavigationBar="false" NavigationPage.HasBackButton="False">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="white">
+        <StackLayout BackgroundColor="White">
             <Image Source="C:\PE\Xamarin (App Development)\APPS\SendMeADrink\Images\beer2.png"
                    Margin="0,50,0,10"
                    WidthRequest="200"/>
@@ -32,8 +32,8 @@
             </StackLayout>
             <Button Text="Log In"
                     Margin="10"
-                    BorderRadius ="10"
-                    BackgroundColor="LightBlue"
+                    BorderRadius ="20"
+                    BackgroundColor="YellowGreen"
                     Clicked="LIButton_Clicked"/>
             <Button Text="Forgot password?"
                     BackgroundColor="White"
@@ -43,8 +43,8 @@
                    HorizontalOptions="Center"/>
             <Button Text="Sign up"
                     Margin="10"
-                    BorderRadius ="10"
-                    BackgroundColor="LightBlue"
+                    BorderRadius ="20"
+                    BackgroundColor="YellowGreen"
                     Clicked="SUButton_Clicked"/>
             <Button Text="User info"
                     Margin="10"
