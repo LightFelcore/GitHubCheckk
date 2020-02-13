@@ -17,9 +17,14 @@ namespace SendMeADrink_Official
             InitializeComponent();
         }
 
-        private void SUButton_Clicked(object sender, EventArgs e)
+        private async void SUButton_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("", "Succesfull sign up", "Close");
+            var result = await DisplayAlert("", "Succesfull sign up", "", "Close");
+
+            if(result == false)
+            {
+                await Navigation.PushAsync(new MainPage());
+            }
         }
 
         public void ShowPassword(object sender, EventArgs args)
