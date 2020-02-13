@@ -19,7 +19,7 @@ namespace SendMeADrink_Official
         }
         private async void LIButton_Clicked(object sender, EventArgs e)
         {
-            if(Email == null)
+            if(Email.Text == null || PasswordLogIn.Text == null)
             {
                 await DisplayAlert("Incorrect email/password", "", "Close");
             }
@@ -27,7 +27,9 @@ namespace SendMeADrink_Official
             {
                 await Navigation.PushAsync(new MapPage());
             }
-            
+
+            Email.Text = null;
+            PasswordLogIn.Text = null;
         }
         public void ShowPassword(object sender, EventArgs args)
         {

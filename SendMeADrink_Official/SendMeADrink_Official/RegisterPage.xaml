@@ -6,47 +6,49 @@
              mc:Ignorable="d"
              x:Class="SendMeADrink_Official.RegisterPage">
     
-    <StackLayout BackgroundColor="white">
-        <Entry Placeholder="Username"
-               Margin="10,25,10,0"/>
-        <Entry Placeholder="Age"
-               Margin="10,0"/>
-        <Entry Placeholder="E-mail"
-               Margin="10,0"/>
-        <StackLayout Orientation="Horizontal">
-            <Entry IsPassword="True"
-                   x:Name="Password"
-                   Placeholder="Password"
-                   Margin="10,0"
-                   HorizontalOptions="FillAndExpand"/>
-            <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
-                   WidthRequest="37"
-                   Margin="10,0">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ShowPassword"
-                                          NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Entry IsPassword="True"
-                   x:Name="RepeatPassword"
-                   Placeholder="Repeat Password"
-                   Margin="10,0"
-                   HorizontalOptions="FillAndExpand"/>
-            <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
-                   WidthRequest="37"
-                   Margin="10,0">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ShowPassword"
-                                          NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
-        </StackLayout>
-        <Button Text="Sign Up"
-                Margin="10"
-                BorderRadius ="10"
-                BackgroundColor="LightBlue"
-                Clicked="SUButton_Clicked"/>
-    </StackLayout>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="white">
+            <Entry Placeholder="Username"
+                   Margin="10,25,10,0"/>
+            <Entry Placeholder="Age"
+                   Margin="10,0"/>
+            <Entry Placeholder="E-mail"
+                   Margin="10,0"/>
+            <StackLayout Orientation="Horizontal">
+                <Entry IsPassword="True"
+                       x:Name="Password"
+                       Placeholder="Password"
+                       Margin="10,0"
+                       HorizontalOptions="FillAndExpand"/>
+                <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
+                       WidthRequest="37"
+                       Margin="10,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowPassword"
+                                              NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry IsPassword="True"
+                       x:Name="RepeatPassword"
+                       Placeholder="Repeat Password"
+                       Margin="10,0"
+                       HorizontalOptions="FillAndExpand"/>
+                <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
+                       WidthRequest="37"
+                       Margin="10,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowPassword"
+                                              NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <Button Text="Sign Up"
+                    Margin="10"
+                    BorderRadius ="10"
+                    BackgroundColor="LightBlue"
+                    Clicked="SUButton_Clicked"/>
+        </StackLayout>  
+    </ContentPage.Content> 
 </ContentPage>

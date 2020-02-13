@@ -7,43 +7,45 @@
              x:Class="SendMeADrink_Official.MainPage"
              NavigationPage.HasNavigationBar="false">
 
-    <StackLayout BackgroundColor="white">
-        <Image Source="C:\PE\Xamarin (App Development)\APPS\SendMeADrink\Images\beer2.png"
-               Margin="0,50,0,10"
-               WidthRequest="200"/>
-        <Entry x:Name="Email"
-               Placeholder="E-mail"
-               Margin="10,0"/>
-        <StackLayout Orientation="Horizontal">
-            <Entry IsPassword="True"
-                   x:Name="PasswordLogIn"
-                   Placeholder="Password"
-                   Margin="10,0"
-                   HorizontalOptions="FillAndExpand"/>
-            <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
-                   Margin="10"
-                   WidthRequest="37">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ShowPassword"
-                                          NumberOfTapsRequired="1"/>
-                </Image.GestureRecognizers>
-            </Image>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="white">
+            <Image Source="C:\PE\Xamarin (App Development)\APPS\SendMeADrink\Images\beer2.png"
+                   Margin="0,50,0,10"
+                   WidthRequest="200"/>
+            <Entry x:Name="Email"
+                   Placeholder="E-mail"
+                   Margin="10,0"/>
+            <StackLayout Orientation="Horizontal">
+                <Entry IsPassword="True"
+                       x:Name="PasswordLogIn"
+                       Placeholder="Password"
+                       Margin="10,0"
+                       HorizontalOptions="FillAndExpand"/>
+                <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
+                       Margin="10"
+                       WidthRequest="37">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowPassword"
+                                              NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <Button Text="Log In"
+                    Margin="10"
+                    BorderRadius ="10"
+                    BackgroundColor="LightBlue"
+                    Clicked="LIButton_Clicked"/>
+            <Button Text="Forgot password?"
+                    BackgroundColor="White"
+                    Clicked="FPButton_Clicked"/>
+            <Label Text="------------------------------------- OR -------------------------------------"
+                   FontSize="Subtitle"
+                   HorizontalOptions="Center"/>
+            <Button Text="Sign up"
+                    Margin="10"
+                    BorderRadius ="10"
+                    BackgroundColor="LightBlue"
+                    Clicked="SUButton_Clicked"/>
         </StackLayout>
-        <Button Text="Log In"
-                Margin="10"
-                BorderRadius ="10"
-                BackgroundColor="LightBlue"
-                Clicked="LIButton_Clicked"/>
-        <Button Text="Forgot password?"
-                BackgroundColor="White"
-                Clicked="FPButton_Clicked"/>
-        <Label Text="------------------------------------- OR -------------------------------------"
-               FontSize="Subtitle"
-               HorizontalOptions="Center"/>
-        <Button Text="Sign up"
-                Margin="10"
-                BorderRadius ="10"
-                BackgroundColor="LightBlue"
-                Clicked="SUButton_Clicked"/>
-    </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

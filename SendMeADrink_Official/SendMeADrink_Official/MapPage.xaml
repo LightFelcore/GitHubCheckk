@@ -6,18 +6,7 @@
              xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              mc:Ignorable="d"
              x:Class="SendMeADrink_Official.MapPage"
-             NavigationPage.HasNavigationBar="false">
-    
-    <Grid>
-        <map:Map x:Name="MyMap" MapType="Street" HasZoomEnabled="True">
-            <map:Map.ItemTemplate>
-                <DataTemplate>
-                    <map:Pin Position="{Binding Position}"
-                             Address="{Binding Address}"
-                             Label="{Binding PlaceName}" />
-                </DataTemplate>
-            </map:Map.ItemTemplate>
-        </map:Map>
-    </Grid>
-    
+             NavigationPage.HasNavigationBar="False">
+
+    <map:Map x:Name="MyMap" HasZoomEnabled="True" IsShowingUser="True" MapType="Street"/>
 </ContentPage>

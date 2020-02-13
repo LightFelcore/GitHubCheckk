@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace SendMeADrink_Official
@@ -13,7 +14,16 @@ namespace SendMeADrink_Official
     {
         public MapPage()
         {
-            InitializeComponent();
+            var map = new Map(MapSpan.FromCenterAndRadius(new Position(37, -122), Distance.FromKilometers(0.01)))
+            {
+                IsShowingUser = true,
+                HeightRequest = 100,
+                WidthRequest = 960,
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
+            var stack = new StackLayout { Spacing = 0 };
+            stack.Children.Add(map);
+            Content = stack;
         }
     }
 }
