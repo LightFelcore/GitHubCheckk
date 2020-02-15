@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SendMeADrink_Official.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,19 +16,26 @@ namespace SendMeADrink_Official
         {
             InitializeComponent();
         }
-
-        private async void SUButton_Clicked(object sender, EventArgs e)
-        {
-            if (Username.Text == null || Age.Text == null || Email.Text == null || Password.Text == null || RepeatPassword.Text == null)
+        public async void SUButton_Clicked(object sender, EventArgs e)
+        {    
+            if (string.IsNullOrWhiteSpace(UsernameEntry.Text) || string.IsNullOrWhiteSpace(AgeEntry.Text) || string.IsNullOrWhiteSpace(EmailEntry.Text) || string.IsNullOrWhiteSpace(PasswordEntry.Text) || string.IsNullOrWhiteSpace(RepeatPasswordEntry.Text))
             {
                 await DisplayAlert("Please enter all your information", "", "Close");
             }
             else
             {
-                if (Password.Text == RepeatPassword.Text)
+                if (PasswordEntry.Text == RepeatPasswordEntry.Text)
                 {
+                    Person person = new Person()
+                    {
+                        Username = UsernameEntry.Text,
+                        Age = int.Parse(AgeEntry.Text),
+                        Email = EmailEntry.Text,
+                        Password = PasswordEntry.Text
+                    };
+                    //Add New Person
+                    await App.Database.SaveItemAsync(person);
                     var result = await DisplayAlert("", "Succesfull sign up", "", "Close");
-
                     if (result == false)
                     {
                         await Navigation.PushAsync(new MainPage());
@@ -38,18 +46,13 @@ namespace SendMeADrink_Official
                     await DisplayAlert("The entered passwords aren't the same", "", "Close");
                 }
             }
-
-            Username.Text = null;
-            Age.Text = null;
-            Email.Text = null;
-            Password.Text = null;
-            RepeatPassword.Text = null;
+            UsernameEntry.Text = AgeEntry.Text = EmailEntry.Text = PasswordEntry.Text = RepeatPasswordEntry.Text = string.Empty;
+            //UserList.ItemsSource = await App.Database.GetPeopleAsync();
         }
-
         public void ShowPassword(object sender, EventArgs args)
         {
-            Password.IsPassword = Password.IsPassword ? false : true;
-            RepeatPassword.IsPassword = RepeatPassword.IsPassword ? false : true;
+            PasswordEntry.IsPassword = PasswordEntry.IsPassword ? false : true;
+            RepeatPasswordEntry.IsPassword = RepeatPasswordEntry.IsPassword ? false : true;
         }
     }
 

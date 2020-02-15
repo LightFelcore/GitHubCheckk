@@ -15,8 +15,8 @@ namespace SendMeADrink_Official
     {
         public MapPage()
         {
-            InitializeComponent();
             GetUserLocation();
+            InitializeComponent();
         }
         async void GetUserLocation()
         {
@@ -36,11 +36,11 @@ namespace SendMeADrink_Official
                     }
                     else
                     {
-                        var map = new Xamarin.Forms.Maps.Map(MapSpan.FromCenterAndRadius(new Position(Latitude, Longitude), Distance.FromKilometers(0.001)))
+                        var map = new Xamarin.Forms.Maps.Map(MapSpan.FromCenterAndRadius(new Position(Latitude, Longitude), Distance.FromKilometers(0.75)))
                         {
                             IsShowingUser = true,
                             HeightRequest = 100,
-                            WidthRequest = 960,
+                            WidthRequest = 980,
                             VerticalOptions = LayoutOptions.FillAndExpand
                         };
                         var stack = new StackLayout { Spacing = 0 };
@@ -50,22 +50,26 @@ namespace SendMeADrink_Official
                     
                 }
             }
-            catch (FeatureNotSupportedException fnsEx)
+            catch (FeatureNotSupportedException)
             {
                 // Handle not supported on device exception
             }
-            catch (FeatureNotEnabledException fneEx)
+            catch (FeatureNotEnabledException)
             {
                 // Handle not enabled on device exception
             }
-            catch (PermissionException pEx)
+            catch (PermissionException)
             {
                 // Handle permission exception
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Unable to get location
             }
-        }  
+        }
+        private async void MenuButton_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Menu button clicked", "", "Close");
+        }
     }
 }

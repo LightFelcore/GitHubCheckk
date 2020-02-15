@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SendMeADrink_Official.Database.UserInfoPage" Title="User List">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="UserList" IsPullToRefreshEnabled="True" RowHeight="125" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="EditButton_Clicked" CommandParameter="{Binding .}" Text="Edit" />
+                                <MenuItem Clicked="DeleteButton_Clicked" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Id:" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Id}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Username:" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Username}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Age:" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Age}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Email:" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Email}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Password:" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Password}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

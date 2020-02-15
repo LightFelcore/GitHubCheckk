@@ -9,17 +9,18 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="white">
             <Entry Placeholder="Username"
-                   x:Name="Username"
+                   x:Name="UsernameEntry"
                    Margin="10,25,10,0"/>
             <Entry Placeholder="Age"
-                   x:Name="Age"
+                   x:Name="AgeEntry"
+                   Keyboard="Numeric"
                    Margin="10,0"/>
             <Entry Placeholder="E-mail"
-                   x:Name="Email"
+                   x:Name="EmailEntry"
                    Margin="10,0"/>
             <StackLayout Orientation="Horizontal">
                 <Entry IsPassword="True"
-                       x:Name="Password"
+                       x:Name="PasswordEntry"
                        Placeholder="Password"
                        Margin="10,0"
                        HorizontalOptions="FillAndExpand"/>
@@ -34,7 +35,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Entry IsPassword="True"
-                       x:Name="RepeatPassword"
+                       x:Name="RepeatPasswordEntry"
                        Placeholder="Repeat Password"
                        Margin="10,0"
                        HorizontalOptions="FillAndExpand"/>

@@ -6,20 +6,18 @@ namespace SendMeADrink_Official
 {
     public partial class App : Application
     {
-        static Database database;
-
-        public static Database Database
+        static MyDatabase db;
+        public static MyDatabase Database
         {
             get
             {
-                if (database == null)
+                if (db == null)
                 {
-                    database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "people.db3"));
+                    db = new MyDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "people.db3"));
                 }
-                return database;
+                return db;
             }
         }
-
         public App()
         {
             InitializeComponent();

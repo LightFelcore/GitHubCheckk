@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-
 namespace SendMeADrink_Official
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -22,15 +21,24 @@ namespace SendMeADrink_Official
         {
             if(Email.Text == null || PasswordLogIn.Text == null)
             {
-                await DisplayAlert("Enter email/password", "", "Close");
+                await DisplayAlert("Enter email/password",null, "Close");
             }
             else
             {
-                await Navigation.PushAsync(new MapPage());
-            }
+                var data = MyDatabase.db.Table<Person>();
+                var validation = data.Where(x => x.Username == Email.Text && x.Password == PasswordLogIn.Text).FirstOrDefaultAsync();
 
-            Email.Text = null;
-            PasswordLogIn.Text = null;
+                if(validation != null)
+                {
+                    await Navigation.PushAsync(new MapPage());
+                }
+                else
+                {
+                    await DisplayAlert("Incorrect email/password", null, "Close");
+                }
+                
+            }
+            Email.Text = PasswordLogIn.Text = string.Empty;
         }
         public void ShowPassword(object sender, EventArgs args)
         {
