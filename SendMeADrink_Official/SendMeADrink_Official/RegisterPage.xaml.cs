@@ -1,5 +1,4 @@
-﻿using SendMeADrink_Official.Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,16 +25,7 @@ namespace SendMeADrink_Official
             {
                 if (PasswordEntry.Text == RepeatPasswordEntry.Text)
                 {
-                    Person person = new Person()
-                    {
-                        Username = UsernameEntry.Text,
-                        Age = int.Parse(AgeEntry.Text),
-                        Email = EmailEntry.Text,
-                        Password = PasswordEntry.Text
-                    };
-                    //Add New Person
-                    await App.Database.SaveItemAsync(person);
-                    var result = await DisplayAlert("", "Succesfull sign up", "", "Close");
+                    var result = await DisplayAlert("Succesfull sign up", null, null, "Close");
                     if (result == false)
                     {
                         await Navigation.PushAsync(new MainPage());
@@ -47,7 +37,6 @@ namespace SendMeADrink_Official
                 }
             }
             UsernameEntry.Text = AgeEntry.Text = EmailEntry.Text = PasswordEntry.Text = RepeatPasswordEntry.Text = string.Empty;
-            //UserList.ItemsSource = await App.Database.GetPeopleAsync();
         }
         public void ShowPassword(object sender, EventArgs args)
         {

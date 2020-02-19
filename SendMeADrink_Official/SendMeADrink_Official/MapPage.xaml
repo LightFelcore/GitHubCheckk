@@ -1,18 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             mc:Ignorable="d"
-             x:Class="SendMeADrink_Official.MapPage"
-             NavigationPage.HasNavigationBar="False">
-    <Grid>
-        <map:Map x:Name="MyMap" HasZoomEnabled="True" IsShowingUser="True" MapType="Street"/>
-        <Button Text="Menu"
-                Clicked="MenuButton_Clicked"
-                HorizontalOptions="Start" VerticalOptions="Start"
-                Margin="15"
-                BackgroundColor="WhiteSmoke" Opacity="0.75" BorderColor="LightGray" BorderWidth="1"/>
-    </Grid>
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+                mc:Ignorable="d"
+                x:Class="SendMeADrink_Official.MapPage"
+                NavigationPage.HasNavigationBar="False">
+
+    <map:Map x:Name="MyMap" HasZoomEnabled="True" IsShowingUser="True" MapType="Street"/>
 </ContentPage>

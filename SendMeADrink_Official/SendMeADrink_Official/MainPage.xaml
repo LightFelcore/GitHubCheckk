@@ -46,11 +46,6 @@
                     BorderRadius ="20"
                     BackgroundColor="YellowGreen"
                     Clicked="SUButton_Clicked"/>
-            <Button Text="List"
-                    Margin="10"
-                    BorderRadius ="20"
-                    BackgroundColor="YellowGreen"
-                    Clicked="UserInfoButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

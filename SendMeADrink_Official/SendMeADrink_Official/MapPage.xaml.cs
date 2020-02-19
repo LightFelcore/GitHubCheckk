@@ -43,6 +43,7 @@ namespace SendMeADrink_Official
                             WidthRequest = 980,
                             VerticalOptions = LayoutOptions.FillAndExpand
                         };
+
                         var stack = new StackLayout { Spacing = 0 };
                         stack.Children.Add(map);
                         Content = stack;
@@ -70,6 +71,10 @@ namespace SendMeADrink_Official
         private async void MenuButton_Clicked(object sender, EventArgs e)
         {
             await DisplayAlert("Menu button clicked", "", "Close");
+        }
+        private async void TestButton_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("test button clicked", "", "Close");
         }
     }
 }

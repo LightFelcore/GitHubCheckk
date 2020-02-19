@@ -19,24 +19,13 @@ namespace SendMeADrink_Official
         }
         private async void LIButton_Clicked(object sender, EventArgs e)
         {
-            if(Email.Text == null || PasswordLogIn.Text == null)
+            if (string.IsNullOrWhiteSpace(Email.Text) || string.IsNullOrWhiteSpace(PasswordLogIn.Text))
             {
-                await DisplayAlert("Enter email/password",null, "Close");
+                await DisplayAlert("Enter email/password", null, "Close");
             }
             else
             {
-                var data = MyDatabase.db.Table<Person>();
-                var validation = data.Where(x => x.Username == Email.Text && x.Password == PasswordLogIn.Text).FirstOrDefaultAsync();
-
-                if(validation != null)
-                {
-                    await Navigation.PushAsync(new MapPage());
-                }
-                else
-                {
-                    await DisplayAlert("Incorrect email/password", null, "Close");
-                }
-                
+                await Navigation.PushAsync(new MapPage());
             }
             Email.Text = PasswordLogIn.Text = string.Empty;
         }
@@ -50,18 +39,12 @@ namespace SendMeADrink_Official
         }
         private async void FPButton_Clicked(object sender, EventArgs e)
         {
-            var result = await DisplayAlert("Forgot password?","We can send you an email to help you get back into your account","Send Email","Cancel");
-            
-            if (result == true) 
-            { 
+            var result = await DisplayAlert("Forgot password?", "We can send you an email to help you get back into your account", "Send Email", "Cancel");
+
+            if (result == true)
+            {
                 await Navigation.PushAsync(new ForgotPasswordPage());
             }
         }
-        private async void UserInfoButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Database.UserInfoPage());
-        }
-        
-    }
-
+    } 
 }
