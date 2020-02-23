@@ -28,7 +28,7 @@ namespace SendMeADrink_Official
                     var result = await DisplayAlert("Succesfull sign up", null, null, "Close");
                     if (result == false)
                     {
-                        await Navigation.PushAsync(new MainPage());
+                        new MainPage();
                     }
                 }
                 else

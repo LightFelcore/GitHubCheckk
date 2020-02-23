@@ -36,7 +36,7 @@ namespace SendMeADrink_Official
                     }
                     else
                     {
-                        var map = new Xamarin.Forms.Maps.Map(MapSpan.FromCenterAndRadius(new Position(Latitude, Longitude), Distance.FromKilometers(0.75)))
+                        var map = new Xamarin.Forms.Maps.Map(MapSpan.FromCenterAndRadius(new Position(Latitude, Longitude), Distance.FromKilometers(0.5)))
                         {
                             IsShowingUser = true,
                             HeightRequest = 100,

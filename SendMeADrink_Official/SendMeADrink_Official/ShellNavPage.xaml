@@ -3,15 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pages="clr-namespace:SendMeADrink_Official; assembly=SendMeADrink_Official"
+             xmlns:pages="clr-namespace:SendMeADrink_Official"
              mc:Ignorable="d"
+             Shell.NavBarIsVisible="False"
              x:Class="SendMeADrink_Official.ShellNavPage">
-  
-    <ShellItem>
-        <ShellContent>
-            <pages:MapPage/>
-        </ShellContent>
-    </ShellItem>
-    <FlyoutItem Title="Profile"/>
-    <FlyoutItem Title="Settings"/>
+
+    <FlyoutItem Title="Map">
+        <ShellContent ContentTemplate="{DataTemplate pages:MapPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Profile">
+        <ShellContent ContentTemplate="{DataTemplate pages:MainPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Settings">
+        <ShellContent ContentTemplate="{DataTemplate pages:RegisterPage}"/>
+    </FlyoutItem>
 </Shell>

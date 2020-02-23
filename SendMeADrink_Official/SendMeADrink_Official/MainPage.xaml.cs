@@ -25,7 +25,7 @@ namespace SendMeADrink_Official
             }
             else
             {
-                await Navigation.PushAsync(new MapPage());
+                Application.Current.MainPage = new ShellNavPage();
             }
             Email.Text = PasswordLogIn.Text = string.Empty;
         }
