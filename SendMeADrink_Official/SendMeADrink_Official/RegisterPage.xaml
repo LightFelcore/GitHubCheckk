@@ -4,26 +4,60 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SendMeADrink_Official.RegisterPage">
-    
+             x:Class="SendMeADrink_Official.RegisterPage"
+             NavigationPage.HasNavigationBar="False">
+
     <ContentPage.Content>
-        <StackLayout BackgroundColor="white">
-            <Entry Placeholder="Username"
+        <StackLayout BackgroundColor="Beige">
+            <StackLayout>
+                <Frame BackgroundColor="CadetBlue"
+                       CornerRadius="35"
+                       Margin="10,30,10,10">
+                    <StackLayout>
+                        
+                        <Label Text="Registration"
+                               HorizontalOptions="Center"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="Black">
+                            
+                        </Label>
+                    </StackLayout>
+
+                </Frame>
+            </StackLayout>
+                <Entry Placeholder="Username"
                    x:Name="UsernameEntry"
-                   Margin="10,25,10,0"/>
+                   Margin="10,25,10,0"
+                   PlaceholderColor="Gray"
+                   TextColor="Black"
+                   Text="{Binding Username}"/>
+            
             <Entry Placeholder="Age"
                    x:Name="AgeEntry"
                    Keyboard="Numeric"
-                   Margin="10,0"/>
+                   Margin="10,0"
+                   PlaceholderColor="Gray"
+                   TextColor="Black"
+                   Text="{Binding Age}"/>
+            
             <Entry Placeholder="E-mail"
                    x:Name="EmailEntry"
-                   Margin="10,0"/>
+                   Margin="10,0"
+                   PlaceholderColor="Gray"
+                   TextColor="Black"
+                   Text="{Binding Email}"/>
+            
             <StackLayout Orientation="Horizontal">
                 <Entry IsPassword="True"
                        x:Name="PasswordEntry"
                        Placeholder="Password"
                        Margin="10,0"
-                       HorizontalOptions="FillAndExpand"/>
+                       HorizontalOptions="FillAndExpand"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       Text="{Binding Passwd}"/>
+                
                 <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
                        WidthRequest="37"
                        Margin="10,0">
@@ -37,8 +71,11 @@
                 <Entry IsPassword="True"
                        x:Name="RepeatPasswordEntry"
                        Placeholder="Repeat Password"
-                       Margin="10,0"
-                       HorizontalOptions="FillAndExpand"/>
+                       Margin="10,0,0,15"
+                       HorizontalOptions="FillAndExpand"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"/>
+                
                 <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
                        WidthRequest="37"
                        Margin="10,0">
@@ -50,9 +87,12 @@
             </StackLayout>
             <Button Text="Sign Up"
                     Margin="10"
-                    BorderRadius ="10"
-                    BackgroundColor="LightBlue"
-                    Clicked="SUButton_Clicked"/>
+                    BorderRadius ="23"
+                    BackgroundColor="CadetBlue"
+                    Clicked="SUButton_Clicked"
+                    FontSize="20"
+                    BorderColor="Black"
+                    BorderWidth="1"/>
         </StackLayout>  
     </ContentPage.Content> 
 </ContentPage>
