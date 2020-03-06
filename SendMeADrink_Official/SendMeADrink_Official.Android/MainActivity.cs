@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Net; // needed for HttpWebRequest.
+using System.IO; // needed for StreamReader.
+using System.Text; // needed for Encoding.
+using System.Net.Http;
+
 
 using Android.App;
 using Android.Content.PM;
@@ -7,6 +12,10 @@ using Android.Views;
 using Android.Widget;
 using Android;
 using Android.OS;
+
+using SendMeADrink_Official.Database;
+
+
 
 namespace SendMeADrink_Official.Droid
 {
@@ -23,7 +32,10 @@ namespace SendMeADrink_Official.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            
+           
         }
+        
         protected override void OnStart()
         {
             base.OnStart();
@@ -66,5 +78,7 @@ namespace SendMeADrink_Official.Droid
             Manifest.Permission.AccessCoarseLocation,
             Manifest.Permission.AccessFineLocation
         };
+
+        
     }
 }

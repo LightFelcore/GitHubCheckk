@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:SendMeADrink_Official"
              mc:Ignorable="d"
-             Shell.NavBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
              x:Class="SendMeADrink_Official.ShellNavPage">
 
     <FlyoutItem Title="Map">

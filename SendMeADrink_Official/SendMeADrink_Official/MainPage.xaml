@@ -8,19 +8,32 @@
              NavigationPage.HasNavigationBar="false" NavigationPage.HasBackButton="False">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <Image Source="C:\PE\Xamarin (App Development)\APPS\SendMeADrink\Images\beer2.png"
-                   Margin="0,50,0,10"
-                   WidthRequest="200"/>
-            <Entry x:Name="Email"
+        <StackLayout BackgroundColor="Beige">
+            
+            <Label Text="Send Me A Drink"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,30"
+                   FontSize="40"
+                   FontAttributes="Bold">
+                
+            </Label>
+            
+            <Entry x:Name="EmailEntry"
                    Placeholder="E-mail"
-                   Margin="10,0"/>
+                   Margin="10,0"
+                   PlaceholderColor="Gray"
+                   TextColor="Black"/>
+            
             <StackLayout Orientation="Horizontal">
+                
                 <Entry IsPassword="True"
-                       x:Name="PasswordLogIn"
+                       x:Name="PasswordEntry"
                        Placeholder="Password"
                        Margin="10,0"
-                       HorizontalOptions="FillAndExpand"/>
+                       HorizontalOptions="FillAndExpand"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"/>
+                
                 <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
                        Margin="10"
                        WidthRequest="37">
@@ -29,23 +42,31 @@
                                               NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
+                
             </StackLayout>
+            
             <Button Text="Log In"
                     Margin="10"
                     BorderRadius ="20"
-                    BackgroundColor="YellowGreen"
+                    BackgroundColor="CadetBlue"
                     Clicked="LIButton_Clicked"/>
-            <Button Text="Forgot password?"
-                    BackgroundColor="White"
+            
+            <Button Text="Forgot Password"
+                    Margin="10"
+                    BorderRadius ="20"
+                    BackgroundColor="Beige"
                     Clicked="FPButton_Clicked"/>
+            
             <Label Text="------------------------------------- OR -------------------------------------"
                    FontSize="Subtitle"
                    HorizontalOptions="Center"/>
+            
             <Button Text="Sign up"
                     Margin="10"
                     BorderRadius ="20"
-                    BackgroundColor="YellowGreen"
+                    BackgroundColor="CadetBlue"
                     Clicked="SUButton_Clicked"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
