@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +17,11 @@ namespace SendMeADrink_Official
         }
         private async void SEButton_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Email send succesfully", "", "Close");
+            var result = await DisplayAlert("Email send succesfully", null, null, "Close");
+            if(result == false)
+            {
+                await Navigation.PushAsync(new MainPage());
+            }
         }
     }
 }

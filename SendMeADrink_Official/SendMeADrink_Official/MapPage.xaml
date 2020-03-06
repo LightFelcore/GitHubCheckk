@@ -5,8 +5,13 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                 mc:Ignorable="d"
-                x:Class="SendMeADrink_Official.MapPage"
-                NavigationPage.HasNavigationBar="False">
+                x:Class="SendMeADrink_Official.MapPage">
 
-    <map:Map x:Name="MyMap" HasZoomEnabled="True" IsShowingUser="True" MapType="Street"/>
+    <Grid>
+        <map:Map x:Name="MyMap" HasZoomEnabled="True" IsShowingUser="True"/>
+        <ImageButton Source="Menu.png" 
+                WidthRequest="35" HeightRequest="35" Margin="15,15" 
+                HorizontalOptions="Start" VerticalOptions="Start" 
+                Clicked="MenuButton_Clicked"/>
+    </Grid>
 </ContentPage>

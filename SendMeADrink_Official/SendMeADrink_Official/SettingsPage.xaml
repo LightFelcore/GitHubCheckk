@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SendMeADrink_Official.SettingsPage">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Settings" FontSize="30" TextColor="Black" FontAttributes="Bold"
+                   HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10"
+                   Grid.Row="0"/>
+            <ImageButton Source="Menu.png" Grid.Row="0"
+                    WidthRequest="35" HeightRequest="35" Margin="15,15,0,0"
+                    HorizontalOptions="Start" VerticalOptions="Start"  
+                    Clicked="MenuButton_Clicked"/>
+            <Grid BackgroundColor="Beige" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Label Text="Map mode:" FontSize="20" TextColor="Black" FontAttributes="Bold"
+                       Padding="10, 15" Grid.Row="0"/>
+                <Picker x:Name="MapMode" 
+                        Grid.Row="0" Margin="115,0,10,0" VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Standard</x:String>
+                        <x:String>Retro</x:String>
+                        <x:String>Dark</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Button Text="Save Settings" Clicked="SaveButton_Clicked" Grid.Row="2"
+                        BackgroundColor="CadetBlue" Margin="10"
+                        CornerRadius="10"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -15,10 +15,12 @@ namespace SendMeADrink_Official
     {
         public MapPage()
         {
-            GetUserLocation();
             InitializeComponent();
+            GetUserLocation();
         }
-        async void GetUserLocation()
+        
+
+        public async void GetUserLocation()
         {
             try
             {
@@ -27,28 +29,15 @@ namespace SendMeADrink_Official
 
                 if (location != null)
                 {
-                    var Longitude = location.Longitude;
-                    var Latitude = location.Latitude;
-
-                    if (location.IsFromMockProvider)
+                    var CustomMap = new Xamarin.Forms.Maps.Map(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromKilometers(0.5)))
                     {
-                        // location is from a mock provider
-                    }
-                    else
-                    {
-                        var map = new Xamarin.Forms.Maps.Map(MapSpan.FromCenterAndRadius(new Position(Latitude, Longitude), Distance.FromKilometers(0.5)))
-                        {
-                            IsShowingUser = true,
-                            HeightRequest = 100,
-                            WidthRequest = 980,
-                            VerticalOptions = LayoutOptions.FillAndExpand
-                        };
+                        IsShowingUser = true,
+                        HeightRequest = 100,
+                        WidthRequest = 980,
+                        VerticalOptions = LayoutOptions.FillAndExpand
+                    };
 
-                        var stack = new StackLayout { Spacing = 0 };
-                        stack.Children.Add(map);
-                        Content = stack;
-                    }
-                    
+                    Content = CustomMap;
                 }
             }
             catch (FeatureNotSupportedException)
@@ -68,13 +57,10 @@ namespace SendMeADrink_Official
                 // Unable to get location
             }
         }
-        private async void MenuButton_Clicked(object sender, EventArgs e)
+
+        private void MenuButton_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Menu button clicked", "", "Close");
-        }
-        private async void TestButton_Clicked(object sender, EventArgs e)
-        {
-            await DisplayAlert("test button clicked", "", "Close");
+            Shell.Current.FlyoutIsPresented = true;
         }
     }
 }

@@ -15,10 +15,5 @@ namespace SendMeADrink_Official
         {
             InitializeComponent();
         }
-
-        private void MenuButton_Clicked(object sender, EventArgs e)
-        {
-            Current.FlyoutIsPresented = true;
-        }
     }
 }

@@ -5,48 +5,86 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="SendMeADrink_Official.MainPage"
-             NavigationPage.HasNavigationBar="false" NavigationPage.HasBackButton="False">
+             NavigationPage.HasNavigationBar="false">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <Image Source="C:\PE\Xamarin (App Development)\APPS\SendMeADrink\Images\beer2.png"
-                   Margin="0,50,0,10"
-                   WidthRequest="200"/>
-            <Entry x:Name="Email"
-                   Placeholder="E-mail"
-                   Margin="10,0"/>
-            <StackLayout Orientation="Horizontal">
-                <Entry IsPassword="True"
-                       x:Name="PasswordLogIn"
-                       Placeholder="Password"
-                       Margin="10,0"
-                       HorizontalOptions="FillAndExpand"/>
-                <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
-                       Margin="10"
-                       WidthRequest="37">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ShowPassword"
-                                              NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-            </StackLayout>
-            <Button Text="Log In"
-                    Margin="10"
-                    BorderRadius ="20"
-                    BackgroundColor="YellowGreen"
-                    Clicked="LIButton_Clicked"/>
-            <Button Text="Forgot password?"
-                    BackgroundColor="White"
-                    Clicked="FPButton_Clicked"/>
-            <Label Text="------------------------------------- OR -------------------------------------"
-                   FontSize="Subtitle"
-                   HorizontalOptions="Center"/>
-            <Button Text="Sign up"
-                    Margin="10"
-                    BorderRadius ="20"
-                    BackgroundColor="YellowGreen"
-                    Clicked="SUButton_Clicked"/>
-        </StackLayout>
+        <Grid BackgroundColor="Beige">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
+            <Image Source="Beer.png"
+                   Grid.Row="0"/>
+            <Label Text="Send Me A Drink" TextColor="Black" FontSize="45"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Start"
+                   Grid.Row="1"/>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Image Source="EmailIcon.png"
+                        Scale="0.75"
+                        HorizontalOptions="Start"
+                        Margin="10,0"
+                        Grid.Column="0"/>
+                <Entry x:Name="Email"
+                        Placeholder="E-mail"
+                        Margin="55,0,15,0"
+                        Grid.Column="0"/>
+                <Grid Grid.Row="1" Margin="15,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="325"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="LockIcon.png"
+                           Scale="0.8"
+                           HorizontalOptions="Start" 
+                           Margin="-4,0,0,9"
+                           Grid.Column="0"/>
+                    <Entry IsPassword="True"
+                           x:Name="PasswordLogIn"
+                           Placeholder="Password"
+                           Margin="40,0,0,0"
+                           Grid.Column="0"/>
+                    <Image Source="Eye.png"
+                           Scale="0.7"
+                           Grid.Column="1">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Grid>
+            <Button Text="Log In" FontSize="20"
+                    Margin="15,0"
+                    CornerRadius="20"
+                    BackgroundColor="CadetBlue"
+                    Clicked="LIButton_Clicked"
+                    Grid.Row="3"/>
+            <Button Text="Forgot Password?" FontSize="15" TextColor="Black" 
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    BackgroundColor="Transparent"
+                    CornerRadius="20"
+                    Clicked="FPButton_Clicked"
+                    Grid.Row="4"/>
+            <Label Text="-------------------------- OR --------------------------" 
+                   FontAttributes="Bold" FontSize="Subtitle"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="5"/>
+            <Button Text="Sign Up" FontSize="20"
+                    Margin="15,0"
+                    CornerRadius ="20"
+                    BackgroundColor="CadetBlue"
+                    Clicked="LIButton_Clicked"
+                    Grid.Row="6"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
+
 

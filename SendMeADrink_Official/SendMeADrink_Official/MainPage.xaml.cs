@@ -21,7 +21,7 @@ namespace SendMeADrink_Official
         {
             if (string.IsNullOrWhiteSpace(Email.Text) || string.IsNullOrWhiteSpace(PasswordLogIn.Text))
             {
-                await DisplayAlert("Enter email/password", null, "Close");
+                await DisplayAlert("Enter email/password", null, null, "Close");
             }
             else
             {
