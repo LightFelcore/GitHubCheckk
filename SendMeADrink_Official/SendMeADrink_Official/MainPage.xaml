@@ -11,11 +11,11 @@
         <Grid BackgroundColor="Beige">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition Height="110"/>
                 <RowDefinition Height="55"/>
-                <RowDefinition Height="55"/>
                 <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="55"/>
             </Grid.RowDefinitions>
             <Image Source="Beer.png"
@@ -28,32 +28,37 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <Image Source="EmailIcon.png"
-                        Scale="0.75"
-                        HorizontalOptions="Start"
-                        Margin="10,0"
-                        Grid.Column="0"/>
-                <Entry x:Name="Email"
-                        Placeholder="E-mail"
-                        Margin="55,0,15,0"
-                        Grid.Column="0"/>
+                <Image Source="Profile.png"
+                       Scale="0.7"
+                       HorizontalOptions="Start"
+                       Margin="10,0"
+                       Opacity="0.65"
+                       Grid.Column="0"/>
+                <Entry x:Name="EmailOrUsernameEntry"
+                       Placeholder="E-mail/Username"
+                       Keyboard="Email"
+                       PlaceholderColor="Gray"
+                       Margin="55,0,15,0"
+                       Grid.Column="0"/>
                 <Grid Grid.Row="1" Margin="15,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="325"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="LockIcon.png"
-                           Scale="0.8"
+                           Scale="0.75"
                            HorizontalOptions="Start" 
-                           Margin="-4,0,0,9"
+                           Margin="-8,0,0,3"
                            Grid.Column="0"/>
                     <Entry IsPassword="True"
-                           x:Name="PasswordLogIn"
+                           x:Name="PasswordEntry"
                            Placeholder="Password"
+                           PlaceholderColor="Gray"
                            Margin="40,0,0,0"
                            Grid.Column="0"/>
                     <Image Source="Eye.png"
                            Scale="0.7"
+                           Margin="0,0,0,-4"
                            Grid.Column="1">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1"/>
@@ -67,12 +72,28 @@
                     BackgroundColor="CadetBlue"
                     Clicked="LIButton_Clicked"
                     Grid.Row="3"/>
-            <Button Text="Forgot Password?" FontSize="15" TextColor="Black" 
-                    HorizontalOptions="Center" VerticalOptions="Center"
-                    BackgroundColor="Transparent"
-                    CornerRadius="20"
-                    Clicked="FPButton_Clicked"
-                    Grid.Row="4"/>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox CheckedChanged="RememberMe_Clicked"
+                          Color="CadetBlue"
+                          Margin="25,0,0,0"
+                          Grid.Column="0"/>
+                <Label Text="Remember me" FontSize="17" TextColor="Black"
+                       VerticalTextAlignment="Center"
+                       Margin="-30,0,0,0"
+                       Grid.Column="1"/>
+                <Label Text="Forgot Password" FontSize="17" TextColor="Black"  
+                       VerticalOptions="Center" HorizontalOptions="Center"
+                       Grid.Column="2">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="FPButton_Clicked" NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
             <Label Text="-------------------------- OR --------------------------" 
                    FontAttributes="Bold" FontSize="Subtitle"
                    HorizontalTextAlignment="Center"
@@ -81,7 +102,7 @@
                     Margin="15,0"
                     CornerRadius ="20"
                     BackgroundColor="CadetBlue"
-                    Clicked="LIButton_Clicked"
+                    Clicked="SUButton_Clicked"
                     Grid.Row="6"/>
         </Grid>
     </ContentPage.Content>

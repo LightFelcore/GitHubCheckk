@@ -8,91 +8,82 @@
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Beige">
-            <StackLayout>
-                <Frame BackgroundColor="CadetBlue"
-                       CornerRadius="35"
-                       Margin="10,30,10,10">
-                    <StackLayout>
-                        
-                        <Label Text="Registration"
-                               HorizontalOptions="Center"
-                               FontSize="30"
-                               FontAttributes="Bold"
-                               TextColor="Black">
-                            
-                        </Label>
-                    </StackLayout>
-
-                </Frame>
-            </StackLayout>
+        <Grid BackgroundColor="Beige">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="285"/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
+            <Label Text="Registration" FontSize="45" TextColor="Black"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   Grid.Row="0"/>
+            <Grid Grid.Row="1" Margin="10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
                 <Entry Placeholder="Username"
-                   x:Name="UsernameEntry"
-                   Margin="10,25,10,0"
-                   PlaceholderColor="Gray"
-                   TextColor="Black"
-                   Text="{Binding Username}"/>
-            
-            <Entry Placeholder="Age"
-                   x:Name="AgeEntry"
-                   Keyboard="Numeric"
-                   Margin="10,0"
-                   PlaceholderColor="Gray"
-                   TextColor="Black"
-                   Text="{Binding Age}"/>
-            
-            <Entry Placeholder="E-mail"
-                   x:Name="EmailEntry"
-                   Margin="10,0"
-                   PlaceholderColor="Gray"
-                   TextColor="Black"
-                   Text="{Binding Email}"/>
-            
-            <StackLayout Orientation="Horizontal">
-                <Entry IsPassword="True"
-                       x:Name="PasswordEntry"
-                       Placeholder="Password"
-                       Margin="10,0"
-                       HorizontalOptions="FillAndExpand"
+                       x:Name="UsernameEntry"
                        PlaceholderColor="Gray"
-                       TextColor="Black"
-                       Text="{Binding Passwd}"/>
-                
-                <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
-                       WidthRequest="37"
-                       Margin="10,0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ShowPassword"
-                                              NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Entry IsPassword="True"
-                       x:Name="RepeatPasswordEntry"
-                       Placeholder="Repeat Password"
-                       Margin="10,0,0,15"
-                       HorizontalOptions="FillAndExpand"
+                       Grid.Row="0"/>
+                <Entry Placeholder="Age"
+                       x:Name="AgeEntry"
                        PlaceholderColor="Gray"
-                       TextColor="Black"/>
-                
-                <Image Source="C:\Users\lucav\OneDrive\Afbeeldingen\Schermopnamen\memes\Eye.png"
-                       WidthRequest="37"
-                       Margin="10,0">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ShowPassword"
-                                              NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-            </StackLayout>
-            <Button Text="Sign Up"
-                    Margin="10"
-                    BorderRadius ="23"
+                       Keyboard="Numeric"
+                       Grid.Row="1"/>
+                <Entry Placeholder="Email"
+                       x:Name="EmailEntry"
+                       PlaceholderColor="Gray"
+                       Keyboard="Email"
+                       Grid.Row="2"/>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="325"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry Placeholder="Password"
+                           x:Name="PasswordEntry"
+                           IsPassword="True"
+                           PlaceholderColor="Gray"
+                           Grid.Column="0"/>
+                    <Image Source="Eye.png"
+                           Scale="0.8"
+                           Margin="0,0,0,-4"
+                           Grid.Column="1">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="325"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry Placeholder="Repeat Password"
+                           x:Name="RepeatPasswordEntry"
+                           IsPassword="True"
+                           PlaceholderColor="Gray"
+                           Grid.Column="0"/>
+                    <Image Source="Eye.png"
+                           Scale="0.8"
+                           Margin="0,0,0,-4"
+                           Grid.Column="1">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShowRepeatPassword" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Grid>
+            <Button Text="Sign Up" FontSize="20"
+                    Margin="15,0"
+                    CornerRadius ="20"
                     BackgroundColor="CadetBlue"
                     Clicked="SUButton_Clicked"
-                    FontSize="20"
-                    BorderColor="Black"
-                    BorderWidth="1"/>
-        </StackLayout>  
+                    Grid.Row="2"/>
+        </Grid>
     </ContentPage.Content> 
 </ContentPage>

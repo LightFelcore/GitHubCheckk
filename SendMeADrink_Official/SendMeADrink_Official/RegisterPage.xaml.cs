@@ -13,8 +13,6 @@ using System.Net.Http.Headers;
 using Xamarin.Essentials;
 using Xamarin.Forms.Core;
 
-
-
 namespace SendMeADrink_Official
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -27,12 +25,8 @@ namespace SendMeADrink_Official
 
         private readonly HttpClient _client = new HttpClient(new System.Net.Http.HttpClientHandler());
 
-        
-
         public async void SUButton_Clicked(object sender, EventArgs e)
         {
-
-            
             if (string.IsNullOrWhiteSpace(UsernameEntry.Text) || string.IsNullOrWhiteSpace(AgeEntry.Text) || string.IsNullOrWhiteSpace(EmailEntry.Text) || string.IsNullOrWhiteSpace(PasswordEntry.Text) || string.IsNullOrWhiteSpace(RepeatPasswordEntry.Text))
             {
                 await DisplayAlert("Enter all information", "", "Close");
@@ -41,7 +35,7 @@ namespace SendMeADrink_Official
             {
                 if (PasswordEntry.Text == RepeatPasswordEntry.Text)
                 {
-                    user u = new user() { Username = UsernameEntry.Text, Email = EmailEntry.Text, Passwd=PasswordEntry.Text, Age=AgeEntry.Text};
+                    user u = new user() { Username = UsernameEntry.Text, Email = EmailEntry.Text, Passwd = PasswordEntry.Text, Age = AgeEntry.Text };
 
                     var _content = new FormUrlEncodedContent(new[]
                     {
@@ -53,11 +47,11 @@ namespace SendMeADrink_Official
                     });
 
                     var _result = await _client.PostAsync("http://10.0.2.2/DATA/USER/server.php", _content);
-                    
-                    
+
+
                     var _tokenJson = await _result.Content.ReadAsStringAsync();
 
-                    
+
                     await DisplayAlert("Registration Completed", null, null, "Close");
 
                     Application.Current.MainPage = new MainPage();
@@ -68,18 +62,14 @@ namespace SendMeADrink_Official
                     await DisplayAlert("The entered passwords aren't the same", "", "Close");
                 }
             }
-            
-
         }
         public void ShowPassword(object sender, EventArgs args)
         {
             PasswordEntry.IsPassword = PasswordEntry.IsPassword ? false : true;
+        }
+        public void ShowRepeatPassword(object sender, EventArgs args)
+        {
             RepeatPasswordEntry.IsPassword = RepeatPasswordEntry.IsPassword ? false : true;
         }
-
-        
-        
-
     }
-
 }
