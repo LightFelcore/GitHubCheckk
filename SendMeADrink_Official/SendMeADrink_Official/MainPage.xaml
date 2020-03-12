@@ -14,7 +14,7 @@
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="110"/>
                 <RowDefinition Height="55"/>
-                <RowDefinition Height="55"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="55"/>
             </Grid.RowDefinitions>
@@ -33,11 +33,12 @@
                         HorizontalOptions="Start"
                         Margin="10,0"
                         Grid.Column="0"/>
-                <Entry x:Name="Email"
-                        Placeholder="E-mail"
+                <Entry x:Name="EmailOrUsernameEntry"
+                        Placeholder="E-mail/Username"
                         Margin="55,0,15,0"
-                        Grid.Column="0"/>
-                <Grid Grid.Row="1" Margin="15,0">
+                        Grid.Column="0"
+                       Keyboard="Email"/>
+                <Grid Grid.Row="1" Margin="15,0" IsTabStop="False">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="325"/>
                         <ColumnDefinition Width="*"/>
@@ -45,34 +46,50 @@
                     <Image Source="LockIcon.png"
                            Scale="0.8"
                            HorizontalOptions="Start" 
-                           Margin="-4,0,0,9"
+                           Margin="-5,0,0,6"
                            Grid.Column="0"/>
                     <Entry IsPassword="True"
-                           x:Name="PasswordLogIn"
+                           x:Name="PasswordEntry"
                            Placeholder="Password"
                            Margin="40,0,0,0"
                            Grid.Column="0"/>
                     <Image Source="Eye.png"
-                           Scale="0.7"
-                           Grid.Column="1">
+                           Scale="0.8"
+                           Grid.Column="1" Margin="0,0,0,-4">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
                     </Image>
                 </Grid>
             </Grid>
+
             <Button Text="Log In" FontSize="20"
                     Margin="15,0"
                     CornerRadius="20"
                     BackgroundColor="CadetBlue"
                     Clicked="LIButton_Clicked"
                     Grid.Row="3"/>
-            <Button Text="Forgot Password?" FontSize="15" TextColor="Black" 
-                    HorizontalOptions="Center" VerticalOptions="Center"
-                    BackgroundColor="Transparent"
-                    CornerRadius="20"
-                    Clicked="FPButton_Clicked"
-                    Grid.Row="4"/>
+
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox CheckedChanged="RememberMe_Clicked"
+                          Margin="25,0,0,0"
+                          Grid.Column="0"/>
+                <Label Text="Remember me" FontSize="17" TextColor="Black"
+                       VerticalTextAlignment="Center"
+                       Margin="10,0,0,0"
+                       Grid.Column="1"/>
+                <Button Text="Forgot Password" FontSize="17" TextColor="Black" 
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        BackgroundColor="Transparent"
+                        Clicked="FPButton_Clicked"
+                        Grid.Column="2"/>
+            </Grid>
             <Label Text="-------------------------- OR --------------------------" 
                    FontAttributes="Bold" FontSize="Subtitle"
                    HorizontalTextAlignment="Center"
@@ -81,7 +98,7 @@
                     Margin="15,0"
                     CornerRadius ="20"
                     BackgroundColor="CadetBlue"
-                    Clicked="LIButton_Clicked"
+                    Clicked="SUButton_Clicked"
                     Grid.Row="6"/>
         </Grid>
     </ContentPage.Content>

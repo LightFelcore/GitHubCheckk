@@ -46,7 +46,8 @@
                    Margin="10,0"
                    PlaceholderColor="Gray"
                    TextColor="Black"
-                   Text="{Binding Email}"/>
+                   Text="{Binding Email}"
+                   Keyboard="Email"/>
             
             <StackLayout Orientation="Horizontal">
                 <Entry IsPassword="True"
@@ -93,6 +94,7 @@
                     FontSize="20"
                     BorderColor="Black"
                     BorderWidth="1"/>
-        </StackLayout>  
+        </StackLayout>
+        
     </ContentPage.Content> 
 </ContentPage>

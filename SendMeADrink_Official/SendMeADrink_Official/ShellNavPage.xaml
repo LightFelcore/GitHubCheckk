@@ -5,9 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:SendMeADrink_Official"
              mc:Ignorable="d"
-             Shell.NavBarIsVisible="True"
+             Shell.NavBarIsVisible="False"
              x:Class="SendMeADrink_Official.ShellNavPage">
 
+    
     <FlyoutItem Title="Map">
         <ShellContent ContentTemplate="{DataTemplate pages:MapPage}"/>
     </FlyoutItem>
@@ -17,4 +18,5 @@
     <FlyoutItem Title="Settings" Icon="Settings.png">
         <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
     </FlyoutItem>
+    <MenuItem Text="Logout" IconImageSource="Logout.png" Clicked="LogoutButton_Clicked"/>
 </Shell>

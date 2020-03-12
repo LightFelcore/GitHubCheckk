@@ -2,6 +2,8 @@
 using System.IO;
 using Xamarin.Forms;
 
+
+
 namespace SendMeADrink_Official
 {
     public partial class App : Application
