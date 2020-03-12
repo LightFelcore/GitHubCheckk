@@ -29,7 +29,7 @@ namespace SendMeADrink_Official
 
         private void MenuButton_Clicked(object sender, EventArgs e)
         {
-            //MasterDetailMapPage.IsPresentedProperty= true;
+            //MasterDetailMapPage.IsPresented = true;
         }
 
         private async void MapButton_Clicked(object sender, EventArgs e)
