@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.sendmeadrink_official">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="preferExternal" android:versionCode="1" android:versionName="1.0" package="com.companyname.sendmeadrink_official">
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
     <application android:label="SendMeADrink_Official.Android" android:usesCleartextTraffic="true">
       <uses-library android:name="org.apache.http.legacy" android:required="false" />
