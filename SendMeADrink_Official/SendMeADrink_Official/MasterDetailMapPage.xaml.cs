@@ -7,17 +7,25 @@ using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using SendMeADrink_Official.Database;
 
 namespace SendMeADrink_Official
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MasterDetailMapPage : MasterDetailPage
     {
-        public MasterDetailMapPage()
+
+        string Id;
+        public MasterDetailMapPage(string _Id)
         {
             InitializeComponent();
             GetUserLocation();
+            Id = _Id;
+            
+
         }
+
+        
 
         public async void GetUserLocation()
         {
@@ -34,12 +42,12 @@ namespace SendMeADrink_Official
 
         private async void MapButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MasterDetailMapPage());
+            await Navigation.PushAsync(new MasterDetailMapPage(Id));
         }
 
         private async void ProfileButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProfilePage());
+            await Navigation.PushAsync(new ProfilePage(Id));
         }
 
         private async void SettingsButton_Clicked(object sender, EventArgs e)
@@ -47,9 +55,16 @@ namespace SendMeADrink_Official
             await Navigation.PushAsync(new SettingsPage());
         }
 
-        private void LogoutButton_Clicked(object sender, EventArgs e)
+        private async void LogoutButton_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new MainPage());
+
+            var res = await DisplayAlert("Would you like to logout?", null, "Yes", "Cancel");
+
+            if (res == true)
+            {
+                Application.Current.MainPage = new NavigationPage(new MainPage());
+            }
         }
+        
     }
 }

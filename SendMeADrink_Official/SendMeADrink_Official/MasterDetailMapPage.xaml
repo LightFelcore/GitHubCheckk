@@ -5,7 +5,8 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                   mc:Ignorable="d"
-                  x:Class="SendMeADrink_Official.MasterDetailMapPage">
+                  x:Class="SendMeADrink_Official.MasterDetailMapPage"
+                  NavigationPage.HasNavigationBar="False">
 
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
@@ -16,6 +17,7 @@
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="45"/>
                         <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -37,7 +39,7 @@
                             <TapGestureRecognizer Tapped="MenuButton_Clicked" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    
+
                     <Image Source="Profile.png"
                            VerticalOptions="Center" 
                            BackgroundColor="red"
@@ -82,6 +84,7 @@
                             <TapGestureRecognizer Tapped="LogoutButton_Clicked" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
+
                 </Grid>
             </ContentPage.Content>
         </ContentPage>
@@ -100,6 +103,7 @@
                                  BorderColor="lightGray" BorderWidth="0.75"
                                  Clicked="MenuButton_Clicked"/>
                 </Grid>
+                
             </ContentPage.Content>
         </ContentPage>
     </MasterDetailPage.Detail>

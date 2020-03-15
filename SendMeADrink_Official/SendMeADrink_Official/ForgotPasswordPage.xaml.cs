@@ -23,5 +23,6 @@ namespace SendMeADrink_Official
                 await Navigation.PushAsync(new MainPage());
             }
         }
+        
     }
 }

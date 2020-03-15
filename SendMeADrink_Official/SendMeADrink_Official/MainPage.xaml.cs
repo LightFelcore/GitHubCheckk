@@ -23,8 +23,8 @@ namespace SendMeADrink_Official
         public MainPage()
         {
             InitializeComponent();
-            EmailOrUsernameEntry.Text = "Oi";
-            PasswordEntry.Text = "Mate";
+            EmailOrUsernameEntry.Text = "aze";
+            PasswordEntry.Text = "aze";
         }
 
         private readonly HttpClient client = new HttpClient(new System.Net.Http.HttpClientHandler());
@@ -37,9 +37,7 @@ namespace SendMeADrink_Official
             }
             else
             {
-                Application.Current.MainPage = new MasterDetailMapPage();
-                /*
-                user u = new user() { Email = EmailOrUsernameEntry.Text, Username = EmailOrUsernameEntry.Text, Passwd = PasswordEntry.Text}; // entry voor het inloggen (Deze entries moeten dus vergeleken worden met die dat in de database aanwezig zijn)
+                user u = new user() { Email = EmailOrUsernameEntry.Text, Username = EmailOrUsernameEntry.Text, Passwd = PasswordEntry.Text };
 
                 var content = new FormUrlEncodedContent(new[]
                 {
@@ -52,16 +50,17 @@ namespace SendMeADrink_Official
 
                 var responseString = await result.Content.ReadAsStringAsync();
 
-                int count = int.Parse(responseString);
 
-                if (count == 1) //check php file (login.php)
-                {
-                    Application.Current.MainPage = new ShellNavPage(); //user authenticated --> nav to other page
-                }
-                if (count == 0) //check php file (login.php) 
+                if (responseString == "null")
                 {
                     await DisplayAlert("Error, Retry Again!", null, null, "Ok"); //user not authenticated
-                }*/
+                }
+                else
+                {
+                    Application.Current.MainPage = new NavigationPage(new MasterDetailMapPage(responseString)); //user authenticated --> nav to other page
+                    
+                }
+                
             }
             EmailOrUsernameEntry.Text = PasswordEntry.Text = string.Empty;
         }
@@ -81,5 +80,6 @@ namespace SendMeADrink_Official
         {
           //to be added
         }
+       
     } 
 }

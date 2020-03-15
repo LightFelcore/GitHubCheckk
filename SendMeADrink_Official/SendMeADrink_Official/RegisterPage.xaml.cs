@@ -39,18 +39,13 @@ namespace SendMeADrink_Official
 
                     var _content = new FormUrlEncodedContent(new[]
                     {
-                       new KeyValuePair<string, string>("Id", u.Id),
                        new KeyValuePair<string, string>("Username", u.Username),
                        new KeyValuePair<string, string>("Email", u.Email),
                        new KeyValuePair<string, string>("Passwd", u.Passwd),
                        new KeyValuePair<string, string>("Age", u.Age)
                     });
 
-                    var _result = await _client.PostAsync("http://10.0.2.2/DATA/USER/server.php", _content);
-
-
-                    var _tokenJson = await _result.Content.ReadAsStringAsync();
-
+                    await _client.PostAsync("http://10.0.2.2/DATA/USER/server.php", _content);
 
                     await DisplayAlert("Registration Completed", null, null, "Close");
 
