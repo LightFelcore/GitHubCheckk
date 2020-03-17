@@ -12,6 +12,9 @@ using System.Net.Http;
 using Xamarin.Essentials;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
+using Json.Net;
+
 
 namespace SendMeADrink_Official
 {
@@ -34,6 +37,7 @@ namespace SendMeADrink_Official
             if (string.IsNullOrWhiteSpace(EmailOrUsernameEntry.Text) || string.IsNullOrWhiteSpace(PasswordEntry.Text))
             {
                 await DisplayAlert("Enter the correct information", null, null, "Close");
+                EmailOrUsernameEntry.Text = PasswordEntry.Text = string.Empty;
             }
             else
             {
@@ -46,23 +50,26 @@ namespace SendMeADrink_Official
                     new KeyValuePair<string, string>("Passwd", u.Passwd),
                 });
 
-                var result = await client.PostAsync("http://10.0.2.2/DATA/USER/login.php", content); // connectie met mijn emulator
+                var res = await client.PostAsync("http://10.0.2.2/DATA/USER/login.php", content); // connectie met mijn emulator
 
-                var responseString = await result.Content.ReadAsStringAsync();
+                var json = await res.Content.ReadAsStringAsync();
 
+                u = JsonConvert.DeserializeObject<user>(json);
+                ((App)App.Current).CU = u;
 
-                if (responseString == "null")
+                string HashedPasswordEntry;
+
+                HashedPasswordEntry = MD5Hasher(PasswordEntry.Text);  
+
+                if ((EmailOrUsernameEntry.Text == u.Email || EmailOrUsernameEntry.Text == u.Username) && HashedPasswordEntry == u.Passwd)
                 {
-                    await DisplayAlert("Error, Retry Again!", null, null, "Ok"); //user not authenticated
+                    Application.Current.MainPage = new NavigationPage(new MasterDetailMapPage()); //user authenticated --> nav to other page
                 }
                 else
                 {
-                    Application.Current.MainPage = new NavigationPage(new MasterDetailMapPage(responseString)); //user authenticated --> nav to other page
-                    
+                    await DisplayAlert("Error, Retry Again!", null, null, "Ok"); //user not authenticated
                 }
-                
             }
-            EmailOrUsernameEntry.Text = PasswordEntry.Text = string.Empty;
         }
         public void ShowPassword(object sender, EventArgs args)
         {
@@ -80,6 +87,28 @@ namespace SendMeADrink_Official
         {
           //to be added
         }
-       
+
+        public string MD5Hasher(string PasswordEntry)
+        {
+            using (MD5 md5Hash = MD5.Create())
+            {
+                // Convert the input string to a byte array and compute the hash.
+                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(PasswordEntry));
+
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                StringBuilder sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                // Return the hexadecimal string.
+                return sBuilder.ToString();
+            }
+        }
     } 
 }

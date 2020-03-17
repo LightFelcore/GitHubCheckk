@@ -13,45 +13,43 @@ namespace SendMeADrink_Official
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopUpUpdateData
     {
-        string Id;
-
-        public PopUpUpdateData(string _Id)
+        
+        public PopUpUpdateData()
         {
             InitializeComponent();
-            Id = _Id;
+            BindingContext = ((App)App.Current).CU;
         }
 
-        private readonly HttpClient _client = new HttpClient(new System.Net.Http.HttpClientHandler());
+        private readonly HttpClient client = new HttpClient(new System.Net.Http.HttpClientHandler());
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(UpdateDataUsername.Text) || string.IsNullOrWhiteSpace(UpdateDataEmail.Text) || string.IsNullOrWhiteSpace(UpdateDataAge.Text) || string.IsNullOrWhiteSpace(UpdateDataPasswd.Text) || string.IsNullOrWhiteSpace(UpdateDataRepeatPasswd.Text))
+            
+            if (string.IsNullOrWhiteSpace(UpdateDataUsername.Text) || string.IsNullOrWhiteSpace(UpdateDataEmail.Text) || string.IsNullOrWhiteSpace(UpdateDataAge.Text))
             {
                 await DisplayAlert("Enter all information", "", "Close");
             }
             else
             {
-                if(UpdateDataPasswd.Text == UpdateDataRepeatPasswd.Text)
+
+                var content = new FormUrlEncodedContent(new[]
                 {
-                    user u = new user() { Username = UpdateDataUsername.Text, Email = UpdateDataEmail.Text, Age = UpdateDataAge.Text, Passwd = UpdateDataPasswd.Text };
+                    new KeyValuePair<string, string>("Id", ((App)App.Current).CU.Id),
+                    new KeyValuePair<string, string>("Username", ((App)App.Current).CU.Username),
+                    new KeyValuePair<string, string>("Email", ((App)App.Current).CU.Email),
+                    new KeyValuePair<string, string>("Age", ((App)App.Current).CU.Age),
+                });
 
-                    var _content = new FormUrlEncodedContent(new[]
-                    {
-                       new KeyValuePair<string, string>("Username", u.Username),
-                       new KeyValuePair<string, string>("Email", u.Email),
-                       new KeyValuePair<string, string>("Passwd", u.Passwd),
-                       new KeyValuePair<string, string>("Age", u.Age)
-                    });
+                await client.PostAsync("http://10.0.2.2/DATA/USER/update.php", content);
 
-                    var res = await _client.PostAsync("http://10.0.2.2/DATA/USER/update.php", _content);
+                ((App)App.Current).CU.Username = UpdateDataUsername.Text;
+                ((App)App.Current).CU.Email = UpdateDataEmail.Text;
+                ((App)App.Current).CU.Age = UpdateDataAge.Text;
 
-                    var _tokenJson = await res.Content.ReadAsStringAsync();
-
-                    await DisplayAlert("Profile Updated", null, null, "Ok");
-
-                    Application.Current.MainPage = new ProfilePage(Id);
-                }
+                
             }
+             
         }
     }
+    
 }

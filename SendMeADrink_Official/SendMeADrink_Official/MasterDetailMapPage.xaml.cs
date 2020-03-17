@@ -15,14 +15,10 @@ namespace SendMeADrink_Official
     public partial class MasterDetailMapPage : MasterDetailPage
     {
 
-        string Id;
-        public MasterDetailMapPage(string _Id)
+        
+        public MasterDetailMapPage()
         {
             InitializeComponent();
-            GetUserLocation();
-            Id = _Id;
-            
-
         }
 
         
@@ -42,12 +38,12 @@ namespace SendMeADrink_Official
 
         private async void MapButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MasterDetailMapPage(Id));
+            await Navigation.PushAsync(new MasterDetailMapPage());
         }
 
         private async void ProfileButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ProfilePage(Id));
+            await Navigation.PushAsync(new ProfilePage());
         }
 
         private async void SettingsButton_Clicked(object sender, EventArgs e)
