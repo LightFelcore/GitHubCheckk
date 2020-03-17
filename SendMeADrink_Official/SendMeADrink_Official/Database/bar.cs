@@ -4,12 +4,11 @@ using System.Text;
 
 namespace SendMeADrink_Official.Database
 {
-    public class bar
+    public class Bar
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string BarName { get; set; }
         public string Location { get; set; }
         public string Address { get; set; }
     }
-    
 }

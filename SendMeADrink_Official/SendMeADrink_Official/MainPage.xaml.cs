@@ -1,17 +1,12 @@
-﻿using System;
+﻿using SendMeADrink_Official.Database;
+using System;
+using System.Text;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using System.Net;
-using System.IO;
-using SendMeADrink_Official.Database;
 using System.Net.Http;
-using Xamarin.Essentials;
-using System.Net.Http.Headers;
+using Xamarin.Forms;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
 
 namespace SendMeADrink_Official
 {
@@ -23,23 +18,20 @@ namespace SendMeADrink_Official
         public MainPage()
         {
             InitializeComponent();
-            EmailOrUsernameEntry.Text = "Oi";
-            PasswordEntry.Text = "Mate";
+            PasswordEntry.Text = "OiMate";
         }
-
-        private readonly HttpClient client = new HttpClient(new System.Net.Http.HttpClientHandler());
 
         private async void LIButton_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(EmailOrUsernameEntry.Text) || string.IsNullOrWhiteSpace(PasswordEntry.Text))
             {
                 await DisplayAlert("Enter the correct information", null, null, "Close");
+                EmailOrUsernameEntry.Text = PasswordEntry.Text = string.Empty;
             }
             else
             {
-                Application.Current.MainPage = new MasterDetailMapPage();
-                /*
-                user u = new user() { Email = EmailOrUsernameEntry.Text, Username = EmailOrUsernameEntry.Text, Passwd = PasswordEntry.Text}; // entry voor het inloggen (Deze entries moeten dus vergeleken worden met die dat in de database aanwezig zijn)
+                HttpClient client = new HttpClient(new HttpClientHandler());
+                User u = new User() { Email = EmailOrUsernameEntry.Text, Username = EmailOrUsernameEntry.Text, Passwd = PasswordEntry.Text };
 
                 var content = new FormUrlEncodedContent(new[]
                 {
@@ -48,22 +40,21 @@ namespace SendMeADrink_Official
                     new KeyValuePair<string, string>("Passwd", u.Passwd),
                 });
 
-                var result = await client.PostAsync("http://10.0.2.2/DATA/USER/login.php", content); // connectie met mijn emulator
+                HttpResponseMessage res = await client.PostAsync("http://10.0.2.2/DATA/USER/DataUser.php", content); // connectie met mijn emulator
+                var json = await res.Content.ReadAsStringAsync();
+                u = JsonConvert.DeserializeObject<User>(json);
 
-                var responseString = await result.Content.ReadAsStringAsync();
-
-                int count = int.Parse(responseString);
-
-                if (count == 1) //check php file (login.php)
+                if ((EmailOrUsernameEntry.Text == u.Email || EmailOrUsernameEntry.Text == u.Username) && MD5Hasher(PasswordEntry.Text) == u.Passwd)
                 {
-                    Application.Current.MainPage = new ShellNavPage(); //user authenticated --> nav to other page
+                    ((App)Application.Current).CU = u;
+                    Application.Current.MainPage = new NavigationPage(new MasterDetailMapPage()); //user authenticated --> nav to other page
                 }
-                if (count == 0) //check php file (login.php) 
+                else
                 {
                     await DisplayAlert("Error, Retry Again!", null, null, "Ok"); //user not authenticated
-                }*/
+                }
             }
-            EmailOrUsernameEntry.Text = PasswordEntry.Text = string.Empty;
+
         }
         public void ShowPassword(object sender, EventArgs args)
         {
@@ -79,7 +70,39 @@ namespace SendMeADrink_Official
         }
         private void RememberMe_Clicked(object sender, CheckedChangedEventArgs e)
         {
-          //to be added
+          //damn
         }
-    } 
+
+        /*
+        public string EmailOrUsername //Used to display your username on the MasterDetailPage Menu
+        {
+            get { return EmailOrUsernameEntry.Text; }
+            set { EmailOrUsernameEntry.Text = value; }
+        }*/
+
+        /*------------------------------------------*/
+        /*Function used to hash our passwords*/
+        public string MD5Hasher(string PasswordEntry)
+        {
+            using (MD5 md5Hash = MD5.Create())
+            {
+                // Convert the input string to a byte array and compute the hash.
+                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(PasswordEntry));
+
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                StringBuilder sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                // Return the hexadecimal string.
+                return sBuilder.ToString();
+            }
+        }
+    }  
 }

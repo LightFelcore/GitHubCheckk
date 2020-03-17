@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 using Xamarin.Forms;
-
-
+using SendMeADrink_Official.Database;
 
 namespace SendMeADrink_Official
 {
@@ -13,6 +12,9 @@ namespace SendMeADrink_Official
             InitializeComponent();
             MainPage = new NavigationPage(new MainPage());
         }
+
+        public User CU { get; set; } //CU = Current User (logged In)
+        public Bar BI { get; set; } //BI = Bar Info
 
         protected override void OnStart()
         {

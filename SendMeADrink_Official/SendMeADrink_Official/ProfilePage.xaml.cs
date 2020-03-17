@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SendMeADrink_Official.Database;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
 
 namespace SendMeADrink_Official
 {
@@ -15,19 +16,19 @@ namespace SendMeADrink_Official
         public ProfilePage()
         {
             InitializeComponent();
+            BindingContext = ((App)App.Current).CU;
         }
 
-        private async void LogoutButton_Clicked(object sender, EventArgs e)
+        /*-----------------*/
+        /*Navigation*/
+        private void MenuButton_Clicked(object sender, EventArgs e)
         {
-
-            var res = await DisplayAlert("Would you like to logout?", null, "Yes", "Cancel");
-            
-            if(res == true)
-            {
-                Application.Current.MainPage = new NavigationPage(new MainPage());
-            }
+            //MasterDetailMapPage.IsPresented = true;
+        }
+        private async void EditButton_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("OI",null,"Close");
+            //await PopupNavigation.Instance.PushAsync(new PopupUpdateData(u));
         }
     }
-
-    
 }

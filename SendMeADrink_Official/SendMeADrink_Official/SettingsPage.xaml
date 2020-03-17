@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="SendMeADrink_Official.SettingsPage"
-             Shell.NavBarIsVisible="False">
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
         <Grid>
@@ -29,7 +29,7 @@
                 </Grid.RowDefinitions>
                 <Label Text="Map mode:" FontSize="20" TextColor="Black" FontAttributes="Bold"
                        Padding="10, 15" Grid.Row="0"/>
-                <Picker x:Name="MapMode" 
+                <Picker x:Name="MapMode"
                         Grid.Row="0" Margin="115,0,10,0" VerticalOptions="Center">
                     <Picker.Items>
                         <x:String>Standard</x:String>

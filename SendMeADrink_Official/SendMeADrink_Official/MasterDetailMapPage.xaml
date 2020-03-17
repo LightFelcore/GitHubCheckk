@@ -5,83 +5,131 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                   mc:Ignorable="d"
-                  x:Class="SendMeADrink_Official.MasterDetailMapPage">
+                  x:Class="SendMeADrink_Official.MasterDetailMapPage"
+                  NavigationPage.HasNavigationBar="False">
 
     <MasterDetailPage.Master>
-        <ContentPage Title="Master">
+        <ContentPage Title="MasterPage">
             <ContentPage.Content>
-                <Grid BackgroundColor="WhiteSmoke" RowSpacing="5" Margin="0, 10">
+                <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="160"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="45"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.2*"/>
-                        <ColumnDefinition Width="0.8*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <Image Source="Map.png"
+
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="LightSkyBlue" Padding="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.6*"/>
+                            <RowDefinition Height="0.4*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.32*"/>
+                            <ColumnDefinition Width="0.68*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ImageButton Source="Profile.png"
+                                     VerticalOptions="Center" HorizontalOptions="Center"
+                                     BackgroundColor="White"
+                                     WidthRequest="80" Padding="5" CornerRadius="50"
+                                     Clicked="ProfileButton_Clicked"
+                                     Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="Luca Van Zelst"
+                               FontSize="25" FontAttributes="Bold" TextColor="Black"
+                               VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
+                               Grid.Row="0" Grid.Column="1">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ProfileButton_Clicked" NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        
+                        <Grid Grid.Row="1" Grid.ColumnSpan="2" Padding="0,0,15,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5*"/>
+                                <RowDefinition Height="0.5*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.35*"/>
+                                <ColumnDefinition Width="0.30*"/>
+                                <ColumnDefinition Width="0.35*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="Send" TextColor="Black"
+                                   FontSize="18" FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="0" 
+                                   Text="678" TextColor="Black" 
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label Grid.Row="0" Grid.Column="1"
+                                   Text="Recieved" TextColor="Black" 
+                                   FontSize="18" FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="1"
+                                   Text="340" TextColor="Black" 
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label Grid.Row="0" Grid.Column="2"
+                                   Text="S/R ratio" TextColor="Black"
+                                   FontSize="18" FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="2"
+                                   Text="1.99" TextColor="Black" 
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="45"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.8*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="Map.png"
                            VerticalOptions="Center" HorizontalOptions="Center"
-                           BackgroundColor="Blue"
-                           WidthRequest="50"
+                           WidthRequest="25"
                            Grid.Row="0" Grid.Column="0"/>
-                    <Label Text="Map" FontSize="15" FontAttributes="Bold"
+                        <Label Text="Map" FontSize="15" FontAttributes="Bold" TextColor="Black"
                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
-                           Padding="20,0,0,0"
-                           BackgroundColor="Red"
                            Grid.Row="0" Grid.Column="1">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="MenuButton_Clicked" NumberOfTapsRequired="1"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    
-                    <Image Source="Profile.png"
-                           VerticalOptions="Center" 
-                           BackgroundColor="red"
-                           WidthRequest="35"
-                           Grid.Row="1" Grid.Column="0"/>
-                    <Label Text="Profile" FontSize="15" FontAttributes="Bold"
-                           VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
-                           Padding="20,0,0,0"
-                           BackgroundColor="Green"
-                           Grid.Row="1" Grid.Column="1">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="ProfileButton_Clicked" NumberOfTapsRequired="1"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    
-                    <Image Source="Settings.png"
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="MapButton_Clicked" NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Image Source="Settings.png"
                            VerticalOptions="Center"
-                           BackgroundColor="Green"
-                           WidthRequest="35"
-                           Grid.Row="2" Grid.Column="0"/>
-                    <Label Text="Settings" FontSize="15" FontAttributes="Bold"
+                           WidthRequest="25"
+                           Grid.Row="1" Grid.Column="0"/>
+                        <Label Text="Settings" FontSize="15" FontAttributes="Bold" TextColor="Black"
                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
-                           Padding="20,0,0,0"
-                           BackgroundColor="Gray"
-                           Grid.Row="2" Grid.Column="1">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="SettingsButton_Clicked" NumberOfTapsRequired="1"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    
-                    <Image Source="Logout.png"
+                           Grid.Row="1" Grid.Column="1">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SettingsButton_Clicked" NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Image Source="Logout.png"
                            VerticalOptions="Center" HorizontalOptions="Center"
-                           BackgroundColor="Gray"
-                           WidthRequest="35"
-                           Grid.Row="4" Grid.Column="0"/>
-                    <Label Text="Log Out" FontSize="15" FontAttributes="Bold"
+                           Margin="10,0,0,0"
+                           WidthRequest="25"
+                           Grid.Row="3" Grid.Column="0"/>
+                        <Label Text="Log Out" FontSize="15" FontAttributes="Bold" TextColor="Black"
                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
-                           Padding="20,0,0,0"
-                           BackgroundColor="Blue"
-                           Grid.Row="4" Grid.Column="1">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="LogoutButton_Clicked" NumberOfTapsRequired="1"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+                           Grid.Row="3" Grid.Column="1">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="LogoutButton_Clicked" NumberOfTapsRequired="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
                 </Grid>
             </ContentPage.Content>
         </ContentPage>
@@ -91,7 +139,7 @@
         <ContentPage>
             <ContentPage.Content>
                 <Grid>
-                    <map:Map x:Name="MainMap" HasZoomEnabled="True" IsShowingUser="True"/>
+                    <map:Map x:Name="MainMap" MapType="{Binding MapMode}" HasZoomEnabled="True" IsShowingUser="True"/>
                     <ImageButton Source="Menu.png"
                                  Margin="12,12,0,0" Padding="5" 
                                  WidthRequest="40"

@@ -23,7 +23,7 @@ namespace SendMeADrink_Official
             InitializeComponent();
         }
 
-        private readonly HttpClient _client = new HttpClient(new System.Net.Http.HttpClientHandler());
+        private readonly HttpClient client = new HttpClient(new System.Net.Http.HttpClientHandler());
 
         public async void SUButton_Clicked(object sender, EventArgs e)
         {
@@ -35,9 +35,9 @@ namespace SendMeADrink_Official
             {
                 if (PasswordEntry.Text == RepeatPasswordEntry.Text)
                 {
-                    user u = new user() { Username = UsernameEntry.Text, Email = EmailEntry.Text, Passwd = PasswordEntry.Text, Age = AgeEntry.Text };
+                    User u = new User() { Username = UsernameEntry.Text, Email = EmailEntry.Text, Passwd = PasswordEntry.Text, Age = AgeEntry.Text };
 
-                    var _content = new FormUrlEncodedContent(new[]
+                    var content = new FormUrlEncodedContent(new[]
                     {
                        new KeyValuePair<string, string>("Id", u.Id),
                        new KeyValuePair<string, string>("Username", u.Username),
@@ -46,16 +46,11 @@ namespace SendMeADrink_Official
                        new KeyValuePair<string, string>("Age", u.Age)
                     });
 
-                    var _result = await _client.PostAsync("http://10.0.2.2/DATA/USER/server.php", _content);
-
-
-                    var _tokenJson = await _result.Content.ReadAsStringAsync();
-
+                    await client.PostAsync("http://10.0.2.2/DATA/USER/server.php", content);
 
                     await DisplayAlert("Registration Completed", null, null, "Close");
 
-                    Application.Current.MainPage = new MainPage();
-
+                    Application.Current.MainPage = new NavigationPage(new MainPage());
                 }
                 else
                 {

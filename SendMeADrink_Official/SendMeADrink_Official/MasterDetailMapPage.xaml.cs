@@ -7,6 +7,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using System.Net.Http;
+using SendMeADrink_Official.Database;
 
 namespace SendMeADrink_Official
 {
@@ -19,6 +21,8 @@ namespace SendMeADrink_Official
             GetUserLocation();
         }
 
+        /*-------------------*/
+        /*Getting the users location*/
         public async void GetUserLocation()
         {
             var request = new GeolocationRequest(GeolocationAccuracy.Best);
@@ -27,6 +31,8 @@ namespace SendMeADrink_Official
             MainMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(location.Latitude, location.Longitude), Distance.FromKilometers(0.5)));
         }
 
+        /*-------------------*/
+        /*Navigation*/
         private void MenuButton_Clicked(object sender, EventArgs e)
         {
             //MasterDetailMapPage.IsPresented = true;
@@ -47,9 +53,14 @@ namespace SendMeADrink_Official
             await Navigation.PushAsync(new SettingsPage());
         }
 
-        private void LogoutButton_Clicked(object sender, EventArgs e)
+        private async void LogoutButton_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new MainPage());
+            var res = await DisplayAlert("Would you like to logout", null, "Yes", "No");
+
+            if(res == true)
+            {
+                Application.Current.MainPage = new NavigationPage(new MainPage());
+            }
         }
     }
 }
