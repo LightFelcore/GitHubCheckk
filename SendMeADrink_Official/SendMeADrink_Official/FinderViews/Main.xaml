@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SendMeADrink_Official.FinderViews.Main">
+    
+    <Frame x:Name="Finder" TranslationY="400" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <BoxView BackgroundColor="White" Opacity="0.75"
+                     ScaleX="0.1" ScaleY="0.75"
+                     Grid.Row="0">
+                <BoxView.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="FinderGoUp"/>
+                    <SwipeGestureRecognizer Direction="Down" Swiped="FinderGoDown"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <Frame Grid.Row="1" 
+                   CornerRadius="10" Padding="5,0,7,0" Margin="5,0"
+                   BackgroundColor="White" Opacity="0.85">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="MagnifyingGlass.png"/>
+                    <Entry x:Name="SearchBar"
+                           Placeholder="Search"
+                           Margin="-5,0,0,0" HorizontalOptions="FillAndExpand"
+                           Focused="SearchBar_Focused" Unfocused="SearchBar_Unfocused"/>
+                </StackLayout>
+            </Frame>
+
+            <Grid Grid.Row="2" Padding="7,7,7,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.5"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Nearby" TextColor="White" Opacity="0.85"
+                       FontSize="16"
+                       VerticalTextAlignment="End"
+                       Grid.Row="0"/>
+
+                <BoxView HorizontalOptions="FillAndExpand" CornerRadius="50" Color="White" Grid.Row="1"/>
+            </Grid>
+
+            <ListView Grid.Row="3" ItemsSource="{Binding BarOrClub}" SeparatorColor="White"
+                      ItemTapped="BarOrClubItem_Tapped"
+                      Opacity="0.75" Margin="10,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding BarName}" TextColor="White" Opacity="0.85"
+                                       FontSize="20" FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       Grid.Column="0"/>
+
+                                <Label Text="{Binding Distance, StringFormat='{0:N} Km'}" TextColor="White" Opacity="0.85"
+                                       FontSize="20" FontAttributes="Bold"
+                                       VerticalOptions="Center" HorizontalOptions="End" 
+                                       Grid.Column="1"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Frame >
+</ContentPage>

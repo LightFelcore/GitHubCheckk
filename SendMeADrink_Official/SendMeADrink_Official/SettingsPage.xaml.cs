@@ -20,7 +20,7 @@ namespace SendMeADrink_Official
 
         private void MenuButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.FlyoutIsPresented = true;
+            //to be added
         }
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
