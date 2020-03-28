@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SendMeADrink_Official.FinderViews.Main">
-    
-    <Frame x:Name="Finder" TranslationY="400" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+             x:Class="SendMeADrink_Official.FinderViews.MainView">
+
+    <Frame x:Name="Finder" TranslationY="400" Padding="5" CornerRadius="10" BackgroundColor="#5b5b5b">
+        <Frame.GestureRecognizers>
+            <SwipeGestureRecognizer Direction="Up" Swiped="FinderGoUp"/>
+            <SwipeGestureRecognizer Direction="Down" Swiped="FinderGoDown"/>
+        </Frame.GestureRecognizers>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="5"/>
@@ -15,14 +19,10 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <BoxView BackgroundColor="White" Opacity="0.75"
+            <Frame BackgroundColor="White" Opacity="0.75"
                      ScaleX="0.1" ScaleY="0.75"
                      Grid.Row="0">
-                <BoxView.GestureRecognizers>
-                    <SwipeGestureRecognizer Direction="Up" Swiped="FinderGoUp"/>
-                    <SwipeGestureRecognizer Direction="Down" Swiped="FinderGoDown"/>
-                </BoxView.GestureRecognizers>
-            </BoxView>
+            </Frame>
 
             <Frame Grid.Row="1" 
                    CornerRadius="10" Padding="5,0,7,0" Margin="5,0"
@@ -80,5 +80,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-    </Frame >
-</ContentPage>
+    </Frame>
+</ContentView>

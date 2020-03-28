@@ -56,6 +56,14 @@ namespace SendMeADrink_Official
                 }
             }
         }
+
+        /*Removes the last page of the stack*/
+        private async void BackButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
+        /*Show passwords*/
         public void ShowPassword(object sender, EventArgs args)
         {
             PasswordEntry.IsPassword = PasswordEntry.IsPassword ? false : true;

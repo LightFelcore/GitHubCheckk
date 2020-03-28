@@ -13,33 +13,42 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ImageButton Source="Menu.png" Grid.Row="0"
-                         Margin="25,5,0,0" VerticalOptions="Center"
-                         WidthRequest="35" Scale="1.5"
-                         HorizontalOptions="Start"
-                         Clicked="MenuButton_Clicked"/>
+
+            <ImageButton Source="BackButton.png"
+                         HorizontalOptions="Start" VerticalOptions="Center"
+                         Scale="0.6"
+                         BackgroundColor="Transparent" 
+                         Clicked="BackButton_Clicked"
+                         Grid.Row="0"/>
+            
             <Label Text="Settings" FontSize="28" TextColor="Black" FontAttributes="Bold"
                    HorizontalOptions="Center" VerticalOptions="Center" Margin="0,12"
                    Grid.Row="0"/>
+
             <Grid BackgroundColor="Beige" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
-                <Label Text="Map mode:" FontSize="20" TextColor="Black" FontAttributes="Bold"
+
+                <Label Text="Map mode:" TextColor="Black" 
+                       FontSize="20" FontAttributes="Bold"
                        Padding="10, 15" Grid.Row="0"/>
-                <Picker x:Name="MapMode"
-                        Grid.Row="0" Margin="115,0,10,0" VerticalOptions="Center">
+
+                <Picker x:Name="MapMode" Margin="115,0,10,0"
+                        VerticalOptions="Center"
+                        Grid.Row="0">
                     <Picker.Items>
                         <x:String>Standard</x:String>
                         <x:String>Retro</x:String>
                         <x:String>Dark</x:String>
                     </Picker.Items>
                 </Picker>
-                <Button Text="Save Settings" Clicked="SaveButton_Clicked" Grid.Row="2"
-                        BackgroundColor="CadetBlue" Margin="10"
-                        CornerRadius="10"/>
+                
+                <Button Text="Save Settings" Clicked="SaveButton_Clicked"
+                        BackgroundColor="CadetBlue" Margin="10" CornerRadius="10"
+                        Grid.Row="2"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

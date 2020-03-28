@@ -17,26 +17,38 @@
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Net.Requests" Version="4.3.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
-    <PackageReference Include="Xamarin.Forms.Maps" Version="4.5.0.396" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.5.0.495" />
     <PackageReference Include="XamarinFastEntry.Behaviors" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="FinderViews\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="MasterDetailMapPage.xaml.cs">
       <DependentUpon>MasterDetailMapPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="FinderViews\Main.xaml">
+    <EmbeddedResource Update="FinderViews\InfoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FinderViews\MainView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FinderViews\RouteView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ForgotPasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="MasterDetailMapPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Payment\CreditCardPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="PopUpUpdateData.xaml">

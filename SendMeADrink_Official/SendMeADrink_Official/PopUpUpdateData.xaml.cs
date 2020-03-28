@@ -22,7 +22,6 @@ namespace SendMeADrink_Official
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(UpdateDataUsername.Text) || string.IsNullOrWhiteSpace(UpdateDataEmail.Text) || string.IsNullOrWhiteSpace(UpdateDataAge.Text))
             {
                 await DisplayAlert("Enter all information", "", "Close");
@@ -30,6 +29,7 @@ namespace SendMeADrink_Official
             else
             {
                 HttpClient client = new HttpClient(new HttpClientHandler());
+
                 var content = new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("Id", ((App)App.Current).CU.Id),
@@ -44,10 +44,8 @@ namespace SendMeADrink_Official
                 ((App)App.Current).CU.Email = UpdateDataEmail.Text;
                 ((App)App.Current).CU.Age = UpdateDataAge.Text;
 
-
+                
             }
-
         }
     }
-
 }

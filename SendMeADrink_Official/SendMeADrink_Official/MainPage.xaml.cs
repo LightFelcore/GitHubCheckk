@@ -12,7 +12,6 @@ using System.Net.Http;
 using Xamarin.Essentials;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
-using System.Security.Cryptography;
 using Json.Net;
 
 namespace SendMeADrink_Official
@@ -22,12 +21,16 @@ namespace SendMeADrink_Official
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        public User u = new User();
+
         public MainPage()
         {
             InitializeComponent();
-            PasswordEntry.Text = "OiMate";
+            EmailOrUsernameEntry.Text = "lucavz";
+            PasswordEntry.Text = "azerty";
         }
 
+        /*Login button clicked handeler*/
         private async void LIButton_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(EmailOrUsernameEntry.Text) || string.IsNullOrWhiteSpace(PasswordEntry.Text))
@@ -38,77 +41,86 @@ namespace SendMeADrink_Official
             else
             {
                 HttpClient client = new HttpClient(new HttpClientHandler());
-                User u = new User() { Email = EmailOrUsernameEntry.Text, Username = EmailOrUsernameEntry.Text, Passwd = PasswordEntry.Text };
 
                 var content = new FormUrlEncodedContent(new[]
                 {
-                    new KeyValuePair<string, string>("Email", u.Email),
-                    new KeyValuePair<string, string>("Username", u.Username),
-                    new KeyValuePair<string, string>("Passwd", u.Passwd),
+                    new KeyValuePair<string, string>("Email", EmailOrUsernameEntry.Text),
+                    new KeyValuePair<string, string>("Username", EmailOrUsernameEntry.Text),
+                    new KeyValuePair<string, string>("Passwd", PasswordEntry.Text),
                 });
 
                 HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/PHP/login.php", content); // connectie met mijn emulator
                 var json = await res.Content.ReadAsStringAsync();
                 u = JsonConvert.DeserializeObject<User>(json);
 
-                if ((EmailOrUsernameEntry.Text == u.Email || EmailOrUsernameEntry.Text == u.Username) && MD5Hasher(PasswordEntry.Text) == u.Passwd)
+                if (u != null)
                 {
-                    ((App)Application.Current).CU = u;
+                    await GetUserLocationAsync(); //Get the users current location, await because we first need to run the function and debug the rest after that is compleet
+
+                    ((App)App.Current).CU = u; //store the gathered data in CU
+
                     Application.Current.MainPage = new NavigationPage(new MasterDetailMapPage()); //user authenticated --> nav to other page
                 }
                 else
                 {
-                    await DisplayAlert("Error, Retry Again!", null, null, "Ok"); //user not authenticated
+                    await DisplayAlert("Login Failed!", "The entered email/username or password is incorrect!", null, "Ok"); //user not authenticated
                 }
             }
-
         }
+
+        /*Show the password when pressed*/
         public void ShowPassword(object sender, EventArgs args)
         {
             PasswordEntry.IsPassword = PasswordEntry.IsPassword ? false : true;
         }
+
+        /*Navigate to register page*/
         private async void SUButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RegisterPage());
         }
+
+        /*Navigate to forgot password page*/
         private async void FPButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ForgotPasswordPage());
         }
+
+        /*Remember the user when checked*/
         private void RememberMe_Clicked(object sender, CheckedChangedEventArgs e)
         {
           //damn
         }
 
-        /*
-        public string EmailOrUsername //Used to display your username on the MasterDetailPage Menu
+        /*Get the users current location*/
+        public async Task GetUserLocationAsync()
         {
-            get { return EmailOrUsernameEntry.Text; }
-            set { EmailOrUsernameEntry.Text = value; }
-        }*/
-
-        /*------------------------------------------*/
-        /*Function used to hash our passwords*/
-        public string MD5Hasher(string PasswordEntry)
-        {
-            using (MD5 md5Hash = MD5.Create())
+            try
             {
-                // Convert the input string to a byte array and compute the hash.
-                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(PasswordEntry));
+                GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Best);
+                Location coördinates = await Geolocation.GetLocationAsync(request);
 
-                // Create a new Stringbuilder to collect the bytes
-                // and create a string.
-                StringBuilder sBuilder = new StringBuilder();
-
-                // Loop through each byte of the hashed data 
-                // and format each one as a hexadecimal string.
-                for (int i = 0; i < data.Length; i++)
+                if (coördinates != null)
                 {
-                    sBuilder.Append(data[i].ToString("x2"));
+                    u.Longitude = coördinates.Longitude;
+                    u.Latitude = coördinates.Latitude;
                 }
-
-                // Return the hexadecimal string.
-                return sBuilder.ToString();
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                await DisplayAlert("Failed", fnsEx.Message, "OK");;
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                await DisplayAlert("Failed", fneEx.Message, "OK");
+            }
+            catch (PermissionException pEx)
+            {
+                await DisplayAlert("Failed", pEx.Message, "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Failed", ex.Message, "OK");
             }
         }
     }  

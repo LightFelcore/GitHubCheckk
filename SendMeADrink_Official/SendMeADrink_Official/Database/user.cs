@@ -11,5 +11,7 @@ namespace SendMeADrink_Official.Database
         public string Email  { get; set; }
         public string Passwd { get; set; }
         public string Age { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
     }
 }

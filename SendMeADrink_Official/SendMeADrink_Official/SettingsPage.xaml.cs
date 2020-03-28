@@ -18,9 +18,9 @@ namespace SendMeADrink_Official
             MapMode.SelectedIndex = 0;
         }
 
-        private void MenuButton_Clicked(object sender, EventArgs e)
+        private async void BackButton_Clicked(object sender, EventArgs e)
         {
-            //to be added
+            await Navigation.PopAsync();
         }
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
