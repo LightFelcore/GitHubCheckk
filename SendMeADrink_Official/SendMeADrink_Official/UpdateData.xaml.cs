@@ -11,13 +11,14 @@ using SendMeADrink_Official.Database;
 namespace SendMeADrink_Official
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PopUpUpdateData
+    public partial class UpdateData
     {
+        readonly App Current = (App)App.Current;
 
-        public PopUpUpdateData()
+        public UpdateData()
         {
             InitializeComponent();
-            BindingContext = ((App)App.Current).CU;
+            BindingContext = Current.CU;
         }
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
@@ -32,19 +33,17 @@ namespace SendMeADrink_Official
 
                 var content = new FormUrlEncodedContent(new[]
                 {
-                    new KeyValuePair<string, string>("Id", ((App)App.Current).CU.Id),
-                    new KeyValuePair<string, string>("Username", ((App)App.Current).CU.Username),
-                    new KeyValuePair<string, string>("Email", ((App)App.Current).CU.Email),
-                    new KeyValuePair<string, string>("Age", ((App)App.Current).CU.Age),
+                    new KeyValuePair<string, string>("Id", Current.CU.Id),
+                    new KeyValuePair<string, string>("Username", Current.CU.Username),
+                    new KeyValuePair<string, string>("Email", Current.CU.Email),
+                    new KeyValuePair<string, string>("Age", Current.CU.Age),
                 });
 
-                await client.PostAsync("http://send-meadrink.com/PHP/update.php", content);
+                await client.PostAsync("http://send-meadrink.com/SMAD_App/Update/update.php", content);
 
-                ((App)App.Current).CU.Username = UpdateDataUsername.Text;
-                ((App)App.Current).CU.Email = UpdateDataEmail.Text;
-                ((App)App.Current).CU.Age = UpdateDataAge.Text;
-
-                
+                Current.CU.Username = UpdateDataUsername.Text;
+                Current.CU.Email = UpdateDataEmail.Text;
+                Current.CU.Age = UpdateDataAge.Text;
             }
         }
     }

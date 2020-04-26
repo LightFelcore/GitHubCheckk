@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SendMeADrink_Official.FinderViews.InfoViews.AddressDetails">
+    
+    <Grid RowSpacing="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Text="{Binding Address}" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               Grid.Row="0"/>
+
+        <Label x:Name="PostalcodeAndRegion" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               Grid.Row="1"/>
+
+        <Label Text="{Binding Country}" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               Grid.Row="2"/>
+    </Grid>
+</ContentView>

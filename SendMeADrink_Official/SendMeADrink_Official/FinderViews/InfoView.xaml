@@ -5,51 +5,180 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="SendMeADrink_Official.FinderViews.InfoView">
-    
-    <Frame x:Name="Finder" TranslationY="400" Padding="5" CornerRadius="10" BackgroundColor="Gray">
+
+    <Frame x:Name="Finder" TranslationY="64" Padding="5" CornerRadius="10" BackgroundColor="#444446">
         <Frame.GestureRecognizers>
             <SwipeGestureRecognizer Direction="Up" Swiped="FinderGoUp"/>
             <SwipeGestureRecognizer Direction="Down" Swiped="FinderGoDown"/>
         </Frame.GestureRecognizers>
-        <Grid>
+        <Grid RowSpacing="1" Padding="0,0,0,75">
             <Grid.RowDefinitions>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="35"/>
+                <RowDefinition Height="55"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Frame BackgroundColor="White" Opacity="0.75"
                      ScaleX="0.1" ScaleY="0.75"
-                     Grid.Row="0">
-            </Frame>
+                     Grid.Row="0"/>
 
-            <Frame Grid.Row="1" 
-                   CornerRadius="10" Padding="5,0,7,0" Margin="5,0"
-                   BackgroundColor="White" Opacity="0.85">
-                <StackLayout Orientation="Horizontal">
-                    <Image Source="MagnifyingGlass.png"/>
-                    <Entry x:Name="SearchBar"
-                           Placeholder="Search"
-                           Margin="-5,0,0,0" HorizontalOptions="FillAndExpand"
-                           Focused="SearchBar_Focused" Unfocused="SearchBar_Unfocused"/>
-                </StackLayout>
-            </Frame>
-
-            <Grid Grid.Row="2" Padding="7,7,7,0">
+            <Grid Grid.Row="1" Padding="10,0" RowSpacing="-2.5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="0.5"/>
+                    <RowDefinition Height="32.5"/>
+                    <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.9*" />
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
 
-                <Label Text="Nearby" TextColor="White" Opacity="0.85"
-                       FontSize="16"
-                       VerticalTextAlignment="End"
-                       Grid.Row="0"/>
+                <Label x:Name="Name" TextColor="White"
+                       FontSize="25" FontAttributes="Bold"
+                       Grid.Row="0" Grid.Column="0"/>
 
-                <BoxView HorizontalOptions="FillAndExpand" CornerRadius="50" Color="White" Grid.Row="1"/>
+                <ImageButton Source="Close.png" Clicked="CloseButton_Clicked"
+                             BackgroundColor="Transparent" Scale="0.80"
+                             VerticalOptions="Start"
+                             Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
+
+                <Label x:Name="PlaceTypeAndDistance" TextColor="White"
+                       FontSize="16" FontAttributes="Bold"
+                       Grid.Row="1" Grid.Column="0"/>
             </Grid>
 
+            <Grid x:Name="InfoViewContent" Grid.Row="2" RowSpacing="1" Padding="10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="36"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Padding="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.30*"/>
+                        <ColumnDefinition Width="0.40*"/>
+                        <ColumnDefinition Width="0.30*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="Address" Text="Address" TextColor="White" 
+                           Opacity="0.85" FontSize="17.5" FontAttributes="Bold"
+                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                           Grid.Row="0" Grid.Column="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ChangeInfoView" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label x:Name="OpeningHours" Text="Opening Hours" TextColor="LightGray" 
+                           Opacity="0.85" FontSize="17.5"
+                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                           Grid.Row="0" Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ChangeInfoView" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label x:Name="Contact" Text="Contact" TextColor="LightGray" 
+                           Opacity="0.85" FontSize="17.5"
+                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                           Grid.Row="0" Grid.Column="2">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ChangeInfoView" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <BoxView HorizontalOptions="FillAndExpand" CornerRadius="50" Color="White" Grid.Row="1" Grid.ColumnSpan="3"/>
+                </Grid>
+
+                <Grid x:Name="InfoContent" Grid.Row="1" Padding="0,10,0,25"/>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <BoxView HorizontalOptions="FillAndExpand" CornerRadius="50" Color="White" Grid.Row="0" Grid.ColumnSpan="4"/>
+
+                    <Label x:Name="Beer" Text="Beer" TextColor="White"
+                           Opacity="0.85" FontSize="17.5" FontAttributes="Bold"
+                           VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                           Grid.Row="1" Grid.Column="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PopulateDrinkList" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label x:Name="Cocktail" Text="Cocktail" TextColor="LightGray"
+                           Opacity="0.85" FontSize="17.5"
+                           VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                           Grid.Row="1" Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PopulateDrinkList" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label x:Name="Energy" Text="Energy" TextColor="LightGray"
+                           Opacity="0.85" FontSize="17.5"
+                           VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                           Grid.Row="1" Grid.Column="2">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PopulateDrinkList" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label x:Name="Soda" Text="Soda" TextColor="LightGray"
+                           Opacity="0.85" FontSize="17.5"
+                           VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                           Grid.Row="1" Grid.Column="3">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PopulateDrinkList" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <BoxView HorizontalOptions="FillAndExpand" CornerRadius="50" Color="White" Grid.Row="2" Grid.ColumnSpan="4"/>
+                </Grid>
+               
+                <ListView Grid.Row="3" x:Name="ListOfDrinks"
+                          ItemTapped="Drink_Tapped"
+                          Margin="10" RowHeight="30">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding NameD}" TextColor="White"
+                                           FontSize="16" FontAttributes="Bold"
+                                           VerticalOptions="Center"
+                                           Grid.Column="0"/>
+
+                                    <Label Text="{Binding Price, StringFormat='{0:F2} €'}" TextColor="White"
+                                           FontSize="16" FontAttributes="Bold"
+                                           VerticalOptions="Center" HorizontalOptions="End" 
+                                           Grid.Column="1"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Grid>
         </Grid>
     </Frame>
 </ContentView>

@@ -15,12 +15,14 @@ using SendMeADrink_Official.Payment;
 namespace SendMeADrink_Official
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage
+    public partial class Profile : ContentPage
     {
-        public ProfilePage()
+        readonly App Current = (App)App.Current;
+
+        public Profile()
         {
             InitializeComponent();
-            BindingContext = ((App)App.Current).CU;
+            BindingContext = Current.CU;
         }
 
         /*-----------------*/
@@ -32,7 +34,7 @@ namespace SendMeADrink_Official
 
         private async void EditButton_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new PopUpUpdateData());
+            await PopupNavigation.Instance.PushAsync(new UpdateData());
         }
 
         private async void PaymentButton_Clicked(object sender, EventArgs e)

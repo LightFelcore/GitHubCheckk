@@ -5,14 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamarin.Forms.Maps;
 
 namespace SendMeADrink_Official
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class Settings : ContentPage
     {
-        public SettingsPage()
+        public Settings()
         {
             InitializeComponent();
             MapMode.SelectedIndex = 0;

@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SendMeADrink_Official.RegisterPage"
+             x:Class="SendMeADrink_Official.Register"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
@@ -14,9 +14,16 @@
                 <RowDefinition Height="285"/>
                 <RowDefinition Height="55"/>
             </Grid.RowDefinitions>
+            
+            <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
+                         BackgroundColor="Transparent"
+                         AnchorX="-0.1" Scale="0.35"
+                         Grid.Row="0"/>
+            
             <Label Text="Registration" FontSize="45" TextColor="Black"
                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                    Grid.Row="0"/>
+            
             <Grid Grid.Row="1" Margin="10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
@@ -25,32 +32,38 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
+                
                 <Entry Placeholder="Username"
                        x:Name="UsernameEntry"
                        PlaceholderColor="Gray"
                        Grid.Row="0"/>
+                
                 <Entry Placeholder="Age"
                        x:Name="AgeEntry"
                        PlaceholderColor="Gray"
                        Keyboard="Numeric"
                        Grid.Row="1"/>
+                
                 <Entry Placeholder="Email"
                        x:Name="EmailEntry"
                        PlaceholderColor="Gray"
                        Keyboard="Email"
                        Grid.Row="2"/>
+                
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="325"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Entry Placeholder="Password"
                            x:Name="PasswordEntry"
                            IsPassword="True"
                            PlaceholderColor="Gray"
                            Grid.Column="0"/>
+
                     <Image Source="Eye.png"
-                           Scale="0.8"
+                           Scale="0.7"
                            Margin="0,0,0,-4"
                            Grid.Column="1">
                         <Image.GestureRecognizers>
@@ -63,13 +76,15 @@
                         <ColumnDefinition Width="325"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Entry Placeholder="Repeat Password"
                            x:Name="RepeatPasswordEntry"
                            IsPassword="True"
                            PlaceholderColor="Gray"
                            Grid.Column="0"/>
+                    
                     <Image Source="Eye.png"
-                           Scale="0.8"
+                           Scale="0.7"
                            Margin="0,0,0,-4"
                            Grid.Column="1">
                         <Image.GestureRecognizers>
@@ -78,6 +93,7 @@
                     </Image>
                 </Grid>
             </Grid>
+            
             <Button Text="Sign Up" FontSize="20"
                     Margin="15,0"
                     CornerRadius ="20"

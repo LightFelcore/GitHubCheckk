@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SendMeADrink_Official.FinderViews.InfoViews.OpeningHoursDetails">
+    
+    <Grid RowSpacing="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.6*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Monday:" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="0" Grid.Column="0"/>
+        <Label Text="08:30 AM - 11:30 PM" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="0" Grid.Column="1" />
+
+        <Label Text="Tuesday:" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="1" Grid.Column="0"/>
+        <Label Text="08:30 AM - 11:30 PM" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="1" Grid.Column="1"/>
+
+        <Label Text="Wednesday:" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="2" Grid.Column="0"/>
+        <Label Text="08:30 AM - 11:30 PM" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="2" Grid.Column="1"/>
+
+        <Label Text="Thursday:" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="3" Grid.Column="0"/>
+        <Label Text="08:30 AM - 11:30 PM" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="3" Grid.Column="1"/>
+
+        <Label Text="Friday:" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="4" Grid.Column="0"/>
+        <Label Text="08:30 AM - 11:30 PM" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="4" Grid.Column="1"/>
+
+        <Label Text="Saturday:" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="5" Grid.Column="0"/>
+        <Label Text="08:30 AM - 11:30 PM" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="5" Grid.Column="1"/>
+
+        <Label Text="Sunday:" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="6" Grid.Column="0"/>
+        <Label Text="08:30 AM - 11:30 PM" TextColor="White"
+               FontSize="17" FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.Row="6" Grid.Column="1"/>
+    </Grid>
+</ContentView>

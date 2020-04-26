@@ -3,22 +3,21 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:map="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-                  xmlns:FinderViews="clr-namespace:SendMeADrink_Official.FinderViews"
+                  xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
                   mc:Ignorable="d"
-                  x:Class="SendMeADrink_Official.MasterDetailMapPage"
+                  x:Class="SendMeADrink_Official.MapPage"
                   NavigationPage.HasNavigationBar="False">
 
     <MasterDetailPage.Master>
         <ContentPage Title="MasterPage">
             <ContentPage.Content>
-                <Grid BackgroundColor="White">
+                <Grid BackgroundColor="#323234">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="160"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#5b5b5b" Padding="0,10,0,0">
+                    <Grid Grid.Row="0" Grid.ColumnSpan="2" BackgroundColor="#444446" Padding="0,10,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.6*"/>
                             <RowDefinition Height="0.4*"/>
@@ -34,8 +33,8 @@
                                      WidthRequest="80" Padding="5" CornerRadius="50"
                                      Clicked="ProfileButton_Clicked"
                                      Grid.Row="0" Grid.Column="0"/>
-                        <Label Text="{Binding Username}" 
-                               FontSize="25" FontAttributes="Bold" TextColor="Black"
+                        <Label x:Name="UsernameLabel" Text="{Binding Username}"
+                               FontSize="25" FontAttributes="Bold" TextColor="White"
                                VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
                                Grid.Row="0" Grid.Column="1">
                             <Label.GestureRecognizers>
@@ -54,29 +53,29 @@
                                 <ColumnDefinition Width="0.35*"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0" Grid.Column="0"
-                                   Text="Send" TextColor="Black"
+                                   Text="Send" TextColor="White"
                                    FontSize="18" FontAttributes="Bold"
                                    HorizontalTextAlignment="Center"/>
                             <Label Grid.Row="1" Grid.Column="0" 
-                                   Text="678" TextColor="Black" 
+                                   Text="678" TextColor="White" 
                                    FontAttributes="Bold"
                                    HorizontalTextAlignment="Center"/>
 
                             <Label Grid.Row="0" Grid.Column="1"
-                                   Text="Recieved" TextColor="Black" 
+                                   Text="Recieved" TextColor="White" 
                                    FontSize="18" FontAttributes="Bold"
                                    HorizontalTextAlignment="Center"/>
                             <Label Grid.Row="1" Grid.Column="1"
-                                   Text="340" TextColor="Black" 
+                                   Text="340" TextColor="White" 
                                    FontAttributes="Bold"
                                    HorizontalTextAlignment="Center"/>
 
                             <Label Grid.Row="0" Grid.Column="2"
-                                   Text="S/R ratio" TextColor="Black"
+                                   Text="S/R ratio" TextColor="White"
                                    FontSize="18" FontAttributes="Bold"
                                    HorizontalTextAlignment="Center"/>
                             <Label Grid.Row="1" Grid.Column="2"
-                                   Text="1.99" TextColor="Black" 
+                                   Text="1.99" TextColor="White" 
                                    FontAttributes="Bold"
                                    HorizontalTextAlignment="Center"/>
                         </Grid>
@@ -98,7 +97,7 @@
                            VerticalOptions="Center" HorizontalOptions="Center"
                            WidthRequest="25"
                            Grid.Row="0" Grid.Column="0"/>
-                        <Label Text="Map" FontSize="15" FontAttributes="Bold" TextColor="Black"
+                        <Label Text="Map" FontSize="15" FontAttributes="Bold" TextColor="White"
                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
                            Grid.Row="0" Grid.Column="1">
                             <Label.GestureRecognizers>
@@ -110,7 +109,7 @@
                            VerticalOptions="Center"
                            WidthRequest="25"
                            Grid.Row="1" Grid.Column="0"/>
-                        <Label Text="Settings" FontSize="15" FontAttributes="Bold" TextColor="Black"
+                        <Label Text="Settings" FontSize="15" FontAttributes="Bold" TextColor="White"
                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
                            Grid.Row="1" Grid.Column="1">
                             <Label.GestureRecognizers>
@@ -123,7 +122,7 @@
                            Margin="10,0,0,0"
                            WidthRequest="25"
                            Grid.Row="3" Grid.Column="0"/>
-                        <Label Text="Log Out" FontSize="15" FontAttributes="Bold" TextColor="Black"
+                        <Label Text="Log Out" FontSize="15" FontAttributes="Bold" TextColor="White"
                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
                            Grid.Row="3" Grid.Column="1">
                             <Label.GestureRecognizers>
@@ -140,13 +139,13 @@
         <ContentPage>
             <ContentPage.Content>
                 <Grid>
-                    <map:Map x:Name="MainMap" MapType="{Binding MapMode}" HasZoomEnabled="True" IsShowingUser="True"/>
+                    <maps:Map x:Name="CustomMap" MyLocationEnabled="True" IsVisible="True" VerticalOptions="FillAndExpand"/>
 
-                    <Frame BackgroundColor="White" 
+                    <Frame BackgroundColor="LightGray" 
                            HorizontalOptions="Start" VerticalOptions="Start"
                            AnchorX="0" AnchorY="0"
-                           Margin="12,12,0,0" Opacity="0.8" CornerRadius="2" Scale="0.1">
-                        <Image Source="Menu.png" Scale="0.9" Opacity="0.8">
+                           Margin="12,12,0,0" Opacity="0.8" CornerRadius="20" Scale="0.0925">
+                        <Image Source="Menu.png" Scale="0.9" Opacity="0.85">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Menu_Clicked" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
@@ -154,7 +153,7 @@
                     </Frame>
 
                     <Frame Padding="0" BackgroundColor="Transparent" InputTransparent="True">
-                        <FinderViews:MainView/>
+                        <Grid x:Name="FinderView"/>
                     </Frame>
                 </Grid>
             </ContentPage.Content>

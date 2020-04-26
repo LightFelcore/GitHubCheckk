@@ -21,9 +21,9 @@ namespace SendMeADrink_Official.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Xamarin.FormsMaps.Init();
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsGoogleMaps.Init("your_google_maps_ios_api_key");
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

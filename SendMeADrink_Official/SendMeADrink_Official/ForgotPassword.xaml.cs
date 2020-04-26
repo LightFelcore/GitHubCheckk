@@ -13,9 +13,9 @@ using Xamarin.Essentials;
 namespace SendMeADrink_Official
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ForgotPasswordPage : ContentPage
+    public partial class ForgotPassword : ContentPage
     {
-        public ForgotPasswordPage()
+        public ForgotPassword()
         {
             InitializeComponent();
         }
@@ -35,7 +35,7 @@ namespace SendMeADrink_Official
                     new KeyValuePair<string, string>("Email", EmailEntry.Text),
                 });
 
-                HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/PHP/forgot.php", content);
+                HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/ForgotPassword/forgot.php", content);
                 var json = await res.Content.ReadAsStringAsync();
                 var Email_DB = JsonConvert.DeserializeObject(json);
 
@@ -50,7 +50,7 @@ namespace SendMeADrink_Official
                         mail.From = new MailAddress("noreply.sendmeadrink@gmail.com");
                         mail.To.Add(EmailEntry.Text);
                         mail.Subject = "Reset Password";
-                        mail.Body = "Please use this link to reset your password: " + "http://send-meadrink.com/PHP/resetPassword.html"; //op deze pagina wordt repeatPassword.php opgeroepen om het password te veranderen.
+                        mail.Body = "Please use this link to reset your password: " + "http://send-meadrink.com/SMAD_App/ForgotPassword/ResetPassword/resetPassword.html"; //op deze pagina wordt repeatPassword.php opgeroepen om het password te veranderen.
 
                         /*Connectie met de smtp server*/
                         SmtpServer.Port = 587;
@@ -62,7 +62,7 @@ namespace SendMeADrink_Official
                         /*Versturen van de email*/
                         SmtpServer.Send(mail);
                         await DisplayAlert("Email has been sent to " + EmailEntry.Text, null, null, "OK");
-                        Application.Current.MainPage = new NavigationPage(new MainPage());
+                        Application.Current.MainPage = new NavigationPage(new Login());
                     }
                     catch (Exception ex)
                     {

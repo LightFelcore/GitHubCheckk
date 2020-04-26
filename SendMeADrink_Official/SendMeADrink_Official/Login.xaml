@@ -4,11 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SendMeADrink_Official.MainPage"
+             x:Class="SendMeADrink_Official.Login"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
-        <Grid BackgroundColor="Beige">
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="70"/>
@@ -18,44 +18,54 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="55"/>
             </Grid.RowDefinitions>
-            <Image Source="Beer.png"
+            
+            <Image Source="SMAD_Logo.png"
+                   Scale="0.80"
                    Grid.Row="0"/>
-            <Label Text="Send Me A Drink" TextColor="Black" FontSize="45"
+
+            <Label Text="Send Me A Drink" TextColor="#2d3142" FontSize="45"
                    HorizontalTextAlignment="Center" VerticalTextAlignment="Start"
                    Grid.Row="1"/>
+            
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
+                
                 <Image Source="Profile.png"
                        Scale="0.7"
                        HorizontalOptions="Start"
                        Margin="10,0"
                        Opacity="0.65"
                        Grid.Column="0"/>
-                <Entry x:Name="EmailOrUsernameEntry"
-                       Placeholder="E-mail/Username"
+                
+                <Entry x:Name="EmailEntry"
+                       Placeholder="E-mail"
+                       PlaceholderColor="#2d3142"
                        Keyboard="Email"
-                       PlaceholderColor="Gray"
                        Margin="55,0,15,0"
                        Grid.Column="0"/>
+                
                 <Grid Grid.Row="1" Margin="15,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="325"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Image Source="LockIcon.png"
                            Scale="0.75"
                            HorizontalOptions="Start" 
                            Margin="-8,0,0,3"
                            Grid.Column="0"/>
+                    
                     <Entry IsPassword="True"
                            x:Name="PasswordEntry"
                            Placeholder="Password"
-                           PlaceholderColor="Gray"
+                           PlaceholderColor="#2d3142"
                            Margin="40,0,0,0"
                            Grid.Column="0"/>
+                    
                     <Image Source="Eye.png"
                            Scale="0.7"
                            Margin="0,0,0,-4"
@@ -66,27 +76,32 @@
                     </Image>
                 </Grid>
             </Grid>
+            
             <Button Text="Log In" FontSize="20"
                     Margin="15,0"
                     CornerRadius="20"
-                    BackgroundColor="CadetBlue"
+                    TextColor="White"
+                    BackgroundColor="#2d3142"
                     Clicked="LIButton_Clicked"
                     Grid.Row="3"/>
+
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.13*"/>
+                    <ColumnDefinition Width="0.37*"/>
                     <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
-                <CheckBox CheckedChanged="RememberMe_Clicked"
-                          Color="CadetBlue"
-                          Margin="25,0,0,0"
+
+                <CheckBox x:Name="RememberMe"
+                          Color="#2d3142"
+                          HorizontalOptions="End"
                           Grid.Column="0"/>
-                <Label Text="Remember me" FontSize="17" TextColor="Black"
-                       VerticalTextAlignment="Center"
-                       Margin="-30,0,0,0"
+
+                <Label Text="Remember me" FontSize="17" TextColor="#2d3142"
+                       VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
                        Grid.Column="1"/>
-                <Label Text="Forgot Password" FontSize="17" TextColor="Black"  
+
+                <Label Text="Forgot Password" FontSize="17" TextColor="#2d3142"  
                        VerticalOptions="Center" HorizontalOptions="Center"
                        Grid.Column="2">
                     <Label.GestureRecognizers>
@@ -94,14 +109,15 @@
                     </Label.GestureRecognizers>
                 </Label>
             </Grid>
+            
             <Label Text="-------------------------- OR --------------------------" 
-                   FontAttributes="Bold" FontSize="Subtitle"
+                   FontAttributes="Bold" FontSize="Subtitle" TextColor="#2d3142"
                    HorizontalTextAlignment="Center"
                    Grid.Row="5"/>
-            <Button Text="Sign Up" FontSize="20"
-                    Margin="15,0"
-                    CornerRadius ="20"
-                    BackgroundColor="CadetBlue"
+
+            <Button Text="Sign Up" TextColor="White" FontSize="20"
+                    Margin="15,0" CornerRadius ="20"
+                    BackgroundColor="#2d3142"
                     Clicked="SUButton_Clicked"
                     Grid.Row="6"/>
             

@@ -8,7 +8,6 @@ using Xamarin.Forms.Xaml;
 using System.Collections.Specialized;
 using System.Net.Http;
 using Newtonsoft.Json;
-using SendMeADrink_Official.Database;
 using System.Net.Http.Headers;
 using Xamarin.Essentials;
 using Xamarin.Forms.Core;
@@ -16,9 +15,9 @@ using Xamarin.Forms.Core;
 namespace SendMeADrink_Official
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegisterPage : ContentPage
+    public partial class Register : ContentPage
     {
-        public RegisterPage()
+        public Register()
         {
             InitializeComponent();
         }
@@ -34,21 +33,28 @@ namespace SendMeADrink_Official
                 if (PasswordEntry.Text == RepeatPasswordEntry.Text)
                 {
                     HttpClient client = new HttpClient(new HttpClientHandler());
-                    User u = new User() { Username = UsernameEntry.Text, Email = EmailEntry.Text, Passwd = PasswordEntry.Text, Age = AgeEntry.Text };
 
                     var content = new FormUrlEncodedContent(new[]
                     {
-                       new KeyValuePair<string, string>("Username", u.Username),
-                       new KeyValuePair<string, string>("Email", u.Email),
-                       new KeyValuePair<string, string>("Passwd", u.Passwd),
-                       new KeyValuePair<string, string>("Age", u.Age)
+                       new KeyValuePair<string, string>("Username", UsernameEntry.Text),
+                       new KeyValuePair<string, string>("Email", EmailEntry.Text),
+                       new KeyValuePair<string, string>("Passwd", PasswordEntry.Text),
+                       new KeyValuePair<string, string>("Age", AgeEntry.Text)
                     });
 
-                    await client.PostAsync("http://send-meadrink.com/PHP/server.php", content);
+                    HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Register/Register.php", content);
+                    var json = await res.Content.ReadAsStringAsync();
 
-                    await DisplayAlert("Registration Completed", null, null, "Close");
-
-                    Application.Current.MainPage = new NavigationPage(new MainPage());
+                    if (JsonConvert.DeserializeObject<Boolean>(json) == true)
+                    {
+                        await DisplayAlert("The email address you have entered is already registered", null, "Close");
+                        PasswordEntry.Text = RepeatPasswordEntry.Text = string.Empty;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Registration Completed", null, null, "Close");
+                        Application.Current.MainPage = new NavigationPage(new Login());
+                    }
                 }
                 else
                 {
