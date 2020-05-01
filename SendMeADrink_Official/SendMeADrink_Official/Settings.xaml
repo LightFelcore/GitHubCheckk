@@ -12,44 +12,34 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <ImageButton Source="BackButton.png"
-                         HorizontalOptions="Start" VerticalOptions="Center"
-                         Scale="0.6"
-                         BackgroundColor="Transparent" 
-                         Clicked="BackButton_Clicked"
-                         Grid.Row="0"/>
-            
-            <Label Text="Settings" FontSize="28" TextColor="Black" FontAttributes="Bold"
-                   HorizontalOptions="Center" VerticalOptions="Center" Margin="0,12"
-                   Grid.Row="0"/>
+            <StackLayout Orientation="Horizontal" Grid.Row="0">
+                <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
+                             Scale="0.5" BackgroundColor="Transparent"/>
 
-            <Grid BackgroundColor="Beige" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>
+                <Label Text="Settings" TextColor="Black" FontSize="30"  FontAttributes="Bold"
+                       VerticalTextAlignment="Center"/>
+            </StackLayout>
 
-                <Label Text="Map mode:" TextColor="Black" 
-                       FontSize="20" FontAttributes="Bold"
-                       Padding="10, 15" Grid.Row="0"/>
+            <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="15,5">
+                <Label Text="App Theme:" TextColor="Black" 
+                       FontSize="20" FontAttributes="Bold"/>
 
-                <Picker x:Name="MapMode" Margin="115,0,10,0"
-                        VerticalOptions="Center"
-                        Grid.Row="0">
+                <Picker x:Name="AppTheme" TextColor="Black"  Margin="0,-7.5,0,0"
+                        VerticalOptions="Start" HorizontalOptions="FillAndExpand">
                     <Picker.Items>
                         <x:String>Standard</x:String>
                         <x:String>Retro</x:String>
-                        <x:String>Dark</x:String>
+                        <x:String>Night</x:String>
                     </Picker.Items>
                 </Picker>
-                
-                <Button Text="Save Settings" Clicked="SaveButton_Clicked"
-                        BackgroundColor="CadetBlue" Margin="10" CornerRadius="10"
-                        Grid.Row="2"/>
-            </Grid>
+            </StackLayout>
+            
+            <Button Text="Save Settings" FontAttributes="Bold" FontSize="17.5"
+                    BackgroundColor="#218cff" Margin="15" CornerRadius="10"
+                    Clicked="SaveButton_Clicked" Grid.Row="2"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

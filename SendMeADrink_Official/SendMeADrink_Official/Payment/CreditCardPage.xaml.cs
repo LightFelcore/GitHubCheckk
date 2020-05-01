@@ -12,7 +12,12 @@ namespace SendMeADrink_Official.Payment
         public CreditCardPage()
         {
             InitializeComponent();
-            this.BindingContext = new MainPageViewModel();
+            this.BindingContext = new PaymentViewModel();
+        }
+
+        private async void BackButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }

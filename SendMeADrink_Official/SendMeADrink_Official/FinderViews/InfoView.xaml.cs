@@ -108,7 +108,7 @@ namespace SendMeADrink_Official.FinderViews
         }
 
         /*List Of Drinks Buttons Handeling*/
-        private void PopulateDrinkList(object sender, EventArgs e)
+        private void ChangeTypeOfDrink(object sender, EventArgs e)
         {
             Label TappedDrinkType = (Label)sender;
 
@@ -142,10 +142,14 @@ namespace SendMeADrink_Official.FinderViews
             });
 
             HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Finder/GetDrinks.php", content); //send the variable content to the database as a POST method
-            var DBOutput = await res.Content.ReadAsStringAsync();
-            DrinkList = JsonConvert.DeserializeObject<IList<Drink>>(DBOutput);
 
-            GetDrinksOfType("Beer"); //When InfoView is loaded we will need to load all the drinks of type "Beer" first and show them on the InfoView page
+            if (res.IsSuccessStatusCode)
+            {
+                var DBOutput = await res.Content.ReadAsStringAsync();
+                DrinkList = JsonConvert.DeserializeObject<IList<Drink>>(DBOutput);
+
+                GetDrinksOfType("Beer"); //When InfoView is loaded we will need to load all the drinks of type "Beer" first and show them on the InfoView page
+            }
         }
 
         /*Get all the drinks of a specific type*/

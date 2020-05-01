@@ -41,23 +41,27 @@ namespace SendMeADrink_Official
                 });
 
                 HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Login/login.php", content);
-                var json = await res.Content.ReadAsStringAsync();
-                User u = JsonConvert.DeserializeObject<User>(json);
 
-                if (u != null)
+                if (res.IsSuccessStatusCode)
                 {
-                    Current.CU = u; //Store the gathered data in CU
-                    
-                    if (RememberMe.IsChecked)
+                    var json = await res.Content.ReadAsStringAsync();
+                    User u = JsonConvert.DeserializeObject<User>(json);
+
+                    if (u != null)
                     {
-                        await RememberLoggedInUser();
-                    }
+                        Current.CU = u; //Store the gathered data in CU
 
-                    Application.Current.MainPage = new NavigationPage(new MapPage()); //user authenticated --> navigate to MapPage
-                }
-                else
-                {
-                    await DisplayAlert("Login Failed!", "The entered email or password is incorrect!", null, "Ok"); //user not authenticated
+                        if (RememberMe.IsChecked)
+                        {
+                            await RememberLoggedInUser();
+                        }
+
+                        Application.Current.MainPage = new NavigationPage(new MapPage()); //user authenticated --> navigate to MapPage
+                    }
+                    else
+                    {
+                        await DisplayAlert("Login Failed!", "The entered email or password is incorrect!", null, "Ok"); //user not authenticated
+                    }
                 }
             }
         }

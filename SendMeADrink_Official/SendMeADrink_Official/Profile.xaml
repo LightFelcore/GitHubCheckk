@@ -8,134 +8,104 @@
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
-        <Grid BackgroundColor="CadetBlue">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.45*"/>
-                <RowDefinition Height="0.55*"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <!-- 1. Profile picture-->
-            <Grid Grid.Row="0" Padding="25">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-
+            <StackLayout Orientation="Horizontal" Grid.Row="0">
                 <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
-                             HorizontalOptions="Start"
-                             BackgroundColor="Transparent" Opacity="0.75"
-                             Grid.Row="0" Grid.ColumnSpan="2"/>
+                             Scale="0.5" BackgroundColor="Transparent"/>
 
-                <Label Text="Longitude: " 
-                       FontSize="25" FontAttributes="Bold"
-                       Grid.Row="1" Grid.Column="0"/>
-                <Label Text="{Binding Longitude}"
-                       FontSize="25" FontAttributes="Bold"
-                       Grid.Row="1" Grid.Column="1"/>
+                <Label Text="Profile" TextColor="Black" FontSize="28"  FontAttributes="Bold"
+                       VerticalTextAlignment="Center"/>
+            </StackLayout>
 
-                <Label Text="Latitude: " 
-                       FontSize="25" FontAttributes="Bold"
-                       Grid.Row="2" Grid.Column="0"/>
-                <Label Text="{Binding Latitude}"
-                       FontSize="25" FontAttributes="Bold"
-                       Grid.Row="2" Grid.Column="1"/>
-            </Grid>
-            
-            <!-- 2. Contact informaqtion frame-->
-            <Frame Grid.Row="1" BackgroundColor="CadetBlue">
-                <!-- Blocks: 3 and 4 -->
-                <Grid Padding="15,10" RowSpacing="10" BackgroundColor="White">
+            <Grid Padding="15,10" RowSpacing="10" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Username: " FontAttributes="Bold" FontSize="20" />
+                            <Span Text="{Binding Username}" FontSize="18"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <Label Grid.Row="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Email: " FontAttributes="Bold" FontSize="20" />
+                            <Span Text="{Binding Email}" FontSize="18"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Grid.Row="2">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Age: " FontAttributes="Bold" FontSize="20" />
+                            <Span Text="{Binding Age}" FontSize="18"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <!--4. Contact information: Board inforation-->
+                <Grid Grid.Row="3" Margin="0,5">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
                     </Grid.RowDefinitions>
-                    <!-- 4. Contact information-->
-                    <Label Grid.Row="0"
-                           Text="{Binding Username}"
-                           Margin="0,5"
-                           FontAttributes="Bold" FontSize="30" TextColor="Black"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition Width="0.50*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="Send" FontSize="20" FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="0" 
+                           Text="678" FontSize="18"
                            HorizontalTextAlignment="Center"/>
 
-                    <Label Grid.Row="1"
-                           FontSize="18" 
-                           Margin="17,0,0,0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Email: " FontAttributes="Bold" FontSize="18" />
-                                <Span Text="{Binding Email}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                    <Label Grid.Row="0" Grid.Column="1"
+                           Text="Recieved" FontSize="20" FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="1"
+                           Text="340" FontSize="18"
+                           HorizontalTextAlignment="Center"/>
 
-                    <Label Grid.Row="2" 
-                           FontSize="18"
-                           Margin="17,0,0,0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Age: " FontAttributes="Bold" FontSize="18" />
-                                <Span Text="{Binding Age}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-
-                    <!--4. Contact information: Board inforation-->
-                    <Grid Grid.Row="3" Margin="0,5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.5*"/>
-                            <RowDefinition Height="0.5*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.25*"/>
-                            <ColumnDefinition Width="0.50*"/>
-                            <ColumnDefinition Width="0.25*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0"
-                               Text="Send" FontSize="17"
-                               HorizontalTextAlignment="Center"/>
-                        <Label Grid.Row="1" Grid.Column="0" 
-                               Text="678"
-                               HorizontalTextAlignment="Center"/>
-
-                        <Label Grid.Row="0" Grid.Column="1"
-                               Text="Recieved" FontSize="17"
-                               HorizontalTextAlignment="Center"/>
-                        <Label Grid.Row="1" Grid.Column="1"
-                               Text="340"
-                               HorizontalTextAlignment="Center"/>
-
-                        <Label Grid.Row="0" Grid.Column="2"
-                               Text="S/R" FontSize="17"
-                               HorizontalTextAlignment="Center"/>
-                        <Label Grid.Row="1" Grid.Column="2"
-                               Text="1.99" 
-                               HorizontalTextAlignment="Center"/>
-                    </Grid>
-
-                    <!--4. Contact information: Follow button-->
-                    <Button Grid.Row="4"
-                            Text="Edit Profile" TextColor="White"
-                            FontAttributes="Bold" FontSize="17"
-                            BackgroundColor="CadetBlue"
-                            CornerRadius="10"
-                            Clicked="EditButton_Clicked"/>
-                    
-                    <Button Grid.Row="5"
-                            Text="Payment" TextColor="White"
-                            FontAttributes="Bold" FontSize="17"
-                            BackgroundColor="CadetBlue"
-                            CornerRadius="10"
-                            Clicked="PaymentButton_Clicked"/>
+                    <Label Grid.Row="0" Grid.Column="2"
+                           Text="S/R" FontSize="20" FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="1" Grid.Column="2"
+                           Text="1.99" FontSize="18"
+                           HorizontalTextAlignment="Center"/>
                 </Grid>
-            </Frame>
+            </Grid>
+
+            <!--4. Contact information: Follow button-->
+            <Button Grid.Row="2"
+                    Text="Edit Profile" TextColor="White"
+                    FontAttributes="Bold" FontSize="17.5"
+                    BackgroundColor="#218cff" 
+                    CornerRadius="10" Margin="15,15,15,7.5"
+                    Clicked="EditButton_Clicked"/>
+
+            <Button Grid.Row="3"
+                    Text="Payment" TextColor="White"
+                    FontAttributes="Bold" FontSize="17.5"
+                    BackgroundColor="#218cff" 
+                    CornerRadius="10" Margin="15,7.5,15,15"
+                    Clicked="PaymentButton_Clicked"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

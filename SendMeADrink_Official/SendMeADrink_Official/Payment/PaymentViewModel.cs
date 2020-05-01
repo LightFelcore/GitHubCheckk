@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace SendMeADrink_Official.Payment
 {
-    public class MainPageViewModel : BindableObject
+    public class PaymentViewModel : BindableObject
     {
         private string _cardNumber;
         private string _expiration;

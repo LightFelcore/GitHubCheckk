@@ -7,6 +7,7 @@ using Map = Xamarin.Forms.GoogleMaps.Map;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace SendMeADrink_Official
 {
@@ -48,19 +49,26 @@ namespace SendMeADrink_Official
                 Console.WriteLine("Unable to retrieve data from secure storage: " + ex);
             }
 
-            HttpClient client = new HttpClient(new HttpClientHandler());
-
-            var content = new FormUrlEncodedContent(new[]
+            await Task.Run(async () => 
             {
+                HttpClient client = new HttpClient(new HttpClientHandler());
+
+                var content = new FormUrlEncodedContent(new[]
+                {
                     new KeyValuePair<string, string>("Email", Preferences.Get("EmailToken", null)),
                     new KeyValuePair<string, string>("Passwd", PasswordToken),
+                });
+
+                HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Login/login.php", content);
+
+                if (res.IsSuccessStatusCode)
+                {
+                    var json = await res.Content.ReadAsStringAsync();
+                    CU = JsonConvert.DeserializeObject<User>(json);
+
+                    MainPage = new NavigationPage(new MapPage());
+                }
             });
-
-            HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Login/login.php", content);
-            var json = await res.Content.ReadAsStringAsync();
-            CU = JsonConvert.DeserializeObject<User>(json);
-
-            MainPage = new NavigationPage(new MapPage());
         }
 
         protected override void OnStart()

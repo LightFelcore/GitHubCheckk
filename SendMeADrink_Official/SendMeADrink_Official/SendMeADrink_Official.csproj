@@ -11,11 +11,13 @@
   <ItemGroup>
     <None Remove="MapRenders\Night.json" />
     <None Remove="MapRenders\Retro.json" />
+    <None Remove="MapRenders\Standard.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="MapRenders\Night.json" />
     <EmbeddedResource Include="MapRenders\Retro.json" />
+    <EmbeddedResource Include="MapRenders\Standard.json" />
   </ItemGroup>
 
   <ItemGroup>

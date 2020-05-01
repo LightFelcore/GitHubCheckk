@@ -117,7 +117,7 @@
                            VerticalTextAlignment="End" HorizontalTextAlignment="Center"
                            Grid.Row="1" Grid.Column="0">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="PopulateDrinkList" NumberOfTapsRequired="1"/>
+                            <TapGestureRecognizer Tapped="ChangeTypeOfDrink" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
 
@@ -126,7 +126,7 @@
                            VerticalTextAlignment="End" HorizontalTextAlignment="Center"
                            Grid.Row="1" Grid.Column="1">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="PopulateDrinkList" NumberOfTapsRequired="1"/>
+                            <TapGestureRecognizer Tapped="ChangeTypeOfDrink" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
 
@@ -135,7 +135,7 @@
                            VerticalTextAlignment="End" HorizontalTextAlignment="Center"
                            Grid.Row="1" Grid.Column="2">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="PopulateDrinkList" NumberOfTapsRequired="1"/>
+                            <TapGestureRecognizer Tapped="ChangeTypeOfDrink" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
 
@@ -144,7 +144,7 @@
                            VerticalTextAlignment="End" HorizontalTextAlignment="Center"
                            Grid.Row="1" Grid.Column="3">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="PopulateDrinkList" NumberOfTapsRequired="1"/>
+                            <TapGestureRecognizer Tapped="ChangeTypeOfDrink" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
 
