@@ -21,7 +21,7 @@
             <ColumnDefinition Width="0.6*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Text="Monday:" TextColor="White"
+        <Label Text="Monday: " TextColor="White"
                FontSize="17" FontAttributes="Bold"
                HorizontalTextAlignment="Center"
                Grid.Row="0" Grid.Column="0"/>

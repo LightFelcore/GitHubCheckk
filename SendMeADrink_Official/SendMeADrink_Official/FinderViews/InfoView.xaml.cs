@@ -175,7 +175,7 @@ namespace SendMeADrink_Official.FinderViews
         /*Get all the information of the tapped drink*/
         private void Drink_Tapped(object sender, ItemTappedEventArgs e)
         {
-            Drink TappedDrink = (Drink)e.Item;
+            //Drink TappedDrink = (Drink)e.Item;
         }
     }
 }

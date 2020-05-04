@@ -59,7 +59,7 @@
                     </Grid.RowDefinitions>
 
                     <Button Text="Route" TextColor="White"
-                            FontSize="17.5" FontAttributes="Bold"
+                            FontSize="18.5" FontAttributes="Bold"
                             BackgroundColor="#218cff"
                             Margin="0,12.5"
                             CornerRadius="10"
@@ -105,7 +105,7 @@
 
                         <Button Text="Info" TextColor="White"
                                 Clicked="InfoButton_Clicked"
-                                FontSize="17.5" FontAttributes="Bold"
+                                FontSize="18.5" FontAttributes="Bold"
                                 CornerRadius="10" Margin="0, 5"
                                 BackgroundColor="Gray"
                                 Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"/>

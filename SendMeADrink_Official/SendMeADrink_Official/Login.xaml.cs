@@ -27,7 +27,8 @@ namespace SendMeADrink_Official
         {
             if (string.IsNullOrWhiteSpace(EmailEntry.Text) || string.IsNullOrWhiteSpace(PasswordEntry.Text))
             {
-                await DisplayAlert("Enter the correct information", null, null, "Close");
+                ErrorMessage.Text = "Enter the correct information";
+                
                 EmailEntry.Text = PasswordEntry.Text = string.Empty;
             }
             else
@@ -60,7 +61,7 @@ namespace SendMeADrink_Official
                     }
                     else
                     {
-                        await DisplayAlert("Login Failed!", "The entered email or password is incorrect!", null, "Ok"); //user not authenticated
+                        ErrorMessage.Text = "The entered email or password is incorrect!";
                     }
                 }
             }

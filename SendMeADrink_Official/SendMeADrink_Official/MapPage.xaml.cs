@@ -224,22 +224,25 @@ namespace SendMeADrink_Official
         /*Handle the position change event*/
         private async void PositionChanged(object sender, Geolocator.PositionEventArgs e)
         {
-            var CurrentPosition = e.Position; //Used to store all the users current positions data
-            var Distance = 6371 * Math.Acos(Math.Cos(ConvertToRadians(CurrentPosition.Latitude)) * Math.Cos(ConvertToRadians(DBPosition.Latitude)) * Math.Cos(ConvertToRadians(DBPosition.Longitude) - ConvertToRadians(CurrentPosition.Longitude)) + Math.Sin(ConvertToRadians(CurrentPosition.Latitude)) * Math.Sin(ConvertToRadians(DBPosition.Latitude)));
-
-            //If-statement to check if the distance between current user position and the position last time the database has been accessed is gt or equal to 1 Km
-            if (Distance >= 1)
+            await Task.Run(async () => 
             {
-                DBPosition = LastPosition = CurrentPosition;
-                await GetPlaces();
-            }
-            else if ((CurrentPosition.Latitude != LastPosition.Latitude) || (CurrentPosition.Longitude != LastPosition.Longitude))
-            {
-                await CalculateDistance(CurrentPosition);
-                LastPosition = CurrentPosition;   
-            }
+                var CurrentPosition = e.Position; //Used to store all the users current positions data
+                var Distance = 6371 * Math.Acos(Math.Cos(ConvertToRadians(CurrentPosition.Latitude)) * Math.Cos(ConvertToRadians(DBPosition.Latitude)) * Math.Cos(ConvertToRadians(DBPosition.Longitude) - ConvertToRadians(CurrentPosition.Longitude)) + Math.Sin(ConvertToRadians(CurrentPosition.Latitude)) * Math.Sin(ConvertToRadians(DBPosition.Latitude)));
 
-            await UpdateUserLocation(CurrentPosition);
+                //If-statement to check if the distance between current user position and the position last time the database has been accessed is gt or equal to 1 Km
+                if (Distance >= 1)
+                {
+                    DBPosition = LastPosition = CurrentPosition;
+                    await GetPlaces();
+                }
+                else if ((CurrentPosition.Latitude != LastPosition.Latitude) || (CurrentPosition.Longitude != LastPosition.Longitude))
+                {
+                    await CalculateDistance(CurrentPosition);
+                    LastPosition = CurrentPosition;
+                }
+
+                await UpdateUserLocation(CurrentPosition);
+            });
         }
 
         /*Handle the error message*/
