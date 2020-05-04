@@ -15,49 +15,36 @@
                                    ScaleIn="1.2" ScaleOut="0.8"
                                    HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
-
-    <Frame BackgroundColor="#444446" CornerRadius="10" Margin="50,150" Padding="25">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.2* "/>
-                <RowDefinition Height="0.6*"/>
-                <RowDefinition Height="0.2*"/>
-            </Grid.RowDefinitions>
-
-            <Label Text="Update Data" TextColor="White"
+    <Frame Padding="25"
+           BackgroundColor="#444446"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+           CornerRadius="20">
+        <StackLayout>
+            <Label Text="Update Profile" TextColor="White"
                    FontSize="40" FontAttributes="Bold"
-                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                   Grid.Row="0"/>
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   Margin="20,0,20,10"/>
+            
+            <Entry Placeholder="Username" PlaceholderColor="White" 
+                   FontAttributes="Bold" TextColor="White" Text="{Binding Username}"
+                   x:Name="UpdateDataUsername"/>
 
-            <Grid Grid.Row="1" RowSpacing="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.33*"/>
-                    <RowDefinition Height="0.33*"/>
-                    <RowDefinition Height="0.33*"/>
-                </Grid.RowDefinitions>
+            <Entry Placeholder="Email" PlaceholderColor="White" 
+                   FontAttributes="Bold" TextColor="White" Keyboard="Email" Text="{Binding Email}"
+                   x:Name="UpdateDataEmail"/>
+            
+            <Entry Placeholder="Age" PlaceholderColor="White" 
+                   FontAttributes="Bold" TextColor="White" Keyboard="Numeric" Text="{Binding Age}"
+                   x:Name="UpdateDataAge"/>
 
-                <Entry x:Name="UpdateDataUsername" 
-                       Placeholder="Username" PlaceholderColor="White"
-                       Text="{Binding Username}" TextColor="White" FontAttributes="Bold"
-                       Grid.Row="0"/>
-                
-                <Entry x:Name="UpdateDataEmail" Keyboard="Email"
-                       Placeholder="Email" PlaceholderColor="White" 
-                       Text="{Binding Email}" TextColor="White" FontAttributes="Bold"
-                       Grid.Row="1"/>
-                
-                <Entry x:Name="UpdateDataAge" Keyboard="Numeric"
-                       Placeholder="Age" PlaceholderColor="White"
-                       Text="{Binding Age}" TextColor="White" FontAttributes="Bold"
-                       Grid.Row="2"/>
-            </Grid>
-
-            <Button x:Name="SaveButton" Clicked="SaveButton_Clicked"
-                    Text="Save Profile" TextColor="Black"
-                    FontSize="17.5" FontAttributes="Bold"
-                    CornerRadius="10" Margin="0,10,0,0"
+            <Button x:Name="SaveButton"
                     BackgroundColor="White"
-                    Grid.Row="2"/>
-        </Grid>
+                    FontSize="17.5" FontAttributes="Bold"
+                    Text="Save Profile" TextColor="Black"
+                    CornerRadius="10" Margin="0,10,0,0"
+                    Clicked="SaveButton_Clicked"/>
+        </StackLayout>
+
     </Frame>
 </pages:PopupPage>

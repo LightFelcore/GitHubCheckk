@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using SendMeADrink_Official.Database;
+using Rg.Plugins.Popup.Services;
 
 namespace SendMeADrink_Official
 {
@@ -44,6 +44,9 @@ namespace SendMeADrink_Official
                 Current.CU.Username = UpdateDataUsername.Text;
                 Current.CU.Email = UpdateDataEmail.Text;
                 Current.CU.Age = UpdateDataAge.Text;
+
+                await PopupNavigation.Instance.PopAsync();
+                Application.Current.MainPage = new NavigationPage(new MapPage());
             }
         }
     }

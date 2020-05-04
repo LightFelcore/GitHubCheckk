@@ -17,7 +17,7 @@ namespace SendMeADrink_Official
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Profile : ContentPage
     {
-        readonly App Current = (App)App.Current;
+        readonly App Current = ((App)App.Current);
 
         public Profile()
         {

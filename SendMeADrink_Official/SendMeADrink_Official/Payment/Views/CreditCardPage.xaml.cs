@@ -24,7 +24,6 @@ namespace SendMeADrink_Official.Payment.Views
             }
             else
             {
-
                 HttpClient client = new HttpClient(new HttpClientHandler());
 
                 var content = new FormUrlEncodedContent(new[]
@@ -39,10 +38,7 @@ namespace SendMeADrink_Official.Payment.Views
 
                 await DisplayAlert("Your card has been added successfully!", null, null, "OK");
 
-                Application.Current.MainPage = new NavigationPage(new Profile());
-
-
-
+                await Navigation.PopAsync();
             }
         }
     }

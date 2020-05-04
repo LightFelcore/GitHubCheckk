@@ -23,13 +23,21 @@ namespace SendMeADrink_Official.Payment.ViewModels
         public string CardExpirationDate
         {
             get => _expiration;
-            set { _expiration = value; OnPropertyChanged(); }
+            set
+            {
+                _expiration = value;
+                OnPropertyChanged();
+            }
         }
 
         public string CardCvv
         {
             get => _cvc;
-            set { _cvc = value; OnPropertyChanged(); }
+            set
+            {
+                _cvc = value;
+                OnPropertyChanged();
+            }
         }
     }
 }
