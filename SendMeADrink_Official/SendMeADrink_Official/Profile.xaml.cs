@@ -10,7 +10,7 @@ using Rg.Plugins.Popup;
 using Rg.Plugins.Popup.Services;
 using Newtonsoft.Json;
 using Json.Net;
-using SendMeADrink_Official.Payment;
+using SendMeADrink_Official.Payment.Views;
 
 namespace SendMeADrink_Official
 {

@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -152,28 +153,34 @@
     <AndroidResource Include="Resources\drawable\Profile.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ProfileUserPic.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\nocard.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\visa.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_discover_light.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\mastercard.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_jcb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\MagnifyingGlass.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\BackButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Info.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_visa.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Info2.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_visa_white.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Close.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\nocards.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\SMAD_Logo.png" />
+    <AndroidResource Include="Resources\drawable\chip.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Key.png" />

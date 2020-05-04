@@ -58,7 +58,7 @@ namespace SendMeADrink_Official
                 }
                 else
                 {
-                    await DisplayAlert("The entered passwords aren't the same", "", "Close");
+                    await DisplayAlert("The entered passwords do not match",null, null, "Close");
                 }
             }
         }
