@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace SendMeADrink_Official.iOS
 {
@@ -24,6 +25,7 @@ namespace SendMeADrink_Official.iOS
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsGoogleMaps.Init("your_google_maps_ios_api_key");
+            FormsMaterial.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

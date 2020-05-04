@@ -12,6 +12,7 @@ using Android;
 using Android.OS;
 using SendMeADrink_Official.Database;
 using Plugin.CurrentActivity;
+using Xamarin.Forms;
 
 namespace SendMeADrink_Official.Droid
 {
@@ -29,6 +30,7 @@ namespace SendMeADrink_Official.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
+            FormsMaterial.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
         
