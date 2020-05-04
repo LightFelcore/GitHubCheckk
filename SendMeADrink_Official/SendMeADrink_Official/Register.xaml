@@ -10,19 +10,20 @@
     <ContentPage.Content>
         <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="75"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="55"/>
             </Grid.RowDefinitions>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="0">
-                <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
-                             Scale="0.3" BackgroundColor="Transparent"/>
+            <Grid Grid.Row="0">
+                <Label Text="Register" TextColor="Black" FontSize="32" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
-                <Label Text="Register" TextColor="Black" FontSize="32"  FontAttributes="Bold"
-                       VerticalTextAlignment="Center" Margin="40, 0, 0, 0" />
-            </StackLayout>
+                <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
+                             Scale="0.5" BackgroundColor="Transparent"
+                             HorizontalOptions="Start" VerticalOptions="Start"/>
+            </Grid>
 
             <Grid Grid.Row="1" Margin="15,0">
                 <Grid.RowDefinitions>
@@ -34,7 +35,7 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Image Source="Formulier.png" Grid.Row="0" HeightRequest="150" Margin="20,0,0,0"/>
+                <Image Source="Formulier.png" Grid.Row="0" HeightRequest="150" Margin="20,10,0,10"/>
 
                 <Entry Placeholder="Username"
                        x:Name="UsernameEntry"

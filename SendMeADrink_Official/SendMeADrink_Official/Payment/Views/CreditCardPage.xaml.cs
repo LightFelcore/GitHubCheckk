@@ -41,5 +41,10 @@ namespace SendMeADrink_Official.Payment.Views
                 await Navigation.PopAsync();
             }
         }
+
+        private async void BackButton_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

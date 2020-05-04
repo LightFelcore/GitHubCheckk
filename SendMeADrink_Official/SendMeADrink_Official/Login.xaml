@@ -82,11 +82,20 @@
                     </Label.GestureRecognizers>
                 </Label>
             </Grid>
-            
-            <Label Text="-------------------------- OR --------------------------" 
-                   FontAttributes="Bold" FontSize="Subtitle" TextColor="#2d3142"
-                   HorizontalTextAlignment="Center"
-                   Grid.Row="7"/>
+
+            <StackLayout Grid.Row="7" Orientation="Horizontal">
+                <Frame BackgroundColor="#2d3142"
+                       HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                       Margin="15,13.5,5,13.5" CornerRadius="20"/>
+
+                <Label Text="OR" TextColor="#2d3142"
+                   FontAttributes="Bold" FontSize="Subtitle" 
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                <Frame BackgroundColor="#2d3142"
+                       HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                       Margin="5,13.5,15,13.5" CornerRadius="20"/>
+            </StackLayout>
 
             <Button Text="Sign Up" TextColor="White" FontSize="20"
                     CornerRadius ="20"

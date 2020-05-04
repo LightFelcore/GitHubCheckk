@@ -25,28 +25,35 @@ namespace SendMeADrink_Official
         {
             if (string.IsNullOrWhiteSpace(UpdateDataUsername.Text) || string.IsNullOrWhiteSpace(UpdateDataEmail.Text) || string.IsNullOrWhiteSpace(UpdateDataAge.Text))
             {
-                await DisplayAlert("Enter all information", "", "Close");
+                ErrorMessage.Text ="Enter all information";
             }
             else
             {
-                HttpClient client = new HttpClient(new HttpClientHandler());
-
-                var content = new FormUrlEncodedContent(new[]
+                if(UpdateDataUsername.Text != Current.CU.Username || UpdateDataEmail.Text != Current.CU.Email || UpdateDataAge.Text != Current.CU.Age)
                 {
-                    new KeyValuePair<string, string>("Id", Current.CU.Id),
-                    new KeyValuePair<string, string>("Username", Current.CU.Username),
-                    new KeyValuePair<string, string>("Email", Current.CU.Email),
-                    new KeyValuePair<string, string>("Age", Current.CU.Age),
-                });
+                    HttpClient client = new HttpClient(new HttpClientHandler());
 
-                await client.PostAsync("http://send-meadrink.com/SMAD_App/Update/update.php", content);
+                    var content = new FormUrlEncodedContent(new[]
+                    {
+                        new KeyValuePair<string, string>("Id", Current.CU.Id),
+                        new KeyValuePair<string, string>("Username", Current.CU.Username),
+                        new KeyValuePair<string, string>("Email", Current.CU.Email),
+                        new KeyValuePair<string, string>("Age", Current.CU.Age),
+                    });
 
-                Current.CU.Username = UpdateDataUsername.Text;
-                Current.CU.Email = UpdateDataEmail.Text;
-                Current.CU.Age = UpdateDataAge.Text;
+                    await client.PostAsync("http://send-meadrink.com/SMAD_App/Update/update.php", content);
 
-                await PopupNavigation.Instance.PopAsync();
-                Application.Current.MainPage = new NavigationPage(new MapPage());
+                    Current.CU.Username = UpdateDataUsername.Text;
+                    Current.CU.Email = UpdateDataEmail.Text;
+                    Current.CU.Age = UpdateDataAge.Text;
+
+                    await PopupNavigation.Instance.PopAsync();
+                    Application.Current.MainPage = new NavigationPage(new MapPage());
+                }
+                else
+                {
+                    ErrorMessage.Text = "The entered data is the same!";
+                }
             }
         }
     }

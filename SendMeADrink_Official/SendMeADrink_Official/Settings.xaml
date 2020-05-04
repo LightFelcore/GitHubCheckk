@@ -8,20 +8,21 @@
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="0,0,0,15">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="75"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="55"/>
             </Grid.RowDefinitions>
 
-            <StackLayout Orientation="Horizontal" Grid.Row="0">
-                <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
-                             Scale="0.5" BackgroundColor="Transparent"/>
+            <Grid Grid.Row="0">
+                <Label Text="Settings" TextColor="Black" FontSize="32" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
 
-                <Label Text="Settings" TextColor="Black" FontSize="30"  FontAttributes="Bold"
-                       VerticalTextAlignment="Center"/>
-            </StackLayout>
+                <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
+                             Scale="0.5" BackgroundColor="Transparent"
+                             HorizontalOptions="Start" VerticalOptions="Start"/>
+            </Grid>
 
             <StackLayout Orientation="Horizontal" Grid.Row="1" Padding="15,5">
                 <Label Text="App Theme:" TextColor="Black" 
@@ -37,8 +38,8 @@
                 </Picker>
             </StackLayout>
             
-            <Button Text="Save Settings" FontAttributes="Bold" FontSize="17.5"
-                    BackgroundColor="#218cff" Margin="15" CornerRadius="10"
+            <Button Text="Save Settings" TextColor="White" FontAttributes="Bold" FontSize="17.5"
+                    BackgroundColor="#2d3142" CornerRadius="20" Margin="15,0"
                     Clicked="SaveButton_Clicked" Grid.Row="2"/>
         </Grid>
     </ContentPage.Content>

@@ -38,6 +38,9 @@
                    FontAttributes="Bold" TextColor="White" Keyboard="Numeric" Text="{Binding Age}"
                    x:Name="UpdateDataAge"/>
 
+            <Label x:Name="ErrorMessage" TextColor="Red" FontSize="15" 
+                   HorizontalTextAlignment="Center"/>
+
             <Button x:Name="SaveButton"
                     BackgroundColor="White"
                     FontSize="17.5" FontAttributes="Bold"
