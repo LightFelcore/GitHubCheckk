@@ -15,8 +15,7 @@ namespace SendMeADrink_Official
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ForgotPassword : ContentPage
     {
-        string randomCode;
-        public static string to;
+        public string randomCode;
 
         public ForgotPassword()
         {
@@ -27,7 +26,7 @@ namespace SendMeADrink_Official
         {
             if (string.IsNullOrWhiteSpace(EmailEntry.Text))
             {
-                await DisplayAlert("Enter your Email", null, null, "OK");
+                ErrorMessage.Text = "Enter your email";
             }
             else
             {
@@ -41,9 +40,6 @@ namespace SendMeADrink_Official
                 HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/ForgotPassword/forgot.php", content);
                 var json = await res.Content.ReadAsStringAsync();
                 var Email_DB = JsonConvert.DeserializeObject(json);
-
-
-                
 
                 if (Email_DB.ToString() == "true")
                 {

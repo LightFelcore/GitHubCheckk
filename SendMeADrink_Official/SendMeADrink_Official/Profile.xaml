@@ -63,7 +63,6 @@
                     </Label.FormattedText>
                 </Label>
 
-                <!--4. Contact information: Board inforation-->
                 <Grid Grid.Row="5" Margin="0,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.5*"/>
@@ -97,7 +96,6 @@
                 </Grid>
             </Grid>
 
-            <!--4. Contact information: Follow button-->
             <Button Grid.Row="2"
                     Text="Edit Profile" TextColor="White"
                     FontAttributes="Bold" FontSize="17.5"

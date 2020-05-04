@@ -26,7 +26,7 @@ namespace SendMeADrink_Official
         {
             if (string.IsNullOrWhiteSpace(UsernameEntry.Text) || string.IsNullOrWhiteSpace(AgeEntry.Text) || string.IsNullOrWhiteSpace(EmailEntry.Text) || string.IsNullOrWhiteSpace(PasswordEntry.Text) || string.IsNullOrWhiteSpace(RepeatPasswordEntry.Text))
             {
-                await DisplayAlert("Enter all information", "", "Close");
+                ErrorMessage.Text = "Enter the correct information";
             }
             else
             {
@@ -45,7 +45,7 @@ namespace SendMeADrink_Official
                     HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Register/Register.php", content);
                     var json = await res.Content.ReadAsStringAsync();
 
-                    if (JsonConvert.DeserializeObject<Boolean>(json) == true)
+                    if (JsonConvert.DeserializeObject<bool>(json) == true)
                     {
                         await DisplayAlert("The email address you have entered is already registered", null, "Close");
                         PasswordEntry.Text = RepeatPasswordEntry.Text = string.Empty;
@@ -58,7 +58,7 @@ namespace SendMeADrink_Official
                 }
                 else
                 {
-                    await DisplayAlert("The entered passwords do not match",null, null, "Close");
+                    ErrorMessage.Text = "The entered passwords do not match";
                 }
             }
         }
@@ -74,9 +74,10 @@ namespace SendMeADrink_Official
         {
             PasswordEntry.IsPassword = PasswordEntry.IsPassword ? false : true;
         }
-        public void ShowRepeatPassword(object sender, EventArgs args)
+
+        public void ShowRepeatedPassword(object sender, EventArgs args)
         {
-            RepeatPasswordEntry.IsPassword = RepeatPasswordEntry.IsPassword ? false : true;
+            PasswordEntry.IsPassword = PasswordEntry.IsPassword ? false : true;
         }
     }
 }

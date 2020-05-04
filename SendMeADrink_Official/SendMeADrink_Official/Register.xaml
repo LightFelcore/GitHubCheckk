@@ -13,18 +13,18 @@
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="55"/>
             </Grid.RowDefinitions>
-            
-            <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
-                         BackgroundColor="Transparent"
-                         AnchorX="-0.1" Scale="0.35"
-                         Grid.Row="0"/>
-            
-            <Label Text="Registration" FontSize="32" TextColor="Black"
-                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                   Grid.Row="0"/>
-            
-            <Grid Grid.Row="1" Margin="10,0">
+
+            <StackLayout Orientation="Horizontal" Grid.Row="0">
+                <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
+                             Scale="0.3" BackgroundColor="Transparent"/>
+
+                <Label Text="Register" TextColor="Black" FontSize="32"  FontAttributes="Bold"
+                       VerticalTextAlignment="Center" Margin="40, 0, 0, 0" />
+            </StackLayout>
+
+            <Grid Grid.Row="1" Margin="15,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="50"/>
@@ -34,7 +34,7 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <Image Source="Formulier.png" Grid.Row="0" HeightRequest="150" Margin="30,0,0,0"/>
+                <Image Source="Formulier.png" Grid.Row="0" HeightRequest="150" Margin="20,0,0,0"/>
 
                 <Entry Placeholder="Username"
                        x:Name="UsernameEntry"
@@ -66,7 +66,7 @@
                            Grid.Column="0"/>
 
                     <Image Source="Eye.png"
-                           Scale="0.7"
+                           Scale="0.65"
                            Margin="0,0,0,-4"
                            Grid.Column="1">
                         <Image.GestureRecognizers>
@@ -87,23 +87,25 @@
                            Grid.Column="0"/>
                     
                     <Image Source="Eye.png"
-                           Scale="0.7"
+                           Scale="0.65"
                            Margin="0,0,0,-4"
                            Grid.Column="1">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="ShowRepeatPassword" NumberOfTapsRequired="1"/>
+                            <TapGestureRecognizer Tapped="ShowRepeatedPassword" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
                     </Image>
                 </Grid>
             </Grid>
-            
+
+            <Label x:Name="ErrorMessage" TextColor="Red" FontSize="15" 
+                   HorizontalTextAlignment="Center" Grid.Row="2"/>
+
             <Button Text="Sign Up" FontSize="20"
-                    Margin="15,10, 15, 0"
-                    CornerRadius ="20"
-                    BackgroundColor="#333333"
+                    CornerRadius ="20" Margin="15,0"
+                    BackgroundColor="#2d3142"
                     Clicked="SUButton_Clicked"
                     TextColor="White"
-                    Grid.Row="2"/>
+                    Grid.Row="3"/>
         </Grid>
     </ContentPage.Content> 
 </ContentPage>
