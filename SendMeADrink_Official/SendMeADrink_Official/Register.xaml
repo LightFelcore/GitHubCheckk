@@ -8,7 +8,7 @@
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
-        <Grid BackgroundColor="White">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="auto"/>

@@ -136,7 +136,7 @@
     </MasterDetailPage.Master>
 
     <MasterDetailPage.Detail>
-        <ContentPage>
+        <ContentPage x:Name="CP">
             <ContentPage.Content>
                 <Grid>
                     <maps:Map x:Name="CustomMap" MyLocationEnabled="True" IsVisible="True" VerticalOptions="FillAndExpand"/>

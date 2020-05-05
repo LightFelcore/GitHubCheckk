@@ -161,7 +161,7 @@ namespace SendMeADrink_Official
                     new KeyValuePair<string, string>("Latitude", DBPosition.Latitude.ToString()),
                 });
 
-                HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Finder/GetPlaces.php", content); //send the variable content to the database as a POST method*/
+                HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Finder/GetPlaces.php", content); //send the variable content to the database as a POST method
 
                 if (res.IsSuccessStatusCode)
                 {

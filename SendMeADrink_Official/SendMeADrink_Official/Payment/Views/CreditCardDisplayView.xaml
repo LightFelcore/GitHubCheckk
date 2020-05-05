@@ -3,14 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="SendMeADrink_Official.Payment.Views.CreditCardDisplayView"
              BackgroundColor="{StaticResource Primary}"
-             HorizontalOptions="FillAndExpand"
-             VerticalOptions="Start">
-    <Frame Margin="40,30"
-                   Padding="20"
-                   Visual="Material"
-                   BackgroundColor="{Binding CardNumber, Converter={StaticResource CardColorConverter}}">
-        <Grid ColumnSpacing="30"
-                      RowSpacing="0">
+             HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+
+    <Frame Margin="40,30" Padding="20" Visual="Material" BackgroundColor="{Binding CardNumber, Converter={StaticResource CardColorConverter}}">
+        <Grid ColumnSpacing="30" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -21,25 +17,18 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            
             <Image Source="{Binding CardNumber, Converter={StaticResource CardLightConverter}}"
-                           HeightRequest="40"
-                           Grid.Row="0"
-                           Grid.Column="1"
-                           HorizontalOptions="EndAndExpand"/>
+                   HeightRequest="40" Grid.Row="0" Grid.Column="1"
+                   HorizontalOptions="EndAndExpand"/>
 
-            <Label Text="Card Number"
-                           LineBreakMode="TailTruncation"
-                           FontSize="13"
-                           TextColor="{StaticResource Accent}"
-                           Grid.Row="1"
-                           Grid.Column="1"
-                           FontAttributes="Bold"/>
+            <Label Text="Card Number" LineBreakMode="TailTruncation"
+                   FontSize="13" FontAttributes="Bold"
+                   TextColor="{StaticResource Accent}"
+                   Grid.Row="1" Grid.Column="1"/>
 
-            <Label Text="{Binding CardNumber}"
-                            FontSize="20"
-                            TextColor="{StaticResource Secondary}"
-                            Grid.Row="2"
-                            Grid.Column="1"/>
+            <Label Text="{Binding CardNumber}" TextColor="{StaticResource Secondary}" FontSize="20"
+                   Grid.Row="2" Grid.Column="1"/>
 
             <Image Source="chip.png" Grid.Row="2" Grid.Column="0" 
                    HorizontalOptions="Center" Scale="1.25"/>
@@ -54,32 +43,25 @@
                     <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Expiration"
-                           Margin="0,15,0,0"
-                           FontSize="13"
-                           TextColor="{StaticResource Accent}"
-                           Grid.Row="0"
-                           Grid.Column="0" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <Label Text="Expires" TextColor="{StaticResource Accent}"
+                       Margin="0,15,0,0"
+                       FontSize="13" FontAttributes="Bold"  
+                       Grid.Row="0" Grid.Column="0" 
+                       HorizontalOptions="Center" />
 
-                <Label Text="{Binding CardExpirationDate}"
-                            FontSize="20"
-                            TextColor="{StaticResource Secondary}"
-                            Grid.Row="1"
-                            Grid.Column="0" HorizontalOptions="Center"/>
+                <Label Text="{Binding CardExpirationDate}" TextColor="{StaticResource Secondary}"
+                       FontSize="20" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
 
-                <Label Text="CVC"
-                            Margin="0,15,0,0"
-                           FontSize="13"
-                           TextColor="{StaticResource Accent}"
-                           Grid.Row="0"
-                           Grid.Column="1" HorizontalOptions="Center" FontAttributes="Bold"/>
+                <Label Text="CVC" TextColor="{StaticResource Accent}"
+                       Margin="0,15,0,0"
+                       FontSize="13" FontAttributes="Bold"  
+                       Grid.Row="0" Grid.Column="1" 
+                       HorizontalOptions="Center" />
 
-                <Label Text="{Binding CardCvv}"
-                            FontSize="20"
-                            TextColor="{StaticResource Secondary}"
-                            Grid.Row="1"
-                            Grid.Column="1" HorizontalOptions="Center"/>
-
+                <Label Text="{Binding CardCvv}" TextColor="{StaticResource Secondary}"
+                       FontSize="20"
+                       Grid.Row="1" Grid.Column="1" 
+                       HorizontalOptions="Center"/>
             </Grid>
         </Grid>
     </Frame>
