@@ -36,9 +36,9 @@ namespace SendMeADrink_Official
                     var content = new FormUrlEncodedContent(new[]
                     {
                         new KeyValuePair<string, string>("Id", Current.CU.Id),
-                        new KeyValuePair<string, string>("Username", Current.CU.Username),
-                        new KeyValuePair<string, string>("Email", Current.CU.Email),
-                        new KeyValuePair<string, string>("Age", Current.CU.Age),
+                        new KeyValuePair<string, string>("Username", UpdateDataUsername.Text),
+                        new KeyValuePair<string, string>("Email", UpdateDataEmail.Text),
+                        new KeyValuePair<string, string>("Age", UpdateDataAge.Text),
                     });
 
                     await client.PostAsync("http://send-meadrink.com/SMAD_App/Update/update.php", content);

@@ -47,22 +47,19 @@ namespace SendMeADrink_Official.FinderViews
 
         /*--------------------------*/
         /*String formating*/
-        public string DistanceString
+        public static string DistanceFormatting(double Distance)
         {
-            get
+            //The distance received from the database is in Km
+            if (Distance >= 1)
             {
-                //The distance received from the database is in Km
-                if (Current.SelectedItem.Distance >= 1)
-                {
-                    return string.Format("{0:F2} km", Current.SelectedItem.Distance);
-                }
-                else
-                {
-                    //If the distance is 0.999 km (or lower) we need to multiply it by 1000 and display it in meters
-                    double DistanceInMeters = Current.SelectedItem.Distance * 1000;
-                    return string.Format("{0:F0} m", DistanceInMeters);
-                }
+                return string.Format("{0:F2} km", Distance);
             }
+            else
+            {
+                //If the distance is 0.999 km (or lower) we need to multiply it by 1000 and display it in meters
+                double DistanceInMeters = Distance * 1000;
+                return string.Format("{0:F0} m", DistanceInMeters);
+            }    
         }
 
         /*--------------------------*/
@@ -114,6 +111,7 @@ namespace SendMeADrink_Official.FinderViews
             await MainViewContent.FadeTo(0, 150);
             Current.FV.Children[0] = new RouteView();
 
+            Current.UpdateCamera = false;
             Position LocationTappedPlace = new Position(Current.SelectedItem.Latitude, Current.SelectedItem.Longitude);
             await Current.CustomMap.AnimateCamera(CameraUpdateFactory.NewPositionZoom(LocationTappedPlace, 17.5), TimeSpan.FromSeconds(2.5));
         }

@@ -76,7 +76,7 @@
                    Grid.Row="3" Grid.Column="2">
                 <StackLayout Orientation="Horizontal">
                     <Image Source="ic_cvv" HeightRequest="25"/>
-                    
+
                     <Entry HorizontalOptions="FillAndExpand" Visual="Custom"
                            Keyboard="Numeric" x:Name="CVC" 
                            Placeholder="CVC" Text="{Binding CardCvv}">
@@ -87,13 +87,9 @@
                 </StackLayout>
             </Frame>
 
-            <CheckBox Color="#52d3142"
-                      WidthRequest="30" HorizontalOptions="Start"
-                      Margin="30,0,0,0" Visual="Material"
-                      Grid.Row="4" Grid.Column="0"/>
-
-            <Label Text="Remember me" TextColor="{StaticResource PrimaryDark}" FontSize="16"
-                   VerticalOptions="Center" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+            <Label x:Name="ErrorMessage" TextColor="Red" FontSize="15" 
+                   HorizontalTextAlignment="Center" 
+                   Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"/>
 
             <Button Text="SAVE CARD" TextColor="White" 
                     FontSize="17.5" FontAttributes="Bold"

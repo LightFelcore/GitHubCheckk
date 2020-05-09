@@ -31,8 +31,8 @@
 
                 <Frame Grid.Row="0" 
                        CornerRadius="10" Padding="5,0" Margin="5,0,5,5"
-                       BackgroundColor="White" Opacity="0.85">
-                    <SearchBar x:Name="SearchBar"
+                       BackgroundColor="white" Opacity="0.85">
+                    <SearchBar x:Name="SearchBar" 
                                Placeholder="Search" Margin="-15,-5"
                                Focused="SearchBar_Focused" Unfocused="SearchBar_Unfocused"
                                SearchButtonPressed="SearchButton_Pressed"/>

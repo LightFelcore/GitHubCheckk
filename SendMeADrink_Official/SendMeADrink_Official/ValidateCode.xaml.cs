@@ -12,7 +12,6 @@ namespace SendMeADrink_Official
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ValidateCode : ContentPage
     {
-
         public string code;
         public string Email;
 
@@ -32,11 +31,11 @@ namespace SendMeADrink_Official
         {
             if(code == ValidationCode.Text)
             {
-                Application.Current.MainPage = new NavigationPage(new ResetPassword(Email));
+                await Navigation.PushAsync(new ResetPassword(Email));
             }
             else
             {
-                await DisplayAlert("You entred an invalid validation code. Please, try again with obbtained code or make a new password request.", null, null, "OK"); 
+                ErrorMessage.Text = "You entered an invalid validation code";
             }
         }
     }

@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using SendMeADrink_Official.Database;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Rg.Plugins.Popup;
 using Rg.Plugins.Popup.Services;
-using Newtonsoft.Json;
-using Json.Net;
 using SendMeADrink_Official.Payment.Views;
 
 namespace SendMeADrink_Official
@@ -39,7 +34,7 @@ namespace SendMeADrink_Official
 
         private async void PaymentButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreditCardPage());
+            await Navigation.PushAsync(new ListOfCreditCards());
         }
     }
 }

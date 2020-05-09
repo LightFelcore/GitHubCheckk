@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SendMeADrink_Official.Payment.Views.ListOfCreditCards"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid Margin="0,0,0,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Label Text="Available Cards" TextColor="Black" FontSize="32" FontAttributes="Bold"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+            <ImageButton Source="BackButton.png" Clicked="BackButton_Clicked"
+                         Scale="0.5" BackgroundColor="Transparent"
+                         HorizontalOptions="Start" VerticalOptions="Start"/>
+
+            <ImageButton Source="AddIcon.png" Clicked="AddCardButton_Clicked"
+                         Scale="0.35" BackgroundColor="Transparent"
+                         HorizontalOptions="End" VerticalOptions="Start"/>
+        </Grid>
+
+        <ListView Grid.Row="1" x:Name="ListOfAvailableCreditCards"
+                  Margin="10,0" RowHeight="50">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding CardNumber, Converter={StaticResource CardConverter}}" Grid.Column="0"/>
+
+                            <Label Text="{Binding CardNumber}" TextColor="#2d3142"
+                                   FontSize="22.5" FontAttributes="Bold"
+                                   VerticalOptions="Center" HorizontalOptions="Start"
+                                   Grid.Column="1"/>
+                        </Grid>
+                        <ViewCell.ContextActions>
+                            <MenuItem Clicked="DeleteCard" Text="Delete" IsDestructive="True" CommandParameter="{Binding CardNumber}"/>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

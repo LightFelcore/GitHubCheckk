@@ -81,6 +81,7 @@ namespace SendMeADrink_Official.FinderViews
             await Finder.TranslateTo(0, 400, 200);
             Current.FV.Children[0] = new MainView();
 
+            Current.UpdateCamera = true;
             Position LocationUser = new Position(Current.CU.Latitude, Current.CU.Longitude);
             await Current.CustomMap.AnimateCamera(CameraUpdateFactory.NewPositionZoom(LocationUser, 17.5), TimeSpan.FromSeconds(2.5));
         }
@@ -98,7 +99,7 @@ namespace SendMeADrink_Official.FinderViews
         {
             double Latitude = Current.SelectedItem.Latitude + ((Current.CU.Latitude - Current.SelectedItem.Latitude)/2);
             double Longitude = Current.SelectedItem.Longitude + ((Current.CU.Longitude - Current.SelectedItem.Longitude)/2);
-            double Zoom = (Current.SelectedItem.Distance / 0.06479239943325303703703703703704) + 2; //zoom range: 2 - 21‬
+            double Zoom = 14; //zoom range: 2 - 21‬
 
             Task.Run(() => 
             {
@@ -110,6 +111,7 @@ namespace SendMeADrink_Official.FinderViews
 
                     Thread.Sleep(2500);
 
+                    Current.UpdateCamera = true;
                     Position LocationUser = new Position(Current.CU.Latitude, Current.CU.Longitude);
                     await Current.CustomMap.AnimateCamera(CameraUpdateFactory.NewPositionZoom(LocationUser, 17.5), TimeSpan.FromSeconds(2.5));
                     await SubContent.FadeTo(0, 125);

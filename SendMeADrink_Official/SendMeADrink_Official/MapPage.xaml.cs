@@ -12,7 +12,6 @@ using Plugin.Geolocator;
 using Geolocator = Plugin.Geolocator.Abstractions;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
-using System.Linq;
 
 namespace SendMeADrink_Official
 {
@@ -90,8 +89,7 @@ namespace SendMeADrink_Official
                 reader = new System.IO.StreamReader(stream);
             });
 
-            return reader.ReadToEnd();
-            
+            return reader.ReadToEnd();   
         }
 
         public static async Task<Geolocator.Position> GetUserStartLocation()
@@ -134,14 +132,17 @@ namespace SendMeADrink_Official
         /*Move the user on the map*/
         public async Task UpdateUserLocation(Geolocator.Position position)
         {
-            await Task.Run(() =>
+            if(Current.UpdateCamera)
             {
-                Device.BeginInvokeOnMainThread(async () =>
+                await Task.Run(() =>
                 {
-                    //move the users position on the map
-                    await CustomMap.AnimateCamera(GoogleMaps.CameraUpdateFactory.NewPositionZoom(new GoogleMaps.Position(position.Latitude, position.Longitude), 17.5));
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                        //move the users position on the map
+                        await CustomMap.AnimateCamera(GoogleMaps.CameraUpdateFactory.NewPositionZoom(new GoogleMaps.Position(position.Latitude, position.Longitude), 17.5));
+                    });
                 });
-            });
+            }
 
             //Store the long and lat data in the CU variable
             Current.CU.Latitude = position.Latitude;
@@ -186,22 +187,13 @@ namespace SendMeADrink_Official
         /*Used to calculate the distance between the users current position and the place*/
         public async Task CalculateDistance(Geolocator.Position CurrentPosition)
         {
-            IList<Place> NewPlacesList = new List<Place>(); //New list to store the re-calculated places
-
             await Task.Run(() => 
             { 
                 //Used to re-calculate the distance for each place in the list
                 foreach (Place place in Current.Places)
                 {
                     place.Distance = 6371 * Math.Acos(Math.Cos(ConvertToRadians(CurrentPosition.Latitude)) * Math.Cos(ConvertToRadians(place.Latitude)) * Math.Cos(ConvertToRadians(place.Longitude) - ConvertToRadians(CurrentPosition.Longitude)) + Math.Sin(ConvertToRadians(CurrentPosition.Latitude)) * Math.Sin(ConvertToRadians(place.Latitude)));
-                    NewPlacesList.Add(place);
                 }
-
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Current.Places = NewPlacesList; //Used to store all the places nearby (Variable is used when the page loads)
-                    Current.PlacesListView.ItemsSource = NewPlacesList; //Used to change the list of places nearby when the location changes
-                });
             });
         }
 
@@ -249,6 +241,12 @@ namespace SendMeADrink_Official
         private void PositionError(object sender, Geolocator.PositionErrorEventArgs e)
         {
             Console.WriteLine(e.Error);
+        }
+
+        /*Handle the my location button clicked event*/
+        private void MyLocationButton_Clicked(object sender, GoogleMaps.MyLocationButtonClickedEventArgs e)
+        {
+            Current.UpdateCamera = true;
         }
 
         /*---------------------------------*/

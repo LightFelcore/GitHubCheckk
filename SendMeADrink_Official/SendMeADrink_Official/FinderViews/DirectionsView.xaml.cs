@@ -72,6 +72,7 @@ namespace SendMeADrink_Official.FinderViews
             await Finder.TranslateTo(0, 400, 200);
             Current.FV.Children[0] = new RouteView();
 
+            Current.UpdateCamera = false;
             Position LocationUser = new Position(Current.SelectedItem.Latitude, Current.SelectedItem.Longitude);
             await Current.CustomMap.AnimateCamera(CameraUpdateFactory.NewPositionZoom(LocationUser, 17.5), TimeSpan.FromSeconds(2.5));
         }

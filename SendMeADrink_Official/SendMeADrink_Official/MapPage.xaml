@@ -136,10 +136,11 @@
     </MasterDetailPage.Master>
 
     <MasterDetailPage.Detail>
-        <ContentPage x:Name="CP">
+        <ContentPage>
             <ContentPage.Content>
                 <Grid>
-                    <maps:Map x:Name="CustomMap" MyLocationEnabled="True" IsVisible="True" VerticalOptions="FillAndExpand"/>
+                    <maps:Map x:Name="CustomMap" VerticalOptions="FillAndExpand"
+                              MyLocationEnabled="True" MyLocationButtonClicked="MyLocationButton_Clicked" IsVisible="True" />
 
                     <Frame BackgroundColor="LightGray" 
                            HorizontalOptions="Start" VerticalOptions="Start"

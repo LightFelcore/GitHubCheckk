@@ -27,15 +27,15 @@
                    Margin="20,0,20,10"/>
             
             <Entry Placeholder="Username" PlaceholderColor="White" 
-                   FontAttributes="Bold" TextColor="White" Text="{Binding Username}"
+                   FontAttributes="Bold" TextColor="White" Text="{Binding Username, Mode=OneWay}"
                    x:Name="UpdateDataUsername"/>
 
             <Entry Placeholder="Email" PlaceholderColor="White" 
-                   FontAttributes="Bold" TextColor="White" Keyboard="Email" Text="{Binding Email}"
+                   FontAttributes="Bold" TextColor="White" Keyboard="Email" Text="{Binding Email, Mode=OneWay}"
                    x:Name="UpdateDataEmail"/>
             
             <Entry Placeholder="Age" PlaceholderColor="White" 
-                   FontAttributes="Bold" TextColor="White" Keyboard="Numeric" Text="{Binding Age}"
+                   FontAttributes="Bold" TextColor="White" Keyboard="Numeric" Text="{Binding Age, Mode=OneWay}"
                    x:Name="UpdateDataAge"/>
 
             <Label x:Name="ErrorMessage" TextColor="Red" FontSize="15" 

@@ -15,7 +15,12 @@ namespace SendMeADrink_Official
     {
         public bool IsUserLoggedIn = Preferences.Get("IsUserLoggedIn", false); //Stores a bool that tells if a user checked Remember me or not
         public User CU { get; set; } //CU = Current User (logged In)
+        public IList<Creditcard> CreditCards{ get; set; } //Stores all the added credit cards of the user
+        public ListView CreditCardsListView { get; set; } //Listview that will list all credit cards
+
         public Map CustomMap { get; set; } //Map used by the user
+        public bool UpdateCamera { get; set; } //Stores if camera tracking is used to follow the user
+
         public Grid FV { get; set; } //Stores the 3 different finder views
         public IList<Place> Places { get; set; } //List that stores all the places
         public ListView PlacesListView { get; set; } //ListView that will list all places
@@ -24,6 +29,7 @@ namespace SendMeADrink_Official
         public App()
         {
             InitializeComponent();
+            UpdateCamera = true;
 
             //Check if user checked 'RememberMe' checkbox on login page
             if (!IsUserLoggedIn)
@@ -56,7 +62,7 @@ namespace SendMeADrink_Official
                 var content = new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("Email", Preferences.Get("EmailToken", null)),
-                    new KeyValuePair<string, string>("Passwd", PasswordToken),
+                    new KeyValuePair<string, string>("Passwd", PasswordToken)
                 });
 
                 HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Login/login.php", content);
@@ -65,6 +71,8 @@ namespace SendMeADrink_Official
                 {
                     var json = await res.Content.ReadAsStringAsync();
                     CU = JsonConvert.DeserializeObject<User>(json);
+
+                    CreditCards = await Login.GetCards(CU.Id);
 
                     MainPage = new NavigationPage(new MapPage());
                 }

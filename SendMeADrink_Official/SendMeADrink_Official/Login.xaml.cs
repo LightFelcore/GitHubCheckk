@@ -51,6 +51,7 @@ namespace SendMeADrink_Official
                     if (u != null)
                     {
                         Current.CU = u; //Store the gathered data in CU
+                        Current.CreditCards = await GetCards(Current.CU.Id);
 
                         if (RememberMe.IsChecked)
                         {
@@ -64,6 +65,30 @@ namespace SendMeADrink_Official
                         ErrorMessage.Text = "The entered email or password is incorrect!";
                     }
                 }
+            }
+        }
+
+
+        /*Get the users added credit cards*/
+        public static async Task<IList<Creditcard>> GetCards(string Id)
+        {
+            HttpClient client = new HttpClient(new HttpClientHandler());
+
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("User_Id", Id),
+            });
+
+            HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Payment/GetCards.php", content);
+
+            if (res.IsSuccessStatusCode)
+            {
+                var json = await res.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<IList<Creditcard>>(json); //Store the gathered credit cards in Current.CreditCards
+            }
+            else
+            {
+                return null;
             }
         }
 

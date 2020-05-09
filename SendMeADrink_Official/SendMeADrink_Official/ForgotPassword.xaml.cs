@@ -67,7 +67,7 @@ namespace SendMeADrink_Official
                         /*Versturen van de email*/
                         SmtpServer.Send(mail);
                         await DisplayAlert("Email has been sent to " + EmailEntry.Text, null, null, "OK");
-                        Application.Current.MainPage = new NavigationPage(new ValidateCode(randomCode, EmailEntry.Text));
+                        await Navigation.PushAsync(new ValidateCode(randomCode, EmailEntry.Text));
                     }
                     catch (Exception ex)
                     {
