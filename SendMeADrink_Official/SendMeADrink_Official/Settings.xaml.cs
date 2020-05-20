@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,7 +15,7 @@ namespace SendMeADrink_Official
         {
             InitializeComponent();
 
-            AppTheme.SelectedIndex = Preferences.Get("AppTheme", 2);
+            AppTheme.SelectedIndex = Preferences.Get("AppThemeToken", 2); //Get the value that is stored in tha variable AppThemeToken
         }
 
         private async void BackButton_Clicked(object sender, EventArgs e)
@@ -29,13 +25,14 @@ namespace SendMeADrink_Official
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-            if(Preferences.Get("AppTheme", 2) != AppTheme.SelectedIndex)
+            /*Checks if the selected apptheme isn't the same as the current selected theme*/
+            if (Preferences.Get("AppThemeToken", 2) != AppTheme.SelectedIndex)
             {
-                Preferences.Set("AppTheme", AppTheme.SelectedIndex);
+                Preferences.Set("AppThemeToken", AppTheme.SelectedIndex); //Storing the selected app theme index in the variable "AppThemeToken" 
 
                 //Changing the style of the map
-                string styleFile = await MapPage.ChangeMapStyle();
-                Current.CustomMap.MapStyle = MapStyle.FromJson(styleFile);
+                string styleFile = await MapPage.ChangeMapStyle(); //Calls the function that will read the whole JSON file and returns a string
+                Current.CustomMap.MapStyle = MapStyle.FromJson(styleFile); //Changing the map it's theme (style)
             }
 
             await DisplayAlert("Settings Saved", null, null, "Close");

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.GoogleMaps;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Forms.GoogleMaps;
+using System;
 
 namespace SendMeADrink_Official.FinderViews
 {
@@ -19,8 +14,8 @@ namespace SendMeADrink_Official.FinderViews
         {
             InitializeComponent();
 
-            BindingContext = Current.SelectedItem;
-            PlaceTypeAndDistance.Text = PlaceTypeAndDistanceString;
+            BindingContext = Current.SelectedItem; //Change the bindingcontext of this page to the SelectedItem
+            PlaceTypeAndDistance.Text = PlaceTypeAndDistanceString; //Changes the PlaceTypeAndDistance variable it's text to PlaceTypeAndDistanceString
         }
 
         /*--------------------------*/
@@ -49,7 +44,7 @@ namespace SendMeADrink_Official.FinderViews
         }
 
         /*--------------------------*/
-        /*Finder Controls/Naviagtion*/
+        /*Finder Controls/Navigation*/
         private async void FinderGoUp(object sender, SwipedEventArgs e)
         {
             if (Finder.TranslationY == 587.5)
@@ -68,13 +63,13 @@ namespace SendMeADrink_Official.FinderViews
 
         private async void CloseButton_Clicked(object sender, EventArgs e)
         {
-            await RootContent.FadeTo(0, 125);
+            await RootContent.FadeTo(0, 125); //Makes the RootContent of the current page fade out in 125 ms
             await Finder.TranslateTo(0, 400, 200);
-            Current.FV.Children[0] = new RouteView();
+            Current.FV.Children[0] = new RouteView(); //Changes the value of the grid FV to the new RouteView page
 
-            Current.UpdateCamera = false;
+            Current.UpdateCamera = false; //Prevents the camera from updating when the postion changes
             Position LocationUser = new Position(Current.SelectedItem.Latitude, Current.SelectedItem.Longitude);
-            await Current.CustomMap.AnimateCamera(CameraUpdateFactory.NewPositionZoom(LocationUser, 17.5), TimeSpan.FromSeconds(2.5));
+            await Current.CustomMap.AnimateCamera(CameraUpdateFactory.NewPositionZoom(LocationUser, 17.5), TimeSpan.FromSeconds(2.5)); //Animate the camera of the map to the selected position with a zoom of 17.5 and in a timespan of 2.5 seconds
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SendMeADrink_Official.Database
+﻿namespace SendMeADrink_Official.Database
 {
+    /*Public class that stores all the information for a place*/
     public class Place
     {
         public string Id { get; set; }

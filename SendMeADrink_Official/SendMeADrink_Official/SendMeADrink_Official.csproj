@@ -41,7 +41,7 @@
     <Compile Update="FinderViews\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="ForgotPassword.xaml.cs">
+    <Compile Update="ForgotPasswordViews\ForgotPassword.xaml.cs">
       <DependentUpon>ForgotPassword.xaml</DependentUpon>
     </Compile>
     <Compile Update="Login.xaml.cs">
@@ -50,7 +50,7 @@
     <Compile Update="MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Profile.xaml.cs">
+    <Compile Update="ProfileViews\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
     <Compile Update="Register.xaml.cs">
@@ -59,7 +59,7 @@
     <Compile Update="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Update="UpdateData.xaml.cs">
+    <Compile Update="ProfileViews\UpdateData.xaml.cs">
       <DependentUpon>UpdateData.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -86,7 +86,7 @@
     <EmbeddedResource Update="FinderViews\RouteView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ForgotPassword.xaml">
+    <EmbeddedResource Update="ForgotPasswordViews\ForgotPassword.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="MapPage.xaml">
@@ -101,13 +101,13 @@
     <EmbeddedResource Update="Payment\Views\ListOfCreditCards.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ResetPassword.xaml">
+    <EmbeddedResource Update="ForgotPasswordViews\ResetPassword.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="UpdateData.xaml">
+    <EmbeddedResource Update="ProfileViews\UpdateData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Profile.xaml">
+    <EmbeddedResource Update="ProfileViews\Profile.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Register.xaml">
@@ -116,7 +116,7 @@
     <EmbeddedResource Update="Settings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ValidateCode.xaml">
+    <EmbeddedResource Update="ForgotPasswordViews\ValidateCode.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

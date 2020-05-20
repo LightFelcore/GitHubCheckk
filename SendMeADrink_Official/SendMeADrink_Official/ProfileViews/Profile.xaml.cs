@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Services;
 using SendMeADrink_Official.Payment.Views;
 
-namespace SendMeADrink_Official
+namespace SendMeADrink_Official.ProfileViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Profile : ContentPage
@@ -17,7 +14,7 @@ namespace SendMeADrink_Official
         public Profile()
         {
             InitializeComponent();
-            BindingContext = Current.CU;
+            BindingContext = Current.CU; //Change the bindingcontext of the page to Current.CU
         }
 
         /*-----------------*/
@@ -27,11 +24,13 @@ namespace SendMeADrink_Official
             await Navigation.PopAsync();
         }
 
+        /*Let a popup appear to change your data*/
         private async void EditButton_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new UpdateData());
         }
 
+        /*Navigate to the ListOfCreditCards page*/
         private async void PaymentButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ListOfCreditCards());

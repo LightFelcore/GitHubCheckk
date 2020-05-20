@@ -28,6 +28,7 @@ namespace SendMeADrink_Official.FinderViews
         {
             HttpClient client = new HttpClient(new HttpClientHandler());
 
+            /*Creating a new variable of the type "FormUrlEncodedContent" to store the data that will be send to our database*/
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("Longitude", Current.CU.Longitude.ToString()),
@@ -36,12 +37,18 @@ namespace SendMeADrink_Official.FinderViews
             });
 
             HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Finder/GetSearchedPlace.php", content); //send the variable content to the database as a POST method
-            var DBOutput = await res.Content.ReadAsStringAsync();
-            IList<Place> SearchedPlace = JsonConvert.DeserializeObject<IList<Place>>(DBOutput); //A bar or club searched in the database
 
-            if (SearchedPlace != null)
+            /*Checks if the data is retreived from the database*/
+            if (res.IsSuccessStatusCode)
             {
-                ListOfPlaces.ItemsSource = SearchedPlace;
+                var DBOutput = await res.Content.ReadAsStringAsync();
+                IList<Place> SearchedPlace = JsonConvert.DeserializeObject<IList<Place>>(DBOutput); //A bar or club searched in the database
+
+                /*Checks if the SearchedPlace variable (response from the database) isn't equal to null*/
+                if (SearchedPlace != null)
+                {
+                    ListOfPlaces.ItemsSource = SearchedPlace; //Sets the itemsource of ListOfPlaces to the IList SearchedPlace
+                }
             }
         }
 
@@ -96,6 +103,7 @@ namespace SendMeADrink_Official.FinderViews
 
         public async void SearchBar_Unfocused(object sender, FocusEventArgs e)
         {
+            /*Checks if the input field isn't empty or doesn't contain a white space*/
             if (string.IsNullOrWhiteSpace(SearchBar.Text))
             {
                 await Finder.TranslateTo(0, 400, 200);
@@ -105,15 +113,15 @@ namespace SendMeADrink_Official.FinderViews
         /*Change FinderView and go to selected place*/
         public async void Place_Tapped(object sender, ItemTappedEventArgs e)
         {
-            Current.SelectedItem = (Place)e.Item;
+            Current.SelectedItem = (Place)e.Item; //Stores the selected place it's data in the variable Current.SelectedItem
 
-            await Finder.TranslateTo(0, 400, 200);
+            await Finder.TranslateTo(0, 400, 200); //Makes the content of the current page fade out in 125 ms
             await MainViewContent.FadeTo(0, 150);
-            Current.FV.Children[0] = new RouteView();
+            Current.FV.Children[0] = new RouteView(); //Changes the value of the grid FV to the new RouteView page
 
-            Current.UpdateCamera = false;
+            Current.UpdateCamera = false; //Prevents the camera from updating when the postion changes
             Position LocationTappedPlace = new Position(Current.SelectedItem.Latitude, Current.SelectedItem.Longitude);
-            await Current.CustomMap.AnimateCamera(CameraUpdateFactory.NewPositionZoom(LocationTappedPlace, 17.5), TimeSpan.FromSeconds(2.5));
+            await Current.CustomMap.AnimateCamera(CameraUpdateFactory.NewPositionZoom(LocationTappedPlace, 17.5), TimeSpan.FromSeconds(2.5)); //Animate the camera of the map to the selected position with a zoom of 17.5 and in a timespan of 2.5 seconds
         }
     }
 }

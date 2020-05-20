@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Net.Http;
 using SendMeADrink_Official.Database;
+using SendMeADrink_Official.ProfileViews;
 using SendMeADrink_Official.FinderViews;
 using GoogleMaps = Xamarin.Forms.GoogleMaps;
 using System.Reflection;
@@ -64,15 +65,16 @@ namespace SendMeADrink_Official
             Current.CU.Latitude = DBPosition.Latitude;
             Current.CU.Longitude = DBPosition.Longitude;
 
-            await GetPlaces();
-            await StartListening();
+            await GetPlaces(); //Calls the function to get all the places nearby
+            await StartListening(); //Calls the function that will listen for location changes (every second)
         }
 
+        /*Task that reads the JSON file and returns a string*/
         public static async Task<string> ChangeMapStyle()
         {
-            string MapThemeString = "Night";
+            string MapThemeString = null; //Variable to store the selected theme
 
-            switch (Preferences.Get("AppTheme", 2))
+            switch (Preferences.Get("AppThemeToken", 2))
             {
                 case 0: MapThemeString = "Standard"; break;
                 case 1: MapThemeString = "Retro"; break;
@@ -92,15 +94,16 @@ namespace SendMeADrink_Official
             return reader.ReadToEnd();   
         }
 
+        /*Task that gets the users location and returns it as a variable of type Position*/
         public static async Task<Geolocator.Position> GetUserStartLocation()
         {
-            Geolocator.Position position = null;
+            Geolocator.Position position = null; //Variable to store the users it's location data
             try
             {
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 1;
 
-                position = await locator.GetLastKnownLocationAsync();
+                position = await locator.GetLastKnownLocationAsync(); //Check if a last known location is available
 
                 if (position != null)
                 {
@@ -114,7 +117,7 @@ namespace SendMeADrink_Official
                     return null;
                 }
 
-                position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1), null, true);
+                position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1), null, true); //Getting the user it's current position
             }
             catch (Exception ex)
             {
@@ -130,21 +133,22 @@ namespace SendMeADrink_Official
         }
 
         /*Move the user on the map*/
-        public async Task UpdateUserLocation(Geolocator.Position position)
+        public void UpdateUserLocation(Geolocator.Position position)
         {
+            /*Checks if the variable "UpdateCamera" is set to true*/
             if(Current.UpdateCamera)
             {
-                await Task.Run(() =>
+                Task.Run(() =>
                 {
-                    Device.BeginInvokeOnMainThread(async () =>
+                    Device.BeginInvokeOnMainThread(async() =>
                     {
-                        //move the users position on the map
-                        await CustomMap.AnimateCamera(GoogleMaps.CameraUpdateFactory.NewPositionZoom(new GoogleMaps.Position(position.Latitude, position.Longitude), 17.5));
+                        /*Animate the camera the the user it's position with a zoom of 17.5 (zoom range: 2 - 21)*/
+                        await CustomMap.AnimateCamera(GoogleMaps.CameraUpdateFactory.NewPositionZoom(new GoogleMaps.Position(position.Latitude, position.Longitude), 17.5)); 
                     });
                 });
             }
 
-            //Store the long and lat data in the CU variable
+            //Store the longitude and latitude data in the CU variable
             Current.CU.Latitude = position.Latitude;
             Current.CU.Longitude = position.Longitude;
         }
@@ -156,6 +160,7 @@ namespace SendMeADrink_Official
             {
                 HttpClient client = new HttpClient(new HttpClientHandler());
 
+                /*Creating a new variable of the type "FormUrlEncodedContent" to store the data that will be send to our database*/
                 var content = new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("Longitude", DBPosition.Longitude.ToString()),
@@ -164,6 +169,7 @@ namespace SendMeADrink_Official
 
                 HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Finder/GetPlaces.php", content); //send the variable content to the database as a POST method
 
+                /*Checks if the data is retreived from the database*/
                 if (res.IsSuccessStatusCode)
                 {
                     var DBOutput = await res.Content.ReadAsStringAsync();
@@ -206,7 +212,7 @@ namespace SendMeADrink_Official
             }
             else
             {
-                await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 1, true);
+                await CrossGeolocator.Current.StartListeningAsync(TimeSpan.FromSeconds(1), 1, true); //Start listening for location changes every second or every meter
 
                 CrossGeolocator.Current.PositionChanged += PositionChanged;
                 CrossGeolocator.Current.PositionError += PositionError;
@@ -221,19 +227,19 @@ namespace SendMeADrink_Official
                 var CurrentPosition = e.Position; //Used to store all the users current positions data
                 var Distance = 6371 * Math.Acos(Math.Cos(ConvertToRadians(CurrentPosition.Latitude)) * Math.Cos(ConvertToRadians(DBPosition.Latitude)) * Math.Cos(ConvertToRadians(DBPosition.Longitude) - ConvertToRadians(CurrentPosition.Longitude)) + Math.Sin(ConvertToRadians(CurrentPosition.Latitude)) * Math.Sin(ConvertToRadians(DBPosition.Latitude)));
 
-                //If-statement to check if the distance between current user position and the position last time the database has been accessed is gt or equal to 1 Km
+                //If-statement to check if the distance between current user position and the position last time the database has been accessed is greater than or equal to 1 Km
                 if (Distance >= 1)
                 {
                     DBPosition = LastPosition = CurrentPosition;
-                    await GetPlaces();
+                    await GetPlaces(); //Calls the function to get all the places nearby
                 }
                 else if ((CurrentPosition.Latitude != LastPosition.Latitude) || (CurrentPosition.Longitude != LastPosition.Longitude))
                 {
-                    await CalculateDistance(CurrentPosition);
+                    await CalculateDistance(CurrentPosition); //Calls the function to re-calculate the distance between the user and each place in the list
                     LastPosition = CurrentPosition;
                 }
 
-                await UpdateUserLocation(CurrentPosition);
+                UpdateUserLocation(CurrentPosition); //Calls the function to update the user it's position on the map
             });
         }
 
@@ -261,11 +267,13 @@ namespace SendMeADrink_Official
             IsPresented = false; //This will hide the MasterDetailPage.Master (Menu)
         }
 
+        /*Navigate to the profile page*/
         private async void ProfileButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Profile());
         }
 
+        /*Navigate to the settings page*/
         private async void SettingsButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Settings());
@@ -273,11 +281,12 @@ namespace SendMeADrink_Official
 
         private async void LogoutButton_Clicked(object sender, EventArgs e)
         {
-            var res = await DisplayAlert("Would you like to logout", null, "Yes", "No");
+            var res = await DisplayAlert("Would you like to logout", null, "Yes", "No"); //Alerts the user to logout
 
+            /*Checks if the user would like to logout or not*/
             if (res == true)
             {
-                Preferences.Remove("IsUserLoggedIn");
+                Preferences.Remove("IsUserLoggedInToken");
                 Application.Current.MainPage = new NavigationPage(new Login());
             }
         }

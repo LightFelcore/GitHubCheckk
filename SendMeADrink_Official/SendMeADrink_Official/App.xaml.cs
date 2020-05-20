@@ -13,7 +13,7 @@ namespace SendMeADrink_Official
 {
     public partial class App : Application
     {
-        public bool IsUserLoggedIn = Preferences.Get("IsUserLoggedIn", false); //Stores a bool that tells if a user checked Remember me or not
+        public bool IsUserLoggedIn = Preferences.Get("IsUserLoggedInToken", false); //Stores a bool that tells if a user checked Remember me or not
         public User CU { get; set; } //CU = Current User (logged In)
         public IList<Creditcard> CreditCards{ get; set; } //Stores all the added credit cards of the user
         public ListView CreditCardsListView { get; set; } //Listview that will list all credit cards
@@ -29,7 +29,7 @@ namespace SendMeADrink_Official
         public App()
         {
             InitializeComponent();
-            UpdateCamera = true;
+            UpdateCamera = true; //Used to start updating the camera to the users position
 
             //Check if user checked 'RememberMe' checkbox on login page
             if (!IsUserLoggedIn)
@@ -42,37 +42,41 @@ namespace SendMeADrink_Official
             }
         }
 
+        /*Function used to login the user on startup of the app*/
         public async void AutoLoginUser()
         {
-            string PasswordToken = null;
+            string PasswordToken = null; //Variable that stores the password of the user
 
             try
             {
-                PasswordToken = await SecureStorage.GetAsync("PasswordToken");
+                PasswordToken = await SecureStorage.GetAsync("PasswordToken"); //Getting the password of the user from the secure storage
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to retrieve data from secure storage: " + ex);
+                Console.WriteLine("Unable to retrieve data from secure storage: " + ex); //Error message if something goes wrong while retrieving the data
             }
 
+            /*Using a new task to call our database*/
             await Task.Run(async () => 
             {
                 HttpClient client = new HttpClient(new HttpClientHandler());
 
+                /*Creating a new variable of the type "FormUrlEncodedContent" to store the data that will be send to our database*/
                 var content = new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("Email", Preferences.Get("EmailToken", null)),
                     new KeyValuePair<string, string>("Passwd", PasswordToken)
                 });
 
-                HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Login/login.php", content);
+                HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Login/login.php", content); //Calling the database
 
+                /*Checks if the data is retreived from the database*/
                 if (res.IsSuccessStatusCode)
                 {
                     var json = await res.Content.ReadAsStringAsync();
-                    CU = JsonConvert.DeserializeObject<User>(json);
+                    CU = JsonConvert.DeserializeObject<User>(json); //Stores the data from the database in the variable CU
 
-                    CreditCards = await Login.GetCards(CU.Id);
+                    CreditCards = await Login.GetCards(CU.Id); //Calls the function to get all the cards added by the logged in user
 
                     MainPage = new NavigationPage(new MapPage());
                 }

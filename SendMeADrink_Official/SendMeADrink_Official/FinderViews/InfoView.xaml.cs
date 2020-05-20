@@ -21,7 +21,7 @@ namespace SendMeADrink_Official.FinderViews
         public InfoView()
         {
             InitializeComponent();
-            GetDrinks();
+            GetDrinks(); //Calls a function to get all the drinks
 
             //Defining the text value of "Name" and "PlaceTypeAndDistance"
             Name.Text = Current.SelectedItem.Name;
@@ -75,6 +75,7 @@ namespace SendMeADrink_Official.FinderViews
             }
         }
 
+        /*String formatting the Place type and the distance into 1 string*/
         public string PlaceTypeAndDistanceString
         {
             get { return string.Format("{0}  •  {1}", Current.SelectedItem.Type, DistanceString); }
@@ -83,7 +84,7 @@ namespace SendMeADrink_Official.FinderViews
         /*Info Buttons Handeling*/
         private void ChangeInfoView(object sender, EventArgs e)
         {
-            Label TappedInfoView = (Label)sender;
+            Label TappedInfoView = (Label)sender; //Stores the data of the tapped type in the variable "TappedInfoView"
             string Id = TappedInfoView.Text;
 
             if (Id == "Opening Hours") 
@@ -110,7 +111,7 @@ namespace SendMeADrink_Official.FinderViews
         /*List Of Drinks Buttons Handeling*/
         private void ChangeTypeOfDrink(object sender, EventArgs e)
         {
-            Label TappedDrinkType = (Label)sender;
+            Label TappedDrinkType = (Label)sender; //Stores the data of the tapped type in the variable "TappedDrinkType"
 
             //Styling for the tapped drink type and the previous tapped drink type
             PrevListTab.FontAttributes = FontAttributes.None;
@@ -136,6 +137,7 @@ namespace SendMeADrink_Official.FinderViews
         {
             HttpClient client = new HttpClient(new HttpClientHandler());
 
+            /*Creating a new variable of the type "FormUrlEncodedContent" to store the data that will be send to our database*/
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("Place_Id", Current.SelectedItem.Id)
@@ -143,6 +145,7 @@ namespace SendMeADrink_Official.FinderViews
 
             HttpResponseMessage res = await client.PostAsync("http://send-meadrink.com/SMAD_App/Finder/GetDrinks.php", content); //send the variable content to the database as a POST method
 
+            /*Checks if the data is retreived from the database*/
             if (res.IsSuccessStatusCode)
             {
                 var DBOutput = await res.Content.ReadAsStringAsync();
@@ -160,16 +163,18 @@ namespace SendMeADrink_Official.FinderViews
 
             FilteredList = Query.ToList(); //Converting the Query (IEnumerable<Drink>) to an IList<Drink> that can be used to fill the Listview
 
+            /*Checks if the list is empty*/
             if (FilteredList.Count == 0)
             {
+                /*Creating a new drink and defining it's name as "Nothing available"*/
                 Drink EmptyList = new Drink
                 {
                     NameD = "Nothing available"
                 };
-                FilteredList.Add(EmptyList);
+                FilteredList.Add(EmptyList); //Adding EmptyList to the filteredList
             }
 
-            ListOfDrinks.ItemsSource = FilteredList;
+            ListOfDrinks.ItemsSource = FilteredList; //Defining the itemsource of the listofdrinks
         }
 
         /*Get all the information of the tapped drink*/

@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SendMeADrink_Official.Profile"
+             x:Class="SendMeADrink_Official.ProfileViews.Profile"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
@@ -34,8 +34,8 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Frame HasShadow="False" WidthRequest="140" HeightRequest="150" CornerRadius="100" Padding="0">
-                    <Image Source="Profile.png" />
+                <Frame HasShadow="False" WidthRequest="140" HeightRequest="150" CornerRadius="100" Padding="0" BackgroundColor="Transparent">
+                    <Image Source="Profile.png"/>
                 </Frame>
 
                 <Label Grid.Row="2" HorizontalOptions="Center">

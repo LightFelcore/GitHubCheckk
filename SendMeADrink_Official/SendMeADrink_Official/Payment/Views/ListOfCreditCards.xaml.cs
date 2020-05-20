@@ -29,28 +29,25 @@ namespace SendMeADrink_Official.Payment.Views
         {
             foreach (Creditcard Card in CreditCards)
             {
+                /*Checks if the cardnumber contains a "-" between each 4 numbers*/
                 if(!Card.CardNumber.Contains("-"))
                 {
-                    Card.CardNumber = CardNumberFormatting(Card.CardNumber);
+                    //Used to format the cardnumber to ####-####-####-####
+                    Card.CardNumber = string.Format("{0}-{1}-{2}-{3}", Card.CardNumber.Substring(0, 4), Card.CardNumber.Substring(4, 4), Card.CardNumber.Substring(8, 4), Card.CardNumber.Substring(12, 4));
                 }
             }
 
             return CreditCards;
         }
 
-        //Used to format the cardnumber to ####-####-####-####
-        public static string CardNumberFormatting(string CardNumber)
-        {
-            return string.Format("{0}-{1}-{2}-{3}", CardNumber.Substring(0, 4), CardNumber.Substring(4, 4), CardNumber.Substring(8, 4), CardNumber.Substring(12, 4));
-        }
-
-        //Handels the delete button event
+        /*Handels the delete button event*/
         public async void DeleteCard(object sender, EventArgs e)
         {
             var SelectedCard = ((MenuItem)sender).CommandParameter.ToString();
 
             HttpClient client = new HttpClient(new HttpClientHandler());
 
+            /*Creating a new variable of the type "FormUrlEncodedContent" to store the data that will be send to our database*/
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("User_Id", Current.CU.Id),
@@ -59,16 +56,17 @@ namespace SendMeADrink_Official.Payment.Views
 
             await client.PostAsync("http://send-meadrink.com/SMAD_App/Payment/DeleteCard.php", content);
 
-            Current.CreditCards = await Login.GetCards(Current.CU.Id);
-            Current.CreditCardsListView.ItemsSource = ListOfCreditCards.CheckAllCards(Current.CreditCards);
+            Current.CreditCards = await Login.GetCards(Current.CU.Id); //Calls the function to get all the cards from the logged in user
+            Current.CreditCardsListView.ItemsSource = CheckAllCards(Current.CreditCards); //Changes the ItemSoure of the list
         }
 
-        /*Removes the last page of the stack*/
+        /*Navigates to the previous page*/
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
 
+        /*Navigates to the credit card page*/
         private async void AddCardButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CreditCardPage());

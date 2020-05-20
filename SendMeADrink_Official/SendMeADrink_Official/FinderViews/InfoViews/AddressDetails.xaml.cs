@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SendMeADrink_Official.FinderViews.InfoViews
@@ -16,8 +10,8 @@ namespace SendMeADrink_Official.FinderViews.InfoViews
         {
             InitializeComponent();
 
-            BindingContext = ((App)App.Current).SelectedItem;
-            PostalcodeAndRegion.Text = PostalData;
+            BindingContext = ((App)App.Current).SelectedItem; //Change the bindingcontext of this page to the SelectedItem
+            PostalcodeAndRegion.Text = PostalData; //Changes the PostalCodeAndRegion variable it's text to PostalData
         }
 
         /*--------------------------*/

@@ -12,31 +12,31 @@ namespace SendMeADrink_Official.Payment.ViewModels
 
         public string CardNumber
         {
-            get => _cardNumber;
+            get => _cardNumber; //Gets the value of CardNumber and stores it in _cardNumber
             set
             {
-                _cardNumber = value;
-                OnPropertyChanged();
+                _cardNumber = value; //Stores the value in _cardNumber
+                OnPropertyChanged(); //Calls the OnPropertyChanged event handeler
             }
         }
 
         public string CardExpirationDate
         {
-            get => _expiration;
+            get => _expiration; //Gets the value of CardExpirationDate and stores it in _expiration
             set
             {
-                _expiration = value;
-                OnPropertyChanged();
+                _expiration = value; //Stores the value in _expiration
+                OnPropertyChanged(); //Calls the OnPropertyChanged event handeler
             }
         }
 
         public string CardCvv
         {
-            get => _cvc;
+            get => _cvc; //Gets the value of CardCvv and stores it in _cvc
             set
             {
-                _cvc = value;
-                OnPropertyChanged();
+                _cvc = value; //Stores the value in _cvc
+                OnPropertyChanged(); //Calls the OnPropertyChanged event handeler
             }
         }
     }
