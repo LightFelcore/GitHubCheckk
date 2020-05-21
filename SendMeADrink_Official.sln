@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMeADrink_Official.Andro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMeADrink_Official.iOS", "SendMeADrink_Official\SendMeADrink_Official.iOS\SendMeADrink_Official.iOS.csproj", "{9CD2479C-42D5-45B6-913D-1E1DC5B4193B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMeADrink_Official", "SendMeADrink_Official\SendMeADrink_Official\SendMeADrink_Official.csproj", "{CF6E20F3-8ECD-42FB-83CB-D5E73003BE92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendMeADrink_Official", "SendMeADrink_Official\SendMeADrink_Official\SendMeADrink_Official.csproj", "{CF6E20F3-8ECD-42FB-83CB-D5E73003BE92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
